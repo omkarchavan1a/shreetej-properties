@@ -21,7 +21,7 @@ type Project = {
 export default function ProjectsCMS() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
-  const [showForm, setShowForm] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   const fetchProjects = async () => {
@@ -38,7 +38,22 @@ export default function ProjectsCMS() {
     fetchProjects();
   }, []);
 
-  const handleAddProject = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleEdit = (project: Project) => {
+    setSelectedProject(project);
+    setShowForm(true);
+    // Use setTimeout to ensure the form is rendered before setting values
+    setTimeout(() => {
+      if (formRef.current) {
+        const data = project as any;
+        Object.keys(data).forEach(key => {
+          const input = formRef.current?.elements.namedItem(key) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+          if (input) input.value = data[key] || "";
+        });
+      }
+    }, 10);
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formRef.current) return;
     const formData = new FormData(formRef.current);
@@ -50,14 +65,18 @@ export default function ProjectsCMS() {
     });
 
     try {
-      await fetch("/api/projects", {
-        method: "POST",
+      const url = "/api/projects" + (selectedProject ? `?id=${selectedProject.id}` : "");
+      const method = selectedProject ? "PATCH" : "POST";
+
+      await fetch(url, {
+        method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       fetchProjects();
       formRef.current.reset();
       setShowForm(false);
+      setSelectedProject(null);
     } catch (err) {
       console.error(err);
     }
@@ -90,8 +109,10 @@ export default function ProjectsCMS() {
 
       {showForm && (
         <div className="bg-white p-8 rounded-3xl shadow-xl border border-navy/5 mb-10 animate-fade-in-up">
-          <h2 className="font-serif text-xl font-bold text-navy mb-6">Create New Project</h2>
-          <form ref={formRef} onSubmit={handleAddProject} className="space-y-6">
+          <h2 className="font-serif text-xl font-bold text-navy mb-6">
+            {selectedProject ? `Edit: ${selectedProject.title}` : "Create New Project"}
+          </h2>
+          <form ref={formRef} onSubmit={handleFormSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div>
                 <label className="block text-[11px] font-bold tracking-[1.5px] uppercase text-text-mid mb-2">Title *</label>
@@ -223,6 +244,7 @@ export default function ProjectsCMS() {
                     </td>
                     <td className="px-6 py-4 text-sm text-text-mid truncate max-w-[200px]">{p.location}</td>
                     <td className="px-6 py-4 text-right space-x-4">
+                      <button onClick={() => handleEdit(p)} className="text-xs font-bold text-navy hover:text-gold uppercase tracking-[1px] transition-colors">Edit</button>
                       <button onClick={() => handleDelete(p.id)} className="text-xs font-bold text-red-500 hover:text-red-700 uppercase tracking-[1px] transition-colors">Delete</button>
                     </td>
                   </tr>

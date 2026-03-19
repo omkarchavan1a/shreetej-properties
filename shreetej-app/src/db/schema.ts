@@ -1,4 +1,4 @@
-import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, serial, text, timestamp, integer } from "drizzle-orm/pg-core";
 
 export const projects = pgTable("projects", {
   id: serial("id").primaryKey(),
@@ -49,9 +49,9 @@ export const leads = pgTable("leads", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull(),
-  phone: text("phone"),
-  message: text("message"),
-  assignedAgentId: serial("assigned_agent_id"), // Reference to agents.id
-  status: text("status").default("New").notNull(), // 'New', 'In-Progress', 'Closed'
+  phone: text("phone").notNull(),
+  message: text("message").notNull(),
+  assignedAgentId: integer("assigned_agent_id").references(() => agents.id),
+  status: text("status").default("New").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
