@@ -9,11 +9,21 @@ export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
 
   async function handleAction(formData: FormData) {
+    const data = Object.fromEntries(formData);
     startTransition(async () => {
-      const result = await submitContactForm(null, formData);
-      if (result?.success) {
-        setSuccessMsg(result.message);
-        formRef.current?.reset();
+      try {
+        const res = await fetch("/api/leads", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        const result = await res.json();
+        if (result.success) {
+          setSuccessMsg(result.message);
+          formRef.current?.reset();
+        }
+      } catch (err) {
+        console.error(err);
       }
     });
   }

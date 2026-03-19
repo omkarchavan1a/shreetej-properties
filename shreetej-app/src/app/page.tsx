@@ -8,6 +8,8 @@ import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-cream text-text-dark font-sans selection:bg-gold/30 selection:text-navy">

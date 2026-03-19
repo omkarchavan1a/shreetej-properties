@@ -34,3 +34,24 @@ export const press = pgTable("press", {
   publishedDate: timestamp("published_date").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
+export const agents = pgTable("agents", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull().unique(),
+  phone: text("phone"),
+  image: text("image"),
+  active: text("active").default("true").notNull(), // 'true' or 'false'
+  leadCount: serial("lead_count"), // Track number of leads assigned
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const leads = pgTable("leads", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  message: text("message"),
+  assignedAgentId: serial("assigned_agent_id"), // Reference to agents.id
+  status: text("status").default("New").notNull(), // 'New', 'In-Progress', 'Closed'
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});

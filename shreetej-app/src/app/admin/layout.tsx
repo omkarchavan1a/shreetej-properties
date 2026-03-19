@@ -59,6 +59,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           >
             Press Updates
           </Link>
+          <Link 
+            href="/admin/load-balancer"
+            className="block px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-gold hover:text-navy hover:border-gold transition-all duration-300 font-semibold tracking-wide text-gold/80"
+          >
+            Lead Balancer
+          </Link>
         </nav>
 
         <div className="mt-auto pt-8 border-t border-white/10">
