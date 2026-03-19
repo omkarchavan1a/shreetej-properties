@@ -6,6 +6,7 @@ type Agent = {
   id: number;
   name: string;
   email: string;
+  image: string | null;
   active: string;
   leadCount: number;
 };
@@ -86,6 +87,7 @@ export default function LoadBalancerDashboard() {
           <table className="w-full text-left">
             <thead>
               <tr className="bg-[#f8f6f2] text-[10px] uppercase tracking-[2px] text-navy font-bold">
+                <th className="px-8 py-4">Photo</th>
                 <th className="px-8 py-4">Agent Name</th>
                 <th className="px-8 py-4">Status</th>
                 <th className="px-8 py-4">Workload (Leads)</th>
@@ -95,6 +97,13 @@ export default function LoadBalancerDashboard() {
             <tbody className="divide-y divide-navy/5 text-sm">
               {agents.map(agent => (
                 <tr key={agent.id}>
+                  <td className="px-8 py-5">
+                    {agent.image ? (
+                      <img src={agent.image} alt={agent.name} className="w-10 h-10 rounded-full object-cover border border-navy/10 shadow-sm" />
+                    ) : (
+                      <div className="w-10 h-10 rounded-full bg-navy/5 flex items-center justify-center text-navy/20 font-bold text-[10px]">NA</div>
+                    )}
+                  </td>
                   <td className="px-8 py-5">
                     <p className="font-bold text-navy">{agent.name}</p>
                     <p className="text-xs text-text-mid">{agent.email}</p>

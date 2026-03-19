@@ -8,6 +8,7 @@ type Blog = {
   title: string;
   slug: string;
   author: string;
+  imageUrl: string | null;
   createdAt: Date | string;
 };
 
@@ -57,6 +58,7 @@ export default function BlogsCMS() {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-[#f8f6f2] text-xs uppercase tracking-[2px] text-navy font-bold border-b border-navy/10">
+                <th className="px-6 py-5">Image</th>
                 <th className="px-6 py-5">Title</th>
                 <th className="px-6 py-5">Slug</th>
                 <th className="px-6 py-5">Author</th>
@@ -67,6 +69,13 @@ export default function BlogsCMS() {
             <tbody>
               {blogsList.map((b) => (
                 <tr key={b.id} className="border-b border-navy/5 hover:bg-[#f8f6f2]/50 transition-colors">
+                  <td className="px-6 py-4">
+                    {b.imageUrl ? (
+                      <img src={b.imageUrl} alt={b.title} className="w-16 h-12 rounded-lg object-cover shadow-sm" />
+                    ) : (
+                      <div className="w-16 h-12 rounded-lg bg-navy/5 flex items-center justify-center text-navy/20 text-[10px] uppercase font-bold">No Image</div>
+                    )}
+                  </td>
                   <td className="px-6 py-4 font-bold text-navy">{b.title}</td>
                   <td className="px-6 py-4 text-sm text-text-mid">{b.slug}</td>
                   <td className="px-6 py-4 text-sm text-text-mid">{b.author}</td>
