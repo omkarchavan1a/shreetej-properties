@@ -21,6 +21,7 @@ type Project = {
 export default function ProjectsCMS() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showForm, setShowForm] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
