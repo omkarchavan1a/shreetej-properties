@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0d1b2a;
+  --color-navy-mid: #162336;
+  --color-navy-light: #1e3050;
+  --color-gold: #c9943a;
+  --color-gold-light: #e6b96a;
+  --color-gold-pale: #f5e6c8;
+  --color-cream: #faf6ef;
+  --color-text-dark: #1a1a2e;
+  --color-text-mid: #4a4a6a;
+  --color-text-light: #8a8aaa;
+  
+  --font-serif: var(--font-playfair), serif;
+  --font-sans: var(--font-raleway), sans-serif;
+  --font-cormorant: var(--font-cormorant), serif;
+
+  --animate-fade-in-up: fadeInUp 0.8s ease both;
+  --animate-pulse-slow: pulseSlow 2s infinite;
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulseSlow {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+:root {
+  --background: var(--color-cream);
+  --foreground: var(--color-text-dark);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
