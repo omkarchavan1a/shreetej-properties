@@ -1,7 +1,6 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 export async function loginAction(formData: FormData) {
   const email = formData.get("email");
@@ -10,7 +9,7 @@ export async function loginAction(formData: FormData) {
   if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
     const cookieStore = await cookies();
     cookieStore.set("admin_session", "true", {
-      httpOnly: true,
+      httpOnly: false,
       secure: process.env.NODE_ENV === "production",
       maxAge: 60 * 60 * 24, // 1 day
       path: "/",
@@ -24,5 +23,11 @@ export async function loginAction(formData: FormData) {
 export async function logoutAction() {
   const cookieStore = await cookies();
   cookieStore.delete("admin_session");
-  redirect("/");
+  return { success: true };
+}
+
+export async function checkAdminSession() {
+  const cookieStore = await cookies();
+  const session = cookieStore.get("admin_session");
+  return !!session?.value;
 }

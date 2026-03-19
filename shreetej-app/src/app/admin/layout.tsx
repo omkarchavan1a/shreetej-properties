@@ -4,7 +4,7 @@ import { useSession, signOut } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { logoutAction } from "@/app/login/actions";
+import { logoutAction, checkAdminSession } from "@/app/login/actions";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const { data: session, isPending } = useSession();
@@ -12,12 +12,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const router = useRouter();
 
   useEffect(() => {
-    // Check for admin_session cookie
-    const checkCookie = () => {
-      const cookie = document.cookie.split('; ').find(row => row.startsWith('admin_session='));
-      setIsAdminCookie(!!cookie);
-    };
-    checkCookie();
+    // Check admin session via server action (reliable, works with httpOnly too)
+    checkAdminSession().then((isAdmin) => {
+      setIsAdminCookie(isAdmin);
+    });
   }, []);
 
   useEffect(() => {
@@ -41,6 +39,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       await signOut();
     }
     await logoutAction();
+    router.push("/");
+    router.refresh();
   };
 
   return (
@@ -89,7 +89,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </div>
             <div>
               <p className="text-sm font-bold">{session?.user?.name || "Admin"}</p>
-              <p className="text-[10px] text-white/50 truncate w-32">{session?.user?.email || process.env.NEXT_PUBLIC_ADMIN_EMAIL || "admin@shreetej.com"}</p>
+              <p className="text-[10px] text-white/50 truncate w-32">{session?.user?.email || "admin@shreetej.com"}</p>
             </div>
           </div>
           <button
