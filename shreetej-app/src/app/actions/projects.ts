@@ -1,9 +1,17 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { db } from "@/db";
 import { projects } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+
+// Helper: Check if the request comes from an authenticated admin
+async function isAdmin(): Promise<boolean> {
+  const cookieStore = await cookies();
+  const session = cookieStore.get("admin_session");
+  return session?.value === "true";
+}
 
 export async function getProjects() {
   try {
@@ -15,6 +23,7 @@ export async function getProjects() {
 }
 
 export async function createProject(data: any) {
+  if (!(await isAdmin())) return { success: false, error: "Unauthorized" };
   try {
     await db.insert(projects).values(data);
     revalidatePath("/admin/projects");
@@ -28,6 +37,7 @@ export async function createProject(data: any) {
 }
 
 export async function updateProject(id: number, data: any) {
+  if (!(await isAdmin())) return { success: false, error: "Unauthorized" };
   try {
     await db.update(projects).set(data).where(eq(projects.id, id));
     revalidatePath("/admin/projects");
@@ -41,6 +51,7 @@ export async function updateProject(id: number, data: any) {
 }
 
 export async function deleteProject(id: number) {
+  if (!(await isAdmin())) return { success: false, error: "Unauthorized" };
   try {
     await db.delete(projects).where(eq(projects.id, id));
     revalidatePath("/admin/projects");
