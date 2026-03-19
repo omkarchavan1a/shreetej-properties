@@ -3,19 +3,32 @@
 import { useSession, signOut } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { logoutAction } from "@/app/login/actions";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const { data: session, isPending } = useSession();
+  const [isAdminCookie, setIsAdminCookie] = useState<boolean | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    if (!isPending && !session) {
-      router.push("/admin/login");
-    }
-  }, [isPending, session, router]);
+    // Check for admin_session cookie
+    const checkCookie = () => {
+      const cookie = document.cookie.split('; ').find(row => row.startsWith('admin_session='));
+      setIsAdminCookie(!!cookie);
+    };
+    checkCookie();
+  }, []);
 
-  if (isPending || !session) {
+  useEffect(() => {
+    if (!isPending && isAdminCookie !== null) {
+      if (!session && !isAdminCookie) {
+        router.push("/login");
+      }
+    }
+  }, [isPending, session, isAdminCookie, router]);
+
+  if (isPending || isAdminCookie === null || (!session && !isAdminCookie)) {
     return (
       <div className="min-h-screen bg-navy flex items-center justify-center">
         <div className="w-8 h-8 rounded-full border-4 border-gold border-t-transparent animate-spin"></div>
@@ -24,8 +37,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }
 
   const handleLogout = async () => {
-    await signOut();
-    router.push("/admin/login");
+    if (session) {
+      await signOut();
+    }
+    await logoutAction();
   };
 
   return (
@@ -70,11 +85,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <div className="mt-auto pt-8 border-t border-white/10">
           <div className="flex items-center gap-3 mb-6 px-2">
             <div className="w-10 h-10 rounded-full bg-gold flex items-center justify-center text-navy font-bold">
-              {session.user?.name?.charAt(0) || "A"}
+              {session?.user?.name?.charAt(0) || "A"}
             </div>
             <div>
-              <p className="text-sm font-bold">{session.user?.name || "Admin"}</p>
-              <p className="text-[10px] text-white/50 truncate w-32">{session.user?.email}</p>
+              <p className="text-sm font-bold">{session?.user?.name || "Admin"}</p>
+              <p className="text-[10px] text-white/50 truncate w-32">{session?.user?.email || process.env.NEXT_PUBLIC_ADMIN_EMAIL || "admin@shreetej.com"}</p>
             </div>
           </div>
           <button

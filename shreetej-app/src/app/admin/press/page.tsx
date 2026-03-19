@@ -1,23 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getPressItems, deletePressItem } from "@/app/actions/press";
 
 type Press = {
   id: number;
   title: string;
   source: string;
   link: string;
-  publishedDate: string;
+  publishedDate: Date | string;
 };
 
 export default function PressCMS() {
-  const [pressItems, setPressItems] = useState<Press[]>([]);
+  const [pressList, setPressList] = useState<Press[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // Fetch from server action
+  const fetchPress = async () => {
+    const data = await getPressItems();
+    setPressList(data as Press[]);
     setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchPress();
   }, []);
+
+  const handleDelete = async (id: number) => {
+    if (confirm("Delete this press item?")) {
+      await deletePressItem(id);
+      fetchPress();
+    }
+  };
 
   return (
     <div>
@@ -34,7 +47,7 @@ export default function PressCMS() {
       <div className="bg-white rounded-3xl shadow-xl border border-navy/5 overflow-hidden">
         {loading ? (
           <div className="p-12 text-center text-text-mid animate-pulse">Loading press updates...</div>
-        ) : pressItems.length === 0 ? (
+        ) : pressList.length === 0 ? (
           <div className="p-12 text-center">
             <div className="text-4xl mb-4">📰</div>
             <h3 className="font-serif text-xl font-bold text-navy mb-2">No Press Items Found</h3>
@@ -52,7 +65,7 @@ export default function PressCMS() {
               </tr>
             </thead>
             <tbody>
-              {pressItems.map((p) => (
+              {pressList.map((p) => (
                 <tr key={p.id} className="border-b border-navy/5 hover:bg-[#f8f6f2]/50 transition-colors">
                   <td className="px-6 py-4 font-bold text-navy">{p.title}</td>
                   <td className="px-6 py-4 text-sm text-text-mid">{p.source}</td>
@@ -62,7 +75,7 @@ export default function PressCMS() {
                   <td className="px-6 py-4 text-sm text-text-mid">{new Date(p.publishedDate).toLocaleDateString()}</td>
                   <td className="px-6 py-4 text-right space-x-3">
                     <button className="text-xs font-bold text-navy hover:text-gold uppercase tracking-[1px] transition-colors">Edit</button>
-                    <button className="text-xs font-bold text-red-500 hover:text-red-700 uppercase tracking-[1px] transition-colors">Delete</button>
+                    <button onClick={() => handleDelete(p.id)} className="text-xs font-bold text-red-500 hover:text-red-700 uppercase tracking-[1px] transition-colors">Delete</button>
                   </td>
                 </tr>
               ))}

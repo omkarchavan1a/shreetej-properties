@@ -1,23 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getBlogs, deleteBlog } from "@/app/actions/blogs";
 
 type Blog = {
   id: number;
   title: string;
   slug: string;
   author: string;
-  createdAt: string;
+  createdAt: Date | string;
 };
 
 export default function BlogsCMS() {
-  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [blogsList, setBlogsList] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // In a real app, fetch from server action
+  const fetchBlogs = async () => {
+    const data = await getBlogs();
+    setBlogsList(data as Blog[]);
     setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchBlogs();
   }, []);
+
+  const handleDelete = async (id: number) => {
+    if (confirm("Delete this blog?")) {
+      await deleteBlog(id);
+      fetchBlogs();
+    }
+  };
 
   return (
     <div>
@@ -34,7 +47,7 @@ export default function BlogsCMS() {
       <div className="bg-white rounded-3xl shadow-xl border border-navy/5 overflow-hidden">
         {loading ? (
           <div className="p-12 text-center text-text-mid animate-pulse">Loading blogs...</div>
-        ) : blogs.length === 0 ? (
+        ) : blogsList.length === 0 ? (
           <div className="p-12 text-center">
             <div className="text-4xl mb-4">✍️</div>
             <h3 className="font-serif text-xl font-bold text-navy mb-2">No Blogs Found</h3>
@@ -52,7 +65,7 @@ export default function BlogsCMS() {
               </tr>
             </thead>
             <tbody>
-              {blogs.map((b) => (
+              {blogsList.map((b) => (
                 <tr key={b.id} className="border-b border-navy/5 hover:bg-[#f8f6f2]/50 transition-colors">
                   <td className="px-6 py-4 font-bold text-navy">{b.title}</td>
                   <td className="px-6 py-4 text-sm text-text-mid">{b.slug}</td>
@@ -60,7 +73,7 @@ export default function BlogsCMS() {
                   <td className="px-6 py-4 text-sm text-text-mid">{new Date(b.createdAt).toLocaleDateString()}</td>
                   <td className="px-6 py-4 text-right space-x-3">
                     <button className="text-xs font-bold text-navy hover:text-gold uppercase tracking-[1px] transition-colors">Edit</button>
-                    <button className="text-xs font-bold text-red-500 hover:text-red-700 uppercase tracking-[1px] transition-colors">Delete</button>
+                    <button onClick={() => handleDelete(b.id)} className="text-xs font-bold text-red-500 hover:text-red-700 uppercase tracking-[1px] transition-colors">Delete</button>
                   </td>
                 </tr>
               ))}
