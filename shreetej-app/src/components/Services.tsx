@@ -74,6 +74,7 @@ export default function Services() {
           {servicesList.map((svc, index) => (
             <ScrollReveal key={svc.id} direction="up" delay={index * 100} duration={800}>
               <div
+                id={svc.id}
                 className="group relative bg-navy-mid border border-gold/15 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:border-gold/40 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)] h-full"
                 style={{ animation: `glowPulse 4s ${index * 0.5}s infinite` }}
               >
@@ -103,7 +104,7 @@ export default function Services() {
                   </p>
                   
                   <Link 
-                    href={`#${svc.id}`}
+                    href={`/services/${svc.id}`}
                     className="inline-flex items-center gap-2 text-xs font-bold tracking-[1.5px] uppercase text-gold-light group-hover:gap-4 transition-all duration-300"
                   >
                     Explore Service <span className="text-lg leading-none transition-transform duration-300 group-hover:translate-x-1">→</span>
