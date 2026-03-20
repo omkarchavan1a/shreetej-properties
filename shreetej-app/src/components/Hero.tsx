@@ -104,15 +104,15 @@ export default function Hero() {
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-60"
+        className="absolute inset-0 w-full h-full object-cover"
         style={{ willChange: "transform" }}
         poster="/assets/shreetej/Shreetej-Properties_Display-Images_PDF-1_page-0001-1024x324_7249fb7a55.jpg"
       >
         <source src="https://website-asset-videos.sfo3.cdn.digitaloceanspaces.com/hoh/new-cut-home-video-comp.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-navy/95"
+      <div className="absolute inset-0 bg-navy/50"
         style={{ backgroundImage: 'url("/assets/shreetej/Shreetej-Properties_Display-Images_PDF-1_page-0001-1024x324_7249fb7a55.jpg")', backgroundSize: 'cover', backgroundBlendMode: 'overlay', opacity: 0.1 }} />
-      <div className="absolute inset-0 bg-gradient-to-br from-navy/95 to-navy/60" />
+      <div className="absolute inset-0 bg-gradient-to-br from-navy/60 to-navy/20" />
 
       {/* Floating Particles */}
       <ParticleBackground count={15} color="gold" />

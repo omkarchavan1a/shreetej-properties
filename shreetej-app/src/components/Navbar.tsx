@@ -94,7 +94,7 @@ export default function Navbar() {
         
         <Link
           href="/contact"
-          className="btn-ripple bg-gradient-to-br from-gold to-gold-light text-navy font-bold text-[12.5px] tracking-widest uppercase px-6 py-2.5 rounded-full hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(201,148,58,0.25)] transition-all duration-300"
+          className="ml-2 btn-ripple bg-gradient-to-br from-gold to-gold-light text-navy font-bold text-[12.5px] tracking-widest uppercase px-5 py-2.5 rounded-lg hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(201,148,58,0.25)] transition-all duration-300"
         >
           Let&apos;s Connect
         </Link>
