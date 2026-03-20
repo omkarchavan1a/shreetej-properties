@@ -96,7 +96,7 @@ export default function Navbar() {
           href="/contact"
           className="ml-2 btn-ripple bg-gradient-to-br from-gold to-gold-light text-navy font-bold text-[12.5px] tracking-widest uppercase px-5 py-2.5 rounded-lg hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(201,148,58,0.25)] transition-all duration-300"
         >
-          Let&apos;s Connect
+          Connect Us
         </Link>
       </div>
 
@@ -124,7 +124,7 @@ export default function Navbar() {
           <MobileNavLink href="/residential" onClick={() => setMobileMenuOpen(false)}>Residential</MobileNavLink>
           <MobileNavLink href="/about" onClick={() => setMobileMenuOpen(false)}>About Us</MobileNavLink>
           <MobileNavLink href="/login" onClick={() => setMobileMenuOpen(false)}>Login</MobileNavLink>
-          <MobileNavLink href="/contact" onClick={() => setMobileMenuOpen(false)}>Let&apos;s Connect</MobileNavLink>
+          <MobileNavLink href="/contact" onClick={() => setMobileMenuOpen(false)}>Connect Us</MobileNavLink>
         </div>
       </div>
     </nav>
