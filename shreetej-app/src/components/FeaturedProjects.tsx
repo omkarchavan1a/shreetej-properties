@@ -19,7 +19,11 @@ export default async function FeaturedProjects() {
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           ) : (
-            <div className="w-full h-full bg-navy/5 flex items-center justify-center text-navy/30 font-medium">Image Not Available</div>
+            <img 
+              src="/assets/luxury_residential_exterior.png" 
+              alt="Project Placeholder" 
+              className="w-full h-full object-cover opacity-40 mix-blend-luminosity"
+            />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
           

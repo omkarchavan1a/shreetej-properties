@@ -32,7 +32,7 @@ export default function AboutPage() {
           <div className="w-full md:w-2/5 relative">
             <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl relative z-10">
               <img 
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80" 
+                src="/assets/real_estate_agents_team.png" 
                 alt="Shri Satish B. Raut - Chairman" 
                 className="w-full h-full object-cover"
               />
@@ -71,7 +71,7 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-navy/20 group-hover:bg-transparent transition-colors duration-500" />
             </div>
             <div className="rounded-3xl overflow-hidden shadow-xl aspect-video bg-navy/5">
-              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80" alt="Office Interior" className="w-full h-full object-cover" />
+              <img src="/assets/modern_office_interior.png" alt="Office Interior" className="w-full h-full object-cover" />
             </div>
           </div>
 

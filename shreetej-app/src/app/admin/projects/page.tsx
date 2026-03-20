@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { getProjects, createProject, updateProject, deleteProject } from "@/app/actions/projects";
+import { uploadImage } from "@/app/actions/upload";
 
 type Project = {
   id: number;
@@ -15,7 +17,7 @@ type Project = {
   galleryUrls: string | null;
   mapUrl: string | null;
   brochureUrl: string | null;
-  createdAt: string;
+  createdAt: Date | string;
 };
 
 export default function ProjectsCMS() {
@@ -28,8 +30,8 @@ export default function ProjectsCMS() {
   const fetchProjects = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/projects");
-      if (res.ok) setProjects(await res.json());
+      const data = await getProjects();
+      setProjects(data as Project[]);
     } finally {
       setLoading(false);
     }
@@ -58,38 +60,66 @@ export default function ProjectsCMS() {
     e.preventDefault();
     if (!formRef.current) return;
     const formData = new FormData(formRef.current);
-    const data = Object.fromEntries(formData);
+    const data: any = Object.fromEntries(formData);
     
-    // Convert empty strings to null for optional db fields
-    Object.keys(data).forEach(key => {
-      if (data[key] === "") data[key] = null as any;
-    });
-
     try {
-      const url = "/api/projects" + (selectedProject ? `?id=${selectedProject.id}` : "");
-      const method = selectedProject ? "PATCH" : "POST";
+      setLoading(true);
+      // Handle Image Upload
+      const fileInput = formRef.current.querySelector('input[type="file"]') as HTMLInputElement;
+      if (fileInput?.files?.length) {
+        const uploadData = new FormData();
+        uploadData.append("file", fileInput.files[0]);
+        const uploadResult = await uploadImage(uploadData);
+        if (uploadResult.success && uploadResult.url) {
+          data.imageUrl = uploadResult.url;
+        } else if (!uploadResult.success) {
+          alert(uploadResult.error || "Image upload failed");
+          setLoading(false);
+          return;
+        }
+      }
 
-      await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+      // Remove the file object from data before DB insert
+      delete data.file;
+
+      // Convert empty strings to null for optional db fields
+      Object.keys(data).forEach(key => {
+        if (data[key] === "") data[key] = null;
       });
-      fetchProjects();
-      formRef.current.reset();
-      setShowForm(false);
-      setSelectedProject(null);
+
+      let result;
+      if (selectedProject) {
+        result = await updateProject(selectedProject.id, data);
+      } else {
+        result = await createProject(data);
+      }
+
+      if (result.success) {
+        fetchProjects();
+        formRef.current.reset();
+        setShowForm(false);
+        setSelectedProject(null);
+      } else {
+        alert(result.error || "Operation failed");
+      }
     } catch (err) {
       console.error(err);
+      alert("An unexpected error occurred");
     }
   };
 
   const handleDelete = async (id: number) => {
     if (!confirm("Are you sure you want to delete this project?")) return;
     try {
-      await fetch(`/api/projects?id=${id}`, { method: "DELETE" });
-      fetchProjects();
+      const result = await deleteProject(id);
+      if (result.success) {
+        fetchProjects();
+      } else {
+        alert(result.error || "Failed to delete project");
+      }
     } catch (err) {
       console.error(err);
+      alert("An unexpected error occurred");
     }
   };
 

@@ -12,9 +12,12 @@ export default function Hero() {
         muted
         playsInline
         className="absolute inset-0 w-full h-full object-cover opacity-60"
+        poster="/assets/luxury_residential_exterior.png"
       >
         <source src="https://website-asset-videos.sfo3.cdn.digitaloceanspaces.com/hoh/new-cut-home-video-comp.mp4" type="video/mp4" />
       </video>
+      <div className="absolute inset-0 bg-navy/95" 
+           style={{ backgroundImage: 'url("/assets/luxury_residential_exterior.png")', backgroundSize: 'cover', backgroundBlendMode: 'overlay', opacity: 0.1 }} />
       <div className="absolute inset-0 bg-gradient-to-br from-navy/95 to-navy/60" />
       
       {/* Subtle Noise/Grain Effect */}
