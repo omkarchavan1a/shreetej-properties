@@ -22,6 +22,16 @@ export async function getBlogs() {
   }
 }
 
+export async function getBlogBySlug(slug: string) {
+  try {
+    const result = await db.select().from(blogs).where(eq(blogs.slug, slug));
+    return result[0] || null;
+  } catch (error) {
+    console.error("Error fetching blog by slug:", error);
+    return null;
+  }
+}
+
 export async function createBlog(data: any) {
   if (!(await isAdmin())) return { success: false, error: "Unauthorized" };
   try {
@@ -41,6 +51,7 @@ export async function updateBlog(id: number, data: any) {
   try {
     await db.update(blogs).set(data).where(eq(blogs.id, id));
     revalidatePath("/admin/blogs");
+    revalidatePath("/blogs");
     return { success: true };
   } catch (error) {
     console.error("Error updating blog:", error);
@@ -53,6 +64,7 @@ export async function deleteBlog(id: number) {
   try {
     await db.delete(blogs).where(eq(blogs.id, id));
     revalidatePath("/admin/blogs");
+    revalidatePath("/blogs");
     return { success: true };
   } catch (error) {
     console.error("Error deleting blog:", error);

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Cormorant_Garamond, Raleway } from "next/font/google";
 import "./globals.css";
+import Preloader from "@/components/Preloader";
+import CustomCursor from "@/components/CustomCursor";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -35,6 +37,8 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${cormorant.variable} ${raleway.variable} antialiased`}
       >
+        <Preloader />
+        <CustomCursor />
         {children}
       </body>
     </html>

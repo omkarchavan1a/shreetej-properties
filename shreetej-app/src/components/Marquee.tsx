@@ -14,17 +14,20 @@ export default function Marquee() {
   const marqueeItems = [...items, ...items, ...items];
 
   return (
-    <div className="bg-gradient-to-br from-gold to-gold-light py-4 overflow-hidden whitespace-nowrap">
-      <div className="inline-flex animate-marquee">
-        {marqueeItems.map((item, index) => (
-          <span
-            key={index}
-            className="px-8 text-xs tracking-[3px] uppercase font-bold text-navy inline-flex items-center space-x-4"
-          >
-            <span>{item}</span>
-            <span className="text-[8px] opacity-60">◆</span>
-          </span>
-        ))}
+    <div className="bg-gradient-to-br from-gold to-gold-light py-4 overflow-hidden whitespace-nowrap relative group">
+      {/* Gradient fade edges */}
+      <div className="marquee-container">
+        <div className="inline-flex animate-marquee group-hover:[animation-play-state:paused]">
+          {marqueeItems.map((item, index) => (
+            <span
+              key={index}
+              className="px-8 text-xs tracking-[3px] uppercase font-bold text-navy inline-flex items-center space-x-4"
+            >
+              <span>{item}</span>
+              <span className="text-[8px] opacity-60">◆</span>
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );

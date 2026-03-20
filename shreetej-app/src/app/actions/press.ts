@@ -40,6 +40,7 @@ export async function updatePressItem(id: number, data: any) {
   try {
     await db.update(press).set(data).where(eq(press.id, id));
     revalidatePath("/admin/press");
+    revalidatePath("/press");
     return { success: true };
   } catch (error) {
     console.error("Error updating press item:", error);
@@ -52,6 +53,7 @@ export async function deletePressItem(id: number) {
   try {
     await db.delete(press).where(eq(press.id, id));
     revalidatePath("/admin/press");
+    revalidatePath("/press");
     return { success: true };
   } catch (error) {
     console.error("Error deleting press item:", error);

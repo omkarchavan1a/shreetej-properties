@@ -21,6 +21,9 @@ export const blogs = pgTable("blogs", {
   title: text("title").notNull(),
   slug: text("slug").notNull().unique(),
   content: text("content").notNull(),
+  excerpt: text("excerpt"),
+  category: text("category"),
+  status: text("status").default("published").notNull(), // 'draft' or 'published'
   imageUrl: text("image_url"),
   author: text("author").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -31,6 +34,8 @@ export const press = pgTable("press", {
   title: text("title").notNull(),
   source: text("source").notNull(),
   link: text("link").notNull(),
+  imageUrl: text("image_url"),
+  excerpt: text("excerpt"),
   publishedDate: timestamp("published_date").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });

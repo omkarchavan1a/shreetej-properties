@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { getProjects, createProject, updateProject, deleteProject } from "@/app/actions/projects";
-import { uploadImage } from "@/app/actions/upload";
+import { uploadImage, uploadMultipleImages, uploadVideo } from "@/app/actions/upload";
 
 type Project = {
   id: number;
@@ -10,7 +10,7 @@ type Project = {
   type: string;
   status: string;
   location: string;
-  imageUrl: string;
+  imageUrl: string | null;
   description: string | null;
   videoUrl: string | null;
   amenities: string | null;
@@ -23,8 +23,12 @@ type Project = {
 export default function ProjectsCMS() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [galleryPreviews, setGalleryPreviews] = useState<string[]>([]);
+  const [videoName, setVideoName] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   const fetchProjects = async () => {
@@ -44,11 +48,22 @@ export default function ProjectsCMS() {
   const handleEdit = (project: Project) => {
     setSelectedProject(project);
     setShowForm(true);
-    // Use setTimeout to ensure the form is rendered before setting values
+    setImagePreview(project.imageUrl || null);
+    setVideoName(project.videoUrl ? project.videoUrl.split("/").pop() || null : null);
+    if (project.galleryUrls) {
+      try {
+        const urls = JSON.parse(project.galleryUrls);
+        setGalleryPreviews(Array.isArray(urls) ? urls : project.galleryUrls.split(",").map((u: string) => u.trim()));
+      } catch {
+        setGalleryPreviews(project.galleryUrls.split(",").map((u: string) => u.trim()).filter(Boolean));
+      }
+    } else {
+      setGalleryPreviews([]);
+    }
     setTimeout(() => {
       if (formRef.current) {
         const data = project as any;
-        Object.keys(data).forEach(key => {
+        ["title", "type", "status", "location", "mapUrl", "brochureUrl", "amenities", "description"].forEach(key => {
           const input = formRef.current?.elements.namedItem(key) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
           if (input) input.value = data[key] || "";
         });
@@ -56,33 +71,83 @@ export default function ProjectsCMS() {
     }, 10);
   };
 
+  const openNewForm = () => {
+    setSelectedProject(null);
+    setImagePreview(null);
+    setGalleryPreviews([]);
+    setVideoName(null);
+    setShowForm(true);
+  };
+
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formRef.current) return;
     const formData = new FormData(formRef.current);
     const data: any = Object.fromEntries(formData);
-    
+
     try {
-      setLoading(true);
-      // Handle Image Upload
-      const fileInput = formRef.current.querySelector('input[type="file"]') as HTMLInputElement;
-      if (fileInput?.files?.length) {
+      setSaving(true);
+
+      // Handle Cover Image Upload
+      const imgInput = formRef.current.querySelector('input[name="coverFile"]') as HTMLInputElement;
+      if (imgInput?.files?.length) {
         const uploadData = new FormData();
-        uploadData.append("file", fileInput.files[0]);
+        uploadData.append("file", imgInput.files[0]);
         const uploadResult = await uploadImage(uploadData);
         if (uploadResult.success && uploadResult.url) {
           data.imageUrl = uploadResult.url;
         } else if (!uploadResult.success) {
           alert(uploadResult.error || "Image upload failed");
-          setLoading(false);
+          setSaving(false);
           return;
         }
+      } else if (selectedProject) {
+        data.imageUrl = selectedProject.imageUrl;
       }
 
-      // Remove the file object from data before DB insert
-      delete data.file;
+      // Handle Video Upload
+      const vidInput = formRef.current.querySelector('input[name="videoFile"]') as HTMLInputElement;
+      if (vidInput?.files?.length) {
+        const uploadData = new FormData();
+        uploadData.append("file", vidInput.files[0]);
+        const uploadResult = await uploadVideo(uploadData);
+        if (uploadResult.success && uploadResult.url) {
+          data.videoUrl = uploadResult.url;
+        } else if (!uploadResult.success) {
+          alert(uploadResult.error || "Video upload failed");
+          setSaving(false);
+          return;
+        }
+      } else if (selectedProject) {
+        data.videoUrl = selectedProject.videoUrl;
+      }
 
-      // Convert empty strings to null for optional db fields
+      // Handle Gallery Upload
+      const galleryInput = formRef.current.querySelector('input[name="galleryFiles"]') as HTMLInputElement;
+      if (galleryInput?.files?.length) {
+        const uploadData = new FormData();
+        Array.from(galleryInput.files).forEach(f => uploadData.append("files", f));
+        const uploadResult = await uploadMultipleImages(uploadData);
+        if (uploadResult.success && uploadResult.urls.length > 0) {
+          // Merge with existing gallery
+          const existing = galleryPreviews || [];
+          const allUrls = [...existing, ...uploadResult.urls];
+          data.galleryUrls = JSON.stringify(allUrls);
+        } else if (!uploadResult.success) {
+          alert(uploadResult.error || "Gallery upload failed");
+          setSaving(false);
+          return;
+        }
+      } else if (selectedProject) {
+        data.galleryUrls = selectedProject.galleryUrls;
+      }
+
+      // Clean up form-only fields
+      delete data.coverFile;
+      delete data.videoFile;
+      delete data.galleryFiles;
+
+      // Convert empty strings to null
       Object.keys(data).forEach(key => {
         if (data[key] === "") data[key] = null;
       });
@@ -99,12 +164,17 @@ export default function ProjectsCMS() {
         formRef.current.reset();
         setShowForm(false);
         setSelectedProject(null);
+        setImagePreview(null);
+        setGalleryPreviews([]);
+        setVideoName(null);
       } else {
         alert(result.error || "Operation failed");
       }
     } catch (err) {
       console.error(err);
       alert("An unexpected error occurred");
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -112,16 +182,20 @@ export default function ProjectsCMS() {
     if (!confirm("Are you sure you want to delete this project?")) return;
     try {
       const result = await deleteProject(id);
-      if (result.success) {
-        fetchProjects();
-      } else {
-        alert(result.error || "Failed to delete project");
-      }
+      if (result.success) fetchProjects();
+      else alert(result.error || "Failed to delete project");
     } catch (err) {
       console.error(err);
       alert("An unexpected error occurred");
     }
   };
+
+  const removeGalleryImage = (index: number) => {
+    setGalleryPreviews(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const inputClass = "w-full px-4 py-3 bg-[#f8f6f2] border border-gold/20 rounded-xl text-sm outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/10 transition-all";
+  const labelClass = "block text-[11px] font-bold tracking-[1.5px] uppercase text-text-mid mb-2";
 
   return (
     <div>
@@ -130,8 +204,8 @@ export default function ProjectsCMS() {
           <h1 className="font-serif text-3xl font-bold text-navy mb-2">Projects</h1>
           <p className="text-text-mid text-sm">Manage your properties and land developments.</p>
         </div>
-        <button 
-          onClick={() => setShowForm(!showForm)}
+        <button
+          onClick={() => showForm ? setShowForm(false) : openNewForm()}
           className="bg-gold text-navy font-bold tracking-[1px] uppercase px-6 py-3 rounded-xl hover:-translate-y-1 hover:shadow-lg transition-all shadow-md"
         >
           {showForm ? "Close Form" : "+ Add Project"}
@@ -143,93 +217,177 @@ export default function ProjectsCMS() {
           <h2 className="font-serif text-xl font-bold text-navy mb-6">
             {selectedProject ? `Edit: ${selectedProject.title}` : "Create New Project"}
           </h2>
-          <form ref={formRef} onSubmit={handleFormSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div>
-                <label className="block text-[11px] font-bold tracking-[1.5px] uppercase text-text-mid mb-2">Title *</label>
-                <input name="title" required className="w-full px-4 py-3 bg-[#f8f6f2] border border-gold/20 rounded-xl text-sm outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/10" />
-              </div>
-              
-              <div>
-                <label className="block text-[11px] font-bold tracking-[1.5px] uppercase text-text-mid mb-2">Type *</label>
-                <select name="type" required className="w-full px-4 py-3 bg-[#f8f6f2] border border-gold/20 rounded-xl text-sm outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/10 appearance-none">
-                  <option value="">Select Type</option>
-                  <option value="residential">Residential</option>
-                  <option value="commercial">Commercial</option>
-                  <option value="plots">Plots / Land</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold tracking-[1.5px] uppercase text-text-mid mb-2">Status *</label>
-                <select name="status" required className="w-full px-4 py-3 bg-[#f8f6f2] border border-gold/20 rounded-xl text-sm outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/10 appearance-none">
-                  <option value="">Select Status</option>
-                  <option value="Upcoming">Upcoming</option>
-                  <option value="Ongoing">Ongoing</option>
-                  <option value="Completed">Completed</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold tracking-[1.5px] uppercase text-text-mid mb-2">Location *</label>
-                <input name="location" required className="w-full px-4 py-3 bg-[#f8f6f2] border border-gold/20 rounded-xl text-sm outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/10" />
-              </div>
-              
-              <div>
-                <label className="block text-[11px] font-bold tracking-[1.5px] uppercase text-text-mid mb-2">Cover Image URL *</label>
-                <input name="imageUrl" required className="w-full px-4 py-3 bg-[#f8f6f2] border border-gold/20 rounded-xl text-sm outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/10" />
-              </div>
-              
-              <div>
-                <label className="block text-[11px] font-bold tracking-[1.5px] uppercase text-text-mid mb-2">HD Video URL</label>
-                <input name="videoUrl" placeholder="Optional .mp4 URL" className="w-full px-4 py-3 bg-[#f8f6f2] border border-gold/20 rounded-xl text-sm outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/10" />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold tracking-[1.5px] uppercase text-text-mid mb-2">Map Embed URL</label>
-                <input name="mapUrl" placeholder="Google Maps Embed Src" className="w-full px-4 py-3 bg-[#f8f6f2] border border-gold/20 rounded-xl text-sm outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/10" />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold tracking-[1.5px] uppercase text-text-mid mb-2">Brochure URL</label>
-                <input name="brochureUrl" placeholder="PDF Web Link" className="w-full px-4 py-3 bg-[#f8f6f2] border border-gold/20 rounded-xl text-sm outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/10" />
-              </div>
-
-              <div className="lg:col-span-1">
-                <label className="block text-[11px] font-bold tracking-[1.5px] uppercase text-text-mid mb-2">Amenities</label>
-                <input name="amenities" placeholder="Comma separated (e.g. Pool, Gym, Club)" className="w-full px-4 py-3 bg-[#f8f6f2] border border-gold/20 rounded-xl text-sm outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/10" />
-              </div>
-              
-              <div className="lg:col-span-3">
-                <label className="block text-[11px] font-bold tracking-[1.5px] uppercase text-text-mid mb-2">Gallery URLs</label>
-                <input name="galleryUrls" placeholder="Comma separated image URLs" className="w-full px-4 py-3 bg-[#f8f6f2] border border-gold/20 rounded-xl text-sm outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/10" />
-              </div>
-
-              <div className="lg:col-span-3">
-                <label className="block text-[11px] font-bold tracking-[1.5px] uppercase text-text-mid mb-2">Description</label>
-                <textarea name="description" rows={3} className="w-full px-4 py-3 bg-[#f8f6f2] border border-gold/20 rounded-xl text-sm outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/10 resize-none" />
+          <form ref={formRef} onSubmit={handleFormSubmit} className="space-y-8">
+            {/* Basic Information */}
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-[2px] text-gold mb-4 flex items-center gap-2">
+                <span className="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center text-gold text-[10px]">1</span>
+                Basic Information
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div>
+                  <label className={labelClass}>Title *</label>
+                  <input name="title" required className={inputClass} />
+                </div>
+                <div>
+                  <label className={labelClass}>Type *</label>
+                  <select name="type" required className={inputClass + " appearance-none"}>
+                    <option value="">Select Type</option>
+                    <option value="residential">Residential</option>
+                    <option value="commercial">Commercial</option>
+                    <option value="plots">Plots / Land</option>
+                  </select>
+                </div>
+                <div>
+                  <label className={labelClass}>Status *</label>
+                  <select name="status" required className={inputClass + " appearance-none"}>
+                    <option value="">Select Status</option>
+                    <option value="Upcoming">Upcoming</option>
+                    <option value="Ongoing">Ongoing</option>
+                    <option value="Completed">Completed</option>
+                  </select>
+                </div>
+                <div>
+                  <label className={labelClass}>Location *</label>
+                  <input name="location" required className={inputClass} />
+                </div>
               </div>
             </div>
 
-            <div className="flex justify-end gap-4 pt-4">
-              <button 
-                type="button" 
-                onClick={() => setShowForm(false)}
+            {/* Media Uploads */}
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-[2px] text-gold mb-4 flex items-center gap-2">
+                <span className="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center text-gold text-[10px]">2</span>
+                Media Uploads
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Cover Image */}
+                <div>
+                  <label className={labelClass}>Cover Image (PNG/JPG/WebP)</label>
+                  <input
+                    type="file"
+                    name="coverFile"
+                    accept="image/png,image/jpeg,image/webp"
+                    className={inputClass}
+                    onChange={(e) => {
+                      const f = e.target.files?.[0];
+                      if (f) setImagePreview(URL.createObjectURL(f));
+                    }}
+                  />
+                  {imagePreview && (
+                    <div className="mt-3 relative inline-block">
+                      <img src={imagePreview} alt="Preview" className="w-32 h-24 rounded-xl object-cover border border-gold/20 shadow-sm" />
+                      <button
+                        type="button"
+                        onClick={() => setImagePreview(null)}
+                        className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] flex items-center justify-center hover:bg-red-600"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Video */}
+                <div>
+                  <label className={labelClass}>HD Video (MP4, max 100MB)</label>
+                  <input
+                    type="file"
+                    name="videoFile"
+                    accept="video/mp4"
+                    className={inputClass}
+                    onChange={(e) => {
+                      const f = e.target.files?.[0];
+                      if (f) setVideoName(f.name);
+                    }}
+                  />
+                  {videoName && (
+                    <div className="mt-3 flex items-center gap-2 text-sm text-navy bg-navy/5 px-3 py-2 rounded-lg">
+                      <span>🎬</span>
+                      <span className="truncate">{videoName}</span>
+                      <button type="button" onClick={() => setVideoName(null)} className="text-red-500 ml-auto text-xs font-bold">Remove</button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Gallery */}
+                <div className="md:col-span-2">
+                  <label className={labelClass}>Gallery Images (Multiple, PNG/JPG/WebP)</label>
+                  <input
+                    type="file"
+                    name="galleryFiles"
+                    accept="image/png,image/jpeg,image/webp"
+                    multiple
+                    className={inputClass}
+                  />
+                  {galleryPreviews.length > 0 && (
+                    <div className="flex flex-wrap gap-3 mt-3">
+                      {galleryPreviews.map((url, idx) => (
+                        <div key={idx} className="relative group">
+                          <img src={url} alt={`Gallery ${idx + 1}`} className="w-20 h-16 rounded-lg object-cover border border-gold/20 shadow-sm" />
+                          <button
+                            type="button"
+                            onClick={() => removeGalleryImage(idx)}
+                            className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Details */}
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-[2px] text-gold mb-4 flex items-center gap-2">
+                <span className="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center text-gold text-[10px]">3</span>
+                Additional Details
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className={labelClass}>Map Embed URL</label>
+                  <input name="mapUrl" placeholder="Google Maps Embed Src" className={inputClass} />
+                </div>
+                <div>
+                  <label className={labelClass}>Brochure URL</label>
+                  <input name="brochureUrl" placeholder="PDF Web Link" className={inputClass} />
+                </div>
+                <div className="md:col-span-2">
+                  <label className={labelClass}>Amenities</label>
+                  <input name="amenities" placeholder="Comma separated (e.g. Pool, Gym, Club)" className={inputClass} />
+                </div>
+                <div className="md:col-span-2">
+                  <label className={labelClass}>Description</label>
+                  <textarea name="description" rows={4} className={inputClass + " resize-none"} placeholder="Describe the project..." />
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-4 pt-4 border-t border-navy/5">
+              <button
+                type="button"
+                onClick={() => { setShowForm(false); setSelectedProject(null); }}
                 className="px-6 py-3 font-bold text-[12px] tracking-[1.5px] uppercase text-text-mid hover:text-navy transition-colors"
               >
                 Cancel
               </button>
-              <button 
-                type="submit" 
-                className="bg-navy text-gold-light font-bold text-[12px] tracking-[1.5px] uppercase px-8 py-3 rounded-xl hover:bg-gold hover:text-navy transition-all hover:shadow-lg"
+              <button
+                type="submit"
+                disabled={saving}
+                className="bg-navy text-gold-light font-bold text-[12px] tracking-[1.5px] uppercase px-8 py-3 rounded-xl hover:bg-gold hover:text-navy transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
               >
-                Save Project
+                {saving && <span className="w-4 h-4 border-2 border-gold/30 border-t-gold rounded-full animate-spin" />}
+                {saving ? "Saving..." : "Save Project"}
               </button>
             </div>
           </form>
         </div>
       )}
 
+      {/* Projects Table */}
       <div className="bg-white rounded-3xl shadow-xl border border-navy/5 overflow-hidden">
         {loading ? (
           <div className="p-12 text-center text-text-mid animate-pulse">Loading projects...</div>
@@ -249,37 +407,50 @@ export default function ProjectsCMS() {
                   <th className="px-6 py-5 min-w-[150px]">Type</th>
                   <th className="px-6 py-5 min-w-[120px]">Status</th>
                   <th className="px-6 py-5 min-w-[200px]">Location</th>
+                  <th className="px-6 py-5 min-w-[80px]">Media</th>
                   <th className="px-6 py-5 text-right min-w-[120px]">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {projects.map((p) => (
-                  <tr key={p.id} className="border-b border-navy/5 hover:bg-[#f8f6f2]/50 transition-colors">
-                    <td className="px-6 py-4">
-                      {p.imageUrl ? (
-                        <img src={p.imageUrl} alt={p.title} className="w-16 h-12 rounded-lg object-cover shadow-sm" />
-                      ) : (
-                        <div className="w-16 h-12 rounded-lg bg-navy/5 flex items-center justify-center text-navy/20 text-xs">No img</div>
-                      )}
-                    </td>
-                    <td className="px-6 py-4 font-bold text-navy">{p.title}</td>
-                    <td className="px-6 py-4 text-sm text-text-mid capitalize">{p.type}</td>
-                    <td className="px-6 py-4">
-                      <span className={`px-3 py-1 text-[10px] font-bold tracking-[1px] uppercase rounded-full ${
-                        p.status === 'Completed' ? 'bg-green-100 text-green-700' :
-                        p.status === 'Upcoming' ? 'bg-blue-100 text-blue-700' :
-                        'bg-orange-100 text-orange-700'
-                      }`}>
-                        {p.status}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-sm text-text-mid truncate max-w-[200px]">{p.location}</td>
-                    <td className="px-6 py-4 text-right space-x-4">
-                      <button onClick={() => handleEdit(p)} className="text-xs font-bold text-navy hover:text-gold uppercase tracking-[1px] transition-colors">Edit</button>
-                      <button onClick={() => handleDelete(p.id)} className="text-xs font-bold text-red-500 hover:text-red-700 uppercase tracking-[1px] transition-colors">Delete</button>
-                    </td>
-                  </tr>
-                ))}
+                {projects.map((p) => {
+                  let galleryCount = 0;
+                  if (p.galleryUrls) {
+                    try { galleryCount = JSON.parse(p.galleryUrls).length; } catch { galleryCount = p.galleryUrls.split(",").length; }
+                  }
+                  return (
+                    <tr key={p.id} className="border-b border-navy/5 hover:bg-[#f8f6f2]/50 transition-colors">
+                      <td className="px-6 py-4">
+                        {p.imageUrl ? (
+                          <img src={p.imageUrl} alt={p.title} className="w-16 h-12 rounded-lg object-cover shadow-sm" />
+                        ) : (
+                          <div className="w-16 h-12 rounded-lg bg-navy/5 flex items-center justify-center text-navy/20 text-xs">No img</div>
+                        )}
+                      </td>
+                      <td className="px-6 py-4 font-bold text-navy">{p.title}</td>
+                      <td className="px-6 py-4 text-sm text-text-mid capitalize">{p.type}</td>
+                      <td className="px-6 py-4">
+                        <span className={`px-3 py-1 text-[10px] font-bold tracking-[1px] uppercase rounded-full ${
+                          p.status === 'Completed' ? 'bg-green-100 text-green-700' :
+                          p.status === 'Upcoming' ? 'bg-blue-100 text-blue-700' :
+                          'bg-orange-100 text-orange-700'
+                        }`}>
+                          {p.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-sm text-text-mid truncate max-w-[200px]">{p.location}</td>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-navy/50">
+                          {p.videoUrl && <span className="bg-purple-100 text-purple-600 px-2 py-0.5 rounded-full">🎬 Video</span>}
+                          {galleryCount > 0 && <span className="bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full">📸 {galleryCount}</span>}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-right space-x-4">
+                        <button onClick={() => handleEdit(p)} className="text-xs font-bold text-navy hover:text-gold uppercase tracking-[1px] transition-colors">Edit</button>
+                        <button onClick={() => handleDelete(p.id)} className="text-xs font-bold text-red-500 hover:text-red-700 uppercase tracking-[1px] transition-colors">Delete</button>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
