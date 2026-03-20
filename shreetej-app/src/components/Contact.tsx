@@ -54,7 +54,7 @@ export default function Contact() {
           <div className="space-y-6">
             {/* Phone */}
             <ScrollReveal direction="left" delay={100}>
-              <div className="flex gap-5 p-6 bg-white/50 border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400">
+              <a href="tel:+917588464644" className="flex gap-5 p-6 bg-white/50 border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400 cursor-pointer w-full text-left block">
                 <div className="w-12 h-12 shrink-0 bg-gradient-to-br from-gold/15 to-gold/5 border border-gold/20 rounded-xl flex items-center justify-center text-xl shadow-inner group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(201,148,58,0.15)] transition-all duration-300">
                   📞
                 </div>
@@ -64,27 +64,27 @@ export default function Contact() {
                     +91 75884 64644<br />Landline: 02425-451461
                   </p>
                 </div>
-              </div>
+              </a>
             </ScrollReveal>
 
             {/* Email */}
             <ScrollReveal direction="left" delay={200}>
-              <div className="flex gap-5 p-6 bg-white/50 border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400">
+              <a href="mailto:info@shreetejproperties.com" className="flex gap-5 p-6 bg-white/50 border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400 cursor-pointer w-full text-left block">
                 <div className="w-12 h-12 shrink-0 bg-gradient-to-br from-gold/15 to-gold/5 border border-gold/20 rounded-xl flex items-center justify-center text-xl shadow-inner group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(201,148,58,0.15)] transition-all duration-300">
                   ✉️
                 </div>
                 <div>
                   <h4 className="font-bold text-[13px] tracking-[1px] uppercase text-text-dark mb-1">Email</h4>
-                  <p className="text-[0.9rem] text-text-mid leading-relaxed">
+                  <p className="text-[0.9rem] text-text-mid leading-relaxed break-all">
                     info@shreetejproperties.com
                   </p>
                 </div>
-              </div>
+              </a>
             </ScrollReveal>
 
             {/* Location */}
             <ScrollReveal direction="left" delay={300}>
-              <div className="flex gap-5 p-6 bg-white/50 border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400">
+              <a href="https://maps.google.com/?q=Ekta+Chauk,Ghulewadi,Sangamner,Ahmednagar,Maharashtra" target="_blank" rel="noopener noreferrer" className="flex gap-5 p-6 bg-white/50 border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400 cursor-pointer w-full text-left block">
                 <div className="w-12 h-12 shrink-0 bg-gradient-to-br from-gold/15 to-gold/5 border border-gold/20 rounded-xl flex items-center justify-center text-xl shadow-inner group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(201,148,58,0.15)] transition-all duration-300">
                   📍
                 </div>
@@ -94,7 +94,7 @@ export default function Contact() {
                     Near Kanchan Comfort Building, Ekta Chowk, Behind Law College, Nashik-Pune Highway, Ghulewadi, Tal. Sangamner, Dist. Ahmednagar.
                   </p>
                 </div>
-              </div>
+              </a>
             </ScrollReveal>
           </div>
         </div>
