@@ -82,16 +82,19 @@ export default function Navbar() {
       </Link>
 
       {/* Desktop Links */}
-      <div ref={linksRef} className="hidden md:flex items-center space-x-1">
-        <NavLink href="/" active>Home</NavLink>
-        <NavLink href="/commercial">Commercial</NavLink>
-        <NavLink href="/residential">Residential</NavLink>
-        <NavLink href="/about">About Us</NavLink>
-        <NavLink href="/login">Login</NavLink>
+      <div ref={linksRef} className="hidden md:flex items-center gap-4">
+        {/* Menu Bar (Glassmorphism Pill) */}
+        <div className="flex items-center space-x-1 p-1.5 bg-white/5 backdrop-blur-md rounded-full border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+          <NavLink href="/" active>Home</NavLink>
+          <NavLink href="/commercial">Commercial</NavLink>
+          <NavLink href="/residential">Residential</NavLink>
+          <NavLink href="/about">About Us</NavLink>
+          <NavLink href="/login">Login</NavLink>
+        </div>
         
         <Link
           href="/contact"
-          className="ml-2 btn-ripple bg-gradient-to-br from-gold to-gold-light text-navy font-bold text-[12.5px] tracking-widest uppercase px-5 py-2.5 rounded-lg hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(201,148,58,0.25)] transition-all duration-300"
+          className="btn-ripple bg-gradient-to-br from-gold to-gold-light text-navy font-bold text-[12.5px] tracking-widest uppercase px-6 py-2.5 rounded-full hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(201,148,58,0.25)] transition-all duration-300"
         >
           Let&apos;s Connect
         </Link>
@@ -132,10 +135,10 @@ function NavLink({ href, children, active }: { href: string; children: React.Rea
   return (
     <Link
       href={href}
-      className={`nav-link-underline text-[12.5px] font-semibold tracking-widest uppercase px-3.5 py-2 rounded-md transition-all duration-300 ${
+      className={`nav-link-underline text-[12.5px] font-semibold tracking-widest uppercase px-4 py-2 rounded-full transition-all duration-300 ${
         active
-          ? "text-gold-light bg-gold/10"
-          : "text-white/80 hover:text-gold-light hover:bg-gold/5"
+          ? "text-gold-light bg-gold/15"
+          : "text-white/80 hover:text-white hover:bg-white/5"
       }`}
     >
       {children}

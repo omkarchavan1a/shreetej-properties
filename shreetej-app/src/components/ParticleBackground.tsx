@@ -1,14 +1,30 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
+interface Particle {
+  id: number;
+  left: string;
+  size: number;
+  delay: number;
+  duration: number;
+  opacity: number;
+}
+
 export default function ParticleBackground({ count = 20, color = "gold" }: { count?: number; color?: string }) {
-  const particles = Array.from({ length: count }, (_, i) => ({
-    id: i,
-    left: `${Math.random() * 100}%`,
-    size: 1.5 + Math.random() * 2.5,
-    delay: Math.random() * 8,
-    duration: 6 + Math.random() * 10,
-    opacity: 0.1 + Math.random() * 0.2,
-  }));
+  const [particles, setParticles] = useState<Particle[]>([]);
+
+  useEffect(() => {
+    const generatedParticles = Array.from({ length: count }, (_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      size: 1.5 + Math.random() * 2.5,
+      delay: Math.random() * 8,
+      duration: 6 + Math.random() * 10,
+      opacity: 0.1 + Math.random() * 0.2,
+    }));
+    setParticles(generatedParticles);
+  }, [count]);
 
   const colorClass = color === "gold" ? "bg-gold" : "bg-white";
 
@@ -24,6 +40,7 @@ export default function ParticleBackground({ count = 20, color = "gold" }: { cou
             width: `${p.size}px`,
             height: `${p.size}px`,
             opacity: 0,
+            willChange: "transform, opacity",
             animation: `floatParticle ${p.duration}s ${p.delay}s infinite`,
           }}
         />

@@ -3,6 +3,7 @@ import { Playfair_Display, Cormorant_Garamond, Raleway } from "next/font/google"
 import "./globals.css";
 import Preloader from "@/components/Preloader";
 import CustomCursor from "@/components/CustomCursor";
+import FloatingContact from "@/components/FloatingContact";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -40,6 +41,7 @@ export default function RootLayout({
         <Preloader />
         <CustomCursor />
         {children}
+        <FloatingContact />
       </body>
     </html>
   );

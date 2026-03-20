@@ -24,7 +24,7 @@ export default function CustomCursor() {
       mouse.current.x = e.clientX;
       mouse.current.y = e.clientY;
       if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        dotRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
       }
     };
 
@@ -40,10 +40,15 @@ export default function CustomCursor() {
     // Trailing ring animation
     let animId: number;
     const animateRing = () => {
-      ring.current.x += (mouse.current.x - ring.current.x) * 0.15;
-      ring.current.y += (mouse.current.y - ring.current.y) * 0.15;
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate(${ring.current.x}px, ${ring.current.y}px)`;
+      const dx = mouse.current.x - ring.current.x;
+      const dy = mouse.current.y - ring.current.y;
+      
+      if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
+        ring.current.x += dx * 0.15;
+        ring.current.y += dy * 0.15;
+        if (ringRef.current) {
+          ringRef.current.style.transform = `translate3d(${ring.current.x}px, ${ring.current.y}px, 0)`;
+        }
       }
       animId = requestAnimationFrame(animateRing);
     };
