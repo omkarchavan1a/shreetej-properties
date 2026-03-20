@@ -113,6 +113,41 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Image Gallery */}
+      <section className="py-24 px-[8%] bg-white">
+        <div className="max-w-[1400px] mx-auto text-center mb-16">
+           <div className="inline-flex items-center justify-center space-x-3 text-[11px] tracking-[3px] uppercase text-gold font-bold mb-4">
+            <div className="h-px bg-gold/40 w-12" />
+            <span>Our Journey</span>
+            <div className="h-px bg-gold/40 w-12" />
+          </div>
+          <h2 className="font-serif text-4xl text-navy font-bold">Moments at Shreetej Properties</h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-[1400px] mx-auto">
+          {[
+            "/assets/shreetej/IMG-20240511-WA0293-1-300x225_8a03f286f3.jpg",
+            "/assets/shreetej/IMG-20240519-WA0145-1-300x225_7868fc590b.jpg",
+            "/assets/shreetej/IMG-20240519-WA0146-1-300x231_0b0b2ea0ea.jpg",
+            "/assets/shreetej/IMG-20240711-WA0115-1-300x193_e5e60a02f8.jpg",
+            "/assets/shreetej/IMG-20240711-WA0122-1-300x200_fc720e6bed.jpg",
+            "/assets/shreetej/IMG-20240711-WA0227-1-1024x576_335b545544.jpg",
+            "/assets/shreetej/IMG-20240717-WA0060-1-300x192_1b756311ba.jpg",
+            "/assets/shreetej/IMG-20250525-WA0082-1-226x300_3180cb91da.jpg",
+          ].map((src, i) => (
+            <div key={i} className={`rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group relative ${i === 5 ? 'md:col-span-2 md:row-span-2' : 'aspect-[4/3]'}`}>
+              <img 
+                src={src} 
+                alt={`Shreetej Moments ${i + 1}`} 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-navy/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                <span className="text-white font-serif italic text-lg opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">Shreetej</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <WhyChooseUs />
 
       <Footer />
