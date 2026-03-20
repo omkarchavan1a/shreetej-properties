@@ -49,7 +49,7 @@ export default function AboutPage() {
             <p className="text-text-mid leading-relaxed mb-8">
               "Our core philosophy revolves around trust, transparency, and timely delivery. We don't just build homes; we build communities where families thrive for generations."
             </p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Signature_Placeholder.svg" alt="Signature" className="h-12 opacity-50" />
+            <div className="font-serif italic text-4xl text-navy/80 mt-6 tracking-wider">Satish B. Raut</div>
           </div>
         </div>
       </section>
@@ -71,7 +71,7 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-navy/20 group-hover:bg-transparent transition-colors duration-500" />
             </div>
             <div className="rounded-3xl overflow-hidden shadow-xl aspect-video bg-navy/5">
-              <img src="/assets/shreetej/IMG-20240823-WA0147-1-300x225_75762e8553.jpg" alt="Shreetej Office Interior" className="w-full h-full object-cover" />
+              <img src="/assets/shreetej/generated/corporate_office_interior_1774017146187.png" alt="Shreetej Corporate Office" className="w-full h-full object-cover" />
             </div>
           </div>
 
@@ -125,14 +125,14 @@ export default function AboutPage() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-[1400px] mx-auto">
           {[
-            "/assets/shreetej/IMG-20240511-WA0293-1-300x225_8a03f286f3.jpg",
-            "/assets/shreetej/IMG-20240519-WA0145-1-300x225_7868fc590b.jpg",
-            "/assets/shreetej/IMG-20240519-WA0146-1-300x231_0b0b2ea0ea.jpg",
-            "/assets/shreetej/IMG-20240711-WA0115-1-300x193_e5e60a02f8.jpg",
-            "/assets/shreetej/IMG-20240711-WA0122-1-300x200_fc720e6bed.jpg",
-            "/assets/shreetej/IMG-20240711-WA0227-1-1024x576_335b545544.jpg",
-            "/assets/shreetej/IMG-20240717-WA0060-1-300x192_1b756311ba.jpg",
-            "/assets/shreetej/IMG-20250525-WA0082-1-226x300_3180cb91da.jpg",
+            "/assets/shreetej/generated/luxury_apartment_exterior_1774017205362.png",
+            "/assets/shreetej/generated/family_receiving_keys_1774017210470.png",
+            "/assets/shreetej/generated/closing_deal_handshake_1774017230217.png",
+            "/assets/shreetej/generated/modern_construction_site_1774017252244.png",
+            "/assets/shreetej/generated/architect_reviewing_blueprints_1774017297292.png",
+            "/assets/shreetej/generated/luxury_residential_complex_1774017323268.png",
+            "/assets/shreetej/generated/modern_living_room_1774017351455.png",
+            "/assets/shreetej/generated/aerial_city_view_1774017377515.png",
           ].map((src, i) => (
             <div key={i} className={`rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group relative ${i === 5 ? 'md:col-span-2 md:row-span-2' : 'aspect-[4/3]'}`}>
               <img 
