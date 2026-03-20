@@ -90,14 +90,13 @@ export default function Navbar() {
           <NavLink href="/residential">Residential</NavLink>
           <NavLink href="/about">About Us</NavLink>
           <NavLink href="/login">Login</NavLink>
+          <Link
+            href="/contact"
+            className="ml-2 btn-ripple bg-gradient-to-br from-gold to-gold-light text-navy font-bold text-[12.5px] tracking-widest uppercase px-5 py-2.5 rounded-full hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(201,148,58,0.25)] transition-all duration-300"
+          >
+            Connect Us
+          </Link>
         </div>
-        
-        <Link
-          href="/contact"
-          className="ml-2 btn-ripple bg-gradient-to-br from-gold to-gold-light text-navy font-bold text-[12.5px] tracking-widest uppercase px-5 py-2.5 rounded-lg hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(201,148,58,0.25)] transition-all duration-300"
-        >
-          Connect Us
-        </Link>
       </div>
 
       {/* Mobile Menu Button */}
