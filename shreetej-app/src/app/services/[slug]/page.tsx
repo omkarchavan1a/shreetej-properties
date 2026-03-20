@@ -118,8 +118,13 @@ const servicesData: Record<string, any> = {
   }
 };
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const service = servicesData[params.slug];
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({ params }: Props) {
+  const resolvedParams = await params;
+  const service = servicesData[resolvedParams.slug];
   if (!service) return { title: "Service Not Found" };
   
   return {
@@ -128,8 +133,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function ServiceDetailPage({ params }: { params: { slug: string } }) {
-  const service = servicesData[params.slug];
+export default async function ServiceDetailPage({ params }: Props) {
+  const resolvedParams = await params;
+  const service = servicesData[resolvedParams.slug];
 
   if (!service) {
     notFound();

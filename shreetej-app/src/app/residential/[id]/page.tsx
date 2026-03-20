@@ -7,8 +7,9 @@ import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
-export default async function ResidentialDetailsPage({ params }: { params: { id: string } }) {
-  const projectId = parseInt(params.id);
+export default async function ResidentialDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
+  const projectId = parseInt(resolvedParams.id);
   if (isNaN(projectId)) return notFound();
 
   const projectDetails = await db.select().from(projects).where(eq(projects.id, projectId)).limit(1);
