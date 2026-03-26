@@ -50,7 +50,7 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="bg-navy py-24 px-[8%] relative overflow-hidden">
+    <section id="services" className="bg-navy py-24 px-6 md:px-[8%] relative overflow-hidden">
       {/* Background Video */}
       <video
         autoPlay
@@ -82,7 +82,7 @@ export default function Services() {
           </p>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {servicesList.map((svc, index) => (
             <ScrollReveal key={svc.id} direction="up" delay={index * 100} duration={800}>
               <div
@@ -102,7 +102,7 @@ export default function Services() {
                 {/* Bottom glow line */}
                 <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 
-                <div className="relative z-10 p-9">
+                <div className="relative z-10 p-6 sm:p-9">
                   <span className="text-[2.5rem] mb-6 block transition-transform duration-500 group-hover:scale-110 group-hover:animate-[iconBounce_0.6s_ease]">
                     {svc.icon}
                   </span>

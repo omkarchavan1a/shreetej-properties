@@ -8,12 +8,12 @@ export default function Footer() {
   const [showMap, setShowMap] = useState(false);
 
   return (
-    <footer className="bg-navy text-white/60 pt-20 pb-8 px-[8%] relative overflow-hidden">
+    <footer className="bg-navy text-white/60 pt-20 pb-8 px-6 md:px-[8%] relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gold/[0.03] rounded-full blur-[120px] pointer-events-none" />
       
       <div className="max-w-[1400px] mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 mb-16 border-b border-white/10 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-16 mb-16 border-b border-white/10 pb-16">
           
           {/* Brand Info */}
           <div className="lg:col-span-5">
@@ -27,8 +27,6 @@ export default function Footer() {
               <div className="flex gap-3">
                 <SocialIcon href="https://www.facebook.com/shreetejproperties" icon="Facebook" isSvg />
                 <SocialIcon href="https://www.instagram.com/shreetej_properties" icon="Instagram" isSvg />
-                <SocialIcon href="https://linkedin.com/" icon="in" />
-                <SocialIcon href="https://x.com/" icon="x" />
               </div>
             </ScrollReveal>
           </div>

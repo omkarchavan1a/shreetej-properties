@@ -25,12 +25,12 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section id="about" className="py-24 px-[8%] max-w-[1400px] mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section id="about" className="py-24 px-6 md:px-[8%] max-w-[1400px] mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         
         {/* Image Side with clip-path reveal */}
         <ScrollReveal direction="left" duration={1000}>
-          <div className="relative rounded-3xl overflow-hidden h-[500px] lg:h-[600px] shadow-2xl group">
+          <div className="relative rounded-3xl overflow-hidden h-[350px] sm:h-[500px] lg:h-[600px] shadow-2xl group">
             <Image
               src="/assets/shreetej/shree-1_fd66a6ec83.png"
               alt="Shreetej Properties Building"

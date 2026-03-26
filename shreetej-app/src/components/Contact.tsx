@@ -30,9 +30,9 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24 px-[8%] max-w-[1400px] mx-auto relative">
+    <section id="contact" className="py-24 px-6 md:px-[8%] max-w-[1400px] mx-auto relative">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-3xl -z-10" />
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
         
         {/* Contact Info Side */}
         <div className="lg:col-span-5">
@@ -103,7 +103,7 @@ export default function Contact() {
         {/* Form Side */}
         <div className="lg:col-span-7 relative z-10">
           <ScrollReveal direction="right" duration={900}>
-            <div className="bg-white rounded-[2rem] p-10 lg:p-14 shadow-2xl border border-gold/10 relative overflow-hidden group hover:shadow-[0_30px_80px_rgba(13,27,42,0.12)] transition-shadow duration-700">
+            <div className="bg-white rounded-[2rem] p-6 sm:p-10 lg:p-14 shadow-2xl border border-gold/10 relative overflow-hidden group hover:shadow-[0_30px_80px_rgba(13,27,42,0.12)] transition-shadow duration-700">
               {/* Subtle Gradient Border on Hover */}
               <div className="absolute inset-0 border-2 border-transparent group-hover:border-gold/10 rounded-[2rem] pointer-events-none transition-colors duration-700" />
               

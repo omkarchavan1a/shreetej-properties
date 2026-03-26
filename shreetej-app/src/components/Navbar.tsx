@@ -57,12 +57,12 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 px-[5%] transition-all duration-500 border-b border-gold/20 flex items-center justify-between backdrop-blur-md ${
+      className={`fixed top-0 left-0 right-0 z-50 px-4 md:px-[5%] transition-all duration-500 border-b border-gold/20 flex items-center justify-between backdrop-blur-md ${
         scrolled ? "h-16 bg-navy/95 shadow-[0_4px_30px_rgba(0,0,0,0.3)]" : "h-20 bg-navy/80"
       }`}
     >
       {/* Logo */}
-      <Link ref={logoRef} href="/" className="flex items-center space-x-3 group">
+      <Link ref={logoRef} href="/" className="flex items-center space-x-2 sm:space-x-3 group">
         <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center relative bg-white/5 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-105">
           <Image
             src="https://shreetejproperties.com/wp-content/uploads/2025/09/Untitled-design-2.png"

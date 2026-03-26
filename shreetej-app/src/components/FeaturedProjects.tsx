@@ -56,7 +56,7 @@ export default function FeaturedProjects() {
             </div>
           </div>
           
-          <div className="p-8 flex flex-col flex-grow">
+          <div className="p-6 sm:p-8 flex flex-col flex-grow">
             <h3 className="font-serif text-2xl font-bold text-navy mb-3 group-hover:text-gold transition-colors duration-300">{project.title}</h3>
             <p className="text-text-mid text-sm flex items-center gap-2 mb-4">
               <span className="text-gold">📍</span> {project.location}
@@ -78,7 +78,7 @@ export default function FeaturedProjects() {
       
       {/* New Launching Projects Section */}
       {upcomingProjects.length > 0 && (
-        <section className="px-[8%] max-w-[1400px] mx-auto mb-32 relative">
+        <section className="px-6 md:px-[8%] max-w-[1400px] mx-auto mb-32 relative">
           <ScrollReveal direction="up" duration={800}>
             <div className="text-center mb-16">
               <div className="inline-flex items-center justify-center space-x-3 text-[11px] tracking-[3px] uppercase text-gold font-bold mb-4">
@@ -92,7 +92,7 @@ export default function FeaturedProjects() {
             </div>
           </ScrollReveal>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 justify-items-center">
             {upcomingProjects.map((p, i) => <ProjectCard key={p.id} project={p} index={i} />)}
           </div>
         </section>
@@ -100,7 +100,7 @@ export default function FeaturedProjects() {
 
       {/* Ongoing Projects Section */}
       {ongoingProjects.length > 0 && (
-        <section className="px-[8%] max-w-[1400px] mx-auto relative">
+        <section className="px-6 md:px-[8%] max-w-[1400px] mx-auto relative">
           <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-gold/5 rounded-full blur-3xl -translate-y-1/2 -z-10" />
           <ScrollReveal direction="up" duration={800}>
             <div className="text-center mb-16">
@@ -115,7 +115,7 @@ export default function FeaturedProjects() {
             </div>
           </ScrollReveal>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
             {ongoingProjects.map((p, i) => <ProjectCard key={p.id} project={p} index={i} />)}
           </div>
         </section>

@@ -122,7 +122,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-[8%] pt-32 pb-24">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-[8%] pt-32 pb-24">
         {/* Badge */}
         <div ref={badgeRef} className="inline-flex items-center space-x-2 bg-gold/15 border border-gold/30 rounded-full px-4 py-2 mb-8 opacity-0">
           <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse-slow" />
@@ -166,7 +166,7 @@ export default function Hero() {
         </div>
 
         {/* Stats with counter animation */}
-        <div ref={statsRef} className="mt-16 lg:mt-0 lg:absolute lg:bottom-16 lg:right-[8%] flex flex-wrap gap-6 lg:gap-10">
+        <div ref={statsRef} className="mt-16 lg:mt-0 lg:absolute lg:bottom-16 lg:right-[8%] flex flex-wrap gap-4 sm:gap-6 lg:gap-10">
           <StatCard target={1500} suffix="+" label="Transactions" />
           <StatCard target={55} suffix="+" label="Projects" />
           <StatCard target={16} suffix="+" label="Years" />
@@ -178,7 +178,7 @@ export default function Hero() {
 
 function StatCard({ target, suffix, label }: { target: number; suffix: string; label: string }) {
   return (
-    <div className="text-center px-6 py-5 lg:px-8 lg:py-6 bg-white/5 backdrop-blur-md border border-gold/20 rounded-2xl hover:bg-white/10 hover:border-gold/40 transition-all duration-500 group">
+    <div className="text-center flex-1 min-w-[120px] sm:min-w-[150px] px-4 py-5 sm:px-6 sm:py-5 lg:px-8 lg:py-6 bg-white/5 backdrop-blur-md border border-gold/20 rounded-2xl hover:bg-white/10 hover:border-gold/40 transition-all duration-500 group">
       <div className="font-serif text-[2rem] lg:text-[2.5rem] font-bold text-gold-light leading-none">
         <CounterAnimation target={target} suffix={suffix} />
       </div>
