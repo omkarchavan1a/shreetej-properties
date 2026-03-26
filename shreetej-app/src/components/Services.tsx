@@ -51,16 +51,20 @@ export default function Services() {
 
   return (
     <section id="services" className="bg-navy py-24 px-6 md:px-[8%] relative overflow-hidden">
-      {/* Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none"
-      >
-        <source src="/images/front page office  video.mp4" type="video/mp4" />
-      </video>
+      {/* Background Video using compressed asset */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
+        >
+          <source src="/images/hero-video-compressed.mp4" type="video/mp4" />
+        </video>
+        {/* Navy gradient overlay so text remains readable */}
+        <div className="absolute inset-0 bg-gradient-to-b from-navy/90 via-navy/60 to-navy/90" />
+      </div>
 
       {/* Ambient particles */}
       <ParticleBackground count={12} color="gold" />

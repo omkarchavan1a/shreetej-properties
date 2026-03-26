@@ -8,7 +8,7 @@ export default function FeaturedProjects() {
       title: "Shreetej Platinum-5",
       type: "Mixed",
       location: "Sangamner",
-      imageUrl: "/images/shreetej platinum 3.jpeg",
+      imageUrl: "",
     }
   ];
 

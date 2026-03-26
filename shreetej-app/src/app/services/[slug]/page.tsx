@@ -133,6 +133,12 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
+export async function generateStaticParams() {
+  return Object.keys(servicesData).map((slug) => ({
+    slug: slug,
+  }));
+}
+
 export default async function ServiceDetailPage({ params }: Props) {
   const resolvedParams = await params;
   const service = servicesData[resolvedParams.slug];

@@ -20,19 +20,6 @@ export default function Hero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Video parallax on scroll
-      if (videoRef.current) {
-        gsap.to(videoRef.current, {
-          yPercent: 20,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-      }
 
       // Badge entrance
       gsap.from(badgeRef.current, {
@@ -105,14 +92,13 @@ export default function Hero() {
         muted
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ willChange: "transform" }}
       >
-        <source src="/images/front page office  video.mp4" type="video/mp4" />
+        <source src="/images/hero-video-compressed.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-br from-navy/60 to-navy/20" />
 
-      {/* Floating Particles */}
-      <ParticleBackground count={15} color="gold" />
+      {/* Floating Particles - Reduced count for performance */}
+      <ParticleBackground count={5} color="gold" />
 
       {/* Subtle Noise/Grain Effect */}
       <div
