@@ -107,7 +107,7 @@ export default function Hero() {
         className="absolute inset-0 w-full h-full object-cover"
         style={{ willChange: "transform" }}
       >
-        <source src="https://website-asset-videos.sfo3.cdn.digitaloceanspaces.com/hoh/new-cut-home-video-comp.mp4" type="video/mp4" />
+        <source src="/images/front page office  video.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-br from-navy/60 to-navy/20" />
 
@@ -146,7 +146,7 @@ export default function Hero() {
         {/* Subheading */}
         <p ref={subRef} className="text-[clamp(1rem,1.5vw,1.2rem)] text-white/70 max-w-2xl leading-relaxed mb-12 font-light tracking-wide opacity-0">
           From land acquisition and development to 100% loan assistance —
-          Shreetej Properties is your Total Real Estate Solution with 15+ years of trusted expertise.
+          Shreetej Properties is your Total Real Estate Solution with 16+ years of trusted expertise.
         </p>
 
         {/* Actions */}
@@ -169,7 +169,7 @@ export default function Hero() {
         <div ref={statsRef} className="mt-16 lg:mt-0 lg:absolute lg:bottom-16 lg:right-[8%] flex flex-wrap gap-6 lg:gap-10">
           <StatCard target={1500} suffix="+" label="Transactions" />
           <StatCard target={55} suffix="+" label="Projects" />
-          <StatCard target={15} suffix="+" label="Years" />
+          <StatCard target={16} suffix="+" label="Years" />
         </div>
       </div>
     </section>

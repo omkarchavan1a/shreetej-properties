@@ -2,6 +2,7 @@
 
 import { useTransition, useRef, useState } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 export default function Contact() {
   const [isPending, startTransition] = useTransition();
@@ -56,7 +57,7 @@ export default function Contact() {
             <ScrollReveal direction="left" delay={100}>
               <a href="tel:+917588464644" className="flex gap-5 p-6 bg-white/50 border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400 cursor-pointer w-full text-left block">
                 <div className="w-12 h-12 shrink-0 bg-gradient-to-br from-gold/15 to-gold/5 border border-gold/20 rounded-xl flex items-center justify-center text-xl shadow-inner group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(201,148,58,0.15)] transition-all duration-300">
-                  📞
+                  <Phone className="w-5 h-5 text-gold" />
                 </div>
                 <div>
                   <h4 className="font-bold text-[13px] tracking-[1px] uppercase text-text-dark mb-1">Phone</h4>
@@ -71,7 +72,7 @@ export default function Contact() {
             <ScrollReveal direction="left" delay={200}>
               <a href="mailto:info@shreetejproperties.com" className="flex gap-5 p-6 bg-white/50 border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400 cursor-pointer w-full text-left block">
                 <div className="w-12 h-12 shrink-0 bg-gradient-to-br from-gold/15 to-gold/5 border border-gold/20 rounded-xl flex items-center justify-center text-xl shadow-inner group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(201,148,58,0.15)] transition-all duration-300">
-                  ✉️
+                  <Mail className="w-5 h-5 text-gold" />
                 </div>
                 <div>
                   <h4 className="font-bold text-[13px] tracking-[1px] uppercase text-text-dark mb-1">Email</h4>
@@ -86,7 +87,7 @@ export default function Contact() {
             <ScrollReveal direction="left" delay={300}>
               <a href="https://maps.google.com/?q=Ekta+Chauk,Ghulewadi,Sangamner,Ahmednagar,Maharashtra" target="_blank" rel="noopener noreferrer" className="flex gap-5 p-6 bg-white/50 border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400 cursor-pointer w-full text-left block">
                 <div className="w-12 h-12 shrink-0 bg-gradient-to-br from-gold/15 to-gold/5 border border-gold/20 rounded-xl flex items-center justify-center text-xl shadow-inner group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(201,148,58,0.15)] transition-all duration-300">
-                  📍
+                  <MapPin className="w-5 h-5 text-gold" />
                 </div>
                 <div>
                   <h4 className="font-bold text-[13px] tracking-[1px] uppercase text-text-dark mb-1">Office Address</h4>

@@ -6,7 +6,7 @@ export default function Marquee() {
     "1500+ Successful Transactions",
     "Post-Sale Commitment",
     "100% Loan Assistance",
-    "15+ Years of Trust",
+    "16+ Years of Trust",
     "Quality Construction",
   ];
 

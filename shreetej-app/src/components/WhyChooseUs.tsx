@@ -3,21 +3,22 @@
 import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
 import CounterAnimation from "@/components/CounterAnimation";
+import { ShieldCheck, Building2, HeartHandshake } from "lucide-react";
 
 export default function WhyChooseUs() {
   const points = [
     {
-      icon: "🛡️",
+      icon: <ShieldCheck className="w-8 h-8" />,
       title: "100% Legal Confidence",
       desc: "Every property comes with a verified title deed. We offer free legal document verification on any real estate deal to prevent fraud.",
     },
     {
-      icon: "🏗️",
+      icon: <Building2 className="w-8 h-8" />,
       title: "Quality You Can Afford",
       desc: "Excellent construction quality at affordable rates, delivering maximum value to the common man without breaking the bank.",
     },
     {
-      icon: "🤝",
+      icon: <HeartHandshake className="w-8 h-8" />,
       title: "Post-Sale Commitment",
       desc: "We resolve any property issues or legal challenges even after the sale. Unlike others, your peace of mind is our permanent priority.",
     },
@@ -41,7 +42,7 @@ export default function WhyChooseUs() {
             
             <div className="absolute bottom-8 left-8 bg-navy/90 backdrop-blur-md border border-gold/20 rounded-2xl p-6 lg:p-8 group-hover:border-gold/40 transition-all duration-500">
               <div className="font-serif text-[2.5rem] lg:text-[3rem] text-gold-light font-bold leading-none">
-                <CounterAnimation target={15} suffix="+" />
+                <CounterAnimation target={16} suffix="+" />
               </div>
               <div className="text-[11px] tracking-[1.5px] uppercase text-white/60 mt-2 font-semibold">
                 Years of Trust

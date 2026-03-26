@@ -1,17 +1,30 @@
-import { db } from "@/db";
-import { projects } from "@/db/schema";
-import { eq, desc } from "drizzle-orm";
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
 
-export default async function FeaturedProjects() {
-  // Fetch Upcoming (New Launching) and Ongoing projects
-  const upcomingProjects = await db.select().from(projects).where(eq(projects.status, 'Upcoming')).orderBy(desc(projects.createdAt)).limit(3);
-  const ongoingProjects = await db.select().from(projects).where(eq(projects.status, 'Ongoing')).orderBy(desc(projects.createdAt)).limit(3);
+export default function FeaturedProjects() {
+  const upcomingProjects = [
+    {
+      id: 999,
+      title: "Shreetej Platinum-5",
+      type: "Mixed",
+      location: "Sangamner",
+      imageUrl: "/images/shreetej platinum 3.jpeg",
+    }
+  ];
+
+  const ongoingProjects = [
+    {
+      id: 17,
+      title: "Saiban Phase-9",
+      type: "Layouts",
+      location: "Ghulewadi",
+      imageUrl: "/images/layout.jpg.jpeg",
+    }
+  ];
 
   const ProjectCard = ({ project, index }: { project: any; index: number }) => (
     <ScrollReveal direction="up" delay={index * 150} duration={800}>
-      <Link href={`/${project.type.toLowerCase()}/${project.id}`} className="group block h-full perspective-1000">
+      <Link href="/projects" className="group block h-full perspective-1000">
         <div className="bg-white rounded-3xl overflow-hidden shadow-xl border border-navy/5 h-full flex flex-col transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_30px_80px_rgba(13,27,42,0.15)] hover:border-gold/30 preserve-3d group-hover:[transform:rotateY(2deg)_rotateX(1deg)]">
           <div className="relative aspect-[4/3] overflow-hidden">
             {project.imageUrl ? (
@@ -79,7 +92,7 @@ export default async function FeaturedProjects() {
             </div>
           </ScrollReveal>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
             {upcomingProjects.map((p, i) => <ProjectCard key={p.id} project={p} index={i} />)}
           </div>
         </section>

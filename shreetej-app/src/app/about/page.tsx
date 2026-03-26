@@ -31,8 +31,9 @@ export default function AboutPage() {
         <div className="flex flex-col md:flex-row gap-16 items-center">
           <div className="w-full md:w-2/5 relative">
             <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl relative z-10">
+              {/* <!-- TODO: insert Founder photo (satish_raut.jpg / founder.jpg) to public/images/ --> */}
               <img 
-                src="/assets/shreetej/IMG-20241005-WA0137-1-254x300_60ebd5da62.jpg" 
+                src="/images/founder.jpg" 
                 alt="Shri Satish B. Raut - Chairman" 
                 className="w-full h-full object-cover"
               />
@@ -44,10 +45,7 @@ export default function AboutPage() {
             <h3 className="font-serif text-4xl text-navy font-bold mb-2">Shri Satish B. Raut</h3>
             <p className="text-gold font-bold uppercase tracking-[1px] text-sm mb-6">Chairman & Managing Director</p>
             <p className="text-text-mid leading-relaxed mb-6">
-              With a vision to provide total real estate solutions, Shri Satish B. Raut founded Shreetej Properties in 2011. Under his dynamic leadership, the company has scaled unparalleled heights in delivering legally secure, premium residential and commercial spaces across Maharashtra.
-            </p>
-            <p className="text-text-mid leading-relaxed mb-8">
-              "Our core philosophy revolves around trust, transparency, and timely delivery. We don't just build homes; we build communities where families thrive for generations."
+              The journey to success in the real estate sector was not an easy one. Through numerous challenges, experiences, and learning phases, Shri Satish B. Raut began his journey as a land developer in 2011. In the initial years, limited resources, the challenges of a constantly changing market, and the struggle to build trust helped shape a stronger and clearer vision. With 16+ years of experience, backed by integrity and transparent dealings, the company under his leadership has today earned the trust of 1,000+ satisfied customers. Quality planning, long-term value, and securing a safe future for customers' dreams remain the true driving forces behind his work.
             </p>
             <div className="font-serif italic text-4xl text-navy/80 mt-6 tracking-wider">Satish B. Raut</div>
           </div>
@@ -100,12 +98,21 @@ export default function AboutPage() {
           <h2 className="font-serif text-4xl text-white font-bold mb-16">Strategic Tie-Ups</h2>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {['HDFC Bank', 'SBI Home Loans', 'ICICI Bank', 'Axis Bank'].map((partner, i) => (
+            {[
+              { name: 'HDFC Bank', file: 'hdfc-logo.svg' },
+              { name: 'SBI Home Loans', file: 'sbi-logo.svg' },
+              { name: 'ICICI Bank', file: 'icici-logo.svg' },
+              { name: 'Axis Bank', file: 'axis-logo.svg' }
+            ].map((partner, i) => (
               <div key={i} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center hover:bg-white/10 transition-colors">
-                <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center text-2xl mb-4">🏦</div>
-                <span className="text-white font-bold tracking-wide">{partner}</span>
+                {/* <!-- TODO: add actual bank logos to public/images/ folder --> */}
+                <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-4 overflow-hidden relative">
+                  <img src={`/images/${partner.file}`} alt={partner.name} className="w-10 h-10 object-contain text-transparent" />
+                </div>
+                <span className="text-white font-bold tracking-wide">{partner.name}</span>
               </div>
             ))}
+            {/* <!-- TODO: Client to provide additional bank/partner names and logos --> */}
           </div>
           <p className="text-white/60 mt-12 text-sm max-w-2xl mx-auto">
             We hold strategic partnerships with India's leading financial institutions to provide seamless, 100% home loan assistance to all our clients.

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 
-type ProjectType = "all" | "residential" | "commercial" | "plots";
+type ProjectType = "All" | "Residential" | "Commercial" | "Mixed" | "Layouts";
 
 interface Project {
   id: number;
@@ -18,142 +18,52 @@ interface Project {
   details: string;
   amenities: string[];
   area: string;
+  cityArea: string;
 }
 
 export default function Projects() {
-  const [filter, setFilter] = useState<ProjectType>("all");
+  const [typeFilter, setTypeFilter] = useState<ProjectType>("All");
+  const [areaFilter, setAreaFilter] = useState<string>("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
+  const areas = ["All", "Ghulewadi", "Malpani Nagar", "Golden City", "Kokangav", "Nashik-Pune Highway", "Navin Nagar Road", "Katariya Nagar", "Ganesh Vihar"];
+  const types: ProjectType[] = ["All", "Residential", "Commercial", "Mixed", "Layouts"];
+
   const projects: Project[] = [
-    {
-      id: 1,
-      name: "Shreetej Residency",
-      type: "residential",
-      desc: "Premium Residential · Sangamner",
-      status: "Completed",
-      statusColor: "bg-gold",
-      img: "/assets/shreetej/3D-_page-0005-e1763446623738-768x384_35a42be3dc.jpg",
-      location: "Sangamner, Dist-Ahmednagar",
-      year: "2022",
-      details: "A premium residential complex offering well-constructed flats with modern amenities. Every unit comes with verified title deeds and 100% legal security. Designed for families seeking quality homes at affordable rates.",
-      amenities: ["24/7 Water Supply", "Covered Parking", "Garden Area", "Security", "Children's Play Area"],
-      area: "1,50,000+ sq.ft."
-    },
-    {
-      id: 2,
-      name: "Tej Heights Phase I",
-      type: "residential",
-      desc: "Residential · Sangamner",
-      status: "Completed",
-      statusColor: "bg-gold",
-      img: "/assets/shreetej/3D-_page-0006-e1763446571686-768x485_5efb9b5c60.jpg",
-      location: "Sangamner, Dist-Ahmednagar",
-      year: "2021",
-      details: "Tej Heights Phase I features thoughtfully designed apartments with spacious living areas and excellent ventilation. Built with quality materials and backed by Shreetej's commitment to legal security and post-sale support.",
-      amenities: ["Lift Facility", "Reserved Parking", "Rain Water Harvesting", "CCTV Security"],
-      area: "85,000 sq.ft."
-    },
-    {
-      id: 3,
-      name: "Tej Commercial Hub",
-      type: "commercial",
-      desc: "Commercial · Nashik Highway",
-      status: "Ongoing",
-      statusColor: "bg-orange-500",
-      img: "/assets/shreetej/photo-1486325212027-8081e485255e_36f4652808.jpg",
-      location: "Nashik Highway, Sangamner",
-      year: "2025",
-      details: "A premier commercial development on the strategic Nashik Highway. Offering modern shops and office spaces ideal for businesses looking for high-visibility locations with excellent connectivity.",
-      amenities: ["Road-Facing Shops", "Ample Parking", "Power Backup", "Wide Corridors", "Loading Area"],
-      area: "45,000 sq.ft."
-    },
-    {
-      id: 4,
-      name: "Shreetej Villas",
-      type: "residential",
-      desc: "Residential · Ghulewadi",
-      status: "Completed",
-      statusColor: "bg-gold",
-      img: "/assets/shreetej/3D-_page-0013-e1763446391451-768x606_5ec5c532fe.jpg",
-      location: "Ghulewadi, Tal-Sangamner",
-      year: "2023",
-      details: "Luxurious duplex villas in the serene surroundings of Ghulewadi. Each villa features independent entrance, private garden, and premium interiors. Perfect for families seeking spacious, independent living.",
-      amenities: ["Private Garden", "Double-Height Living", "Modular Kitchen", "Visitor Parking", "Compound Wall"],
-      area: "2,500 sq.ft. per villa"
-    },
-    {
-      id: 5,
-      name: "Tej Greens Plots",
-      type: "plots",
-      desc: "Plot Development · Sangamner",
-      status: "Available",
-      statusColor: "bg-green-600",
-      img: "/assets/shreetej/IMG-20240711-WA0227-1-1024x576_335b545544.jpg",
-      location: "Sangamner, Dist-Ahmednagar",
-      year: "2024",
-      details: "NA-approved residential plots with clear titles and verified documentation. Options from 24 Guntha onwards. Ideal for individuals looking to build their dream home or make a secure long-term investment.",
-      amenities: ["Clear Title Deed", "NA Approved", "Road Access", "Water Connection", "Electricity Connection"],
-      area: "From 24 Guntha"
-    },
-    {
-      id: 6,
-      name: "Shreetej Duplex Row",
-      type: "residential",
-      desc: "Residential · Tal-Sangamner",
-      status: "Completed",
-      statusColor: "bg-gold",
-      img: "/assets/shreetej/3D-_page-0015-768x511_d5f86ce8ae.jpg",
-      location: "Tal-Sangamner, Dist-Ahmednagar",
-      year: "2020",
-      details: "A row of beautifully designed duplex homes offering spacious interiors and modern architecture. Each duplex features independent floors with a perfect blend of privacy and community living.",
-      amenities: ["Independent Entrance", "Terrace Access", "Two-Story Living", "Car Parking", "Garden"],
-      area: "1,800 sq.ft. per duplex"
-    },
-    {
-      id: 7,
-      name: "Shreetej Heights Phase II",
-      type: "residential",
-      desc: "Residential · Sangamner",
-      status: "Upcoming",
-      statusColor: "bg-blue-500",
-      img: "/assets/shreetej/3D-_page-0016-e1763446294574-768x600_d32fec8509.jpg",
-      location: "Sangamner, Dist-Ahmednagar",
-      year: "2025",
-      details: "The highly anticipated Phase II of our successful Tej Heights project. Featuring upgraded amenities, modern architecture, and Shreetej's promise of 100% legal confidence. Pre-launch booking now open.",
-      amenities: ["Club House", "Gymnasium", "Landscaped Garden", "Smart Home Features", "EV Charging"],
-      area: "1,20,000 sq.ft."
-    },
-    {
-      id: 8,
-      name: "Shreetej Commercial Plaza",
-      type: "commercial",
-      desc: "Commercial · Sangamner",
-      status: "Completed",
-      statusColor: "bg-gold",
-      img: "/assets/shreetej/3D-_page-0019-768x768_769a4e27d4.jpg",
-      location: "Ekta Chauk, Sangamner",
-      year: "2023",
-      details: "A landmark commercial plaza in the heart of Sangamner. Prime location at Ekta Chauk with excellent footfall. Features modern retail spaces and office units designed for growing businesses.",
-      amenities: ["Prime Location", "Glass Facade", "Central AC Ready", "Fire Safety", "Escalator"],
-      area: "35,000 sq.ft."
-    },
-    {
-      id: 9,
-      name: "Green Valley Plots",
-      type: "plots",
-      desc: "Plot Development · Ghulewadi",
-      status: "Available",
-      statusColor: "bg-green-600",
-      img: "/assets/shreetej/IMG-20240711-WA0122-1-300x200_fc720e6bed.jpg",
-      location: "Ghulewadi, Tal-Sangamner",
-      year: "2024",
-      details: "Premium residential plots surrounded by lush greenery. Each plot comes with verified clear title, NA approval, and basic amenities. Ideal for building your dream home in a peaceful environment.",
-      amenities: ["Clear Title", "NA Approved", "Internal Roads", "Drainage", "Boundary Wall"],
-      area: "From 20 Guntha"
-    }
+    // NEW LAUNCHING
+    { id: 999, name: "Shreetej Platinum-5", type: "Mixed", cityArea: "Sangamner", desc: "Residential + Commercial", status: "LAUNCHING SOON", statusColor: "bg-gold", img: "/images/shreetej platinum 3.jpeg", location: "Sangamner", year: "2026", details: "Exclusive Pre-Launch. Premium apartments & commercial spaces.", amenities: ["Parking", "Lift", "Security"], area: "—" },
+
+    // COMPLETE PROJECTS
+    { id: 1, name: "Shreetej Platinum-2", type: "Mixed", cityArea: "Ghulewadi", desc: "Residential + Commercial", status: "COMPLETED", statusColor: "bg-navy", img: "/images/shreetej platinum 1.jpeg", location: "Saishradha Chowk, Ghulewadi", year: "—", details: "Units: —", amenities: ["Parking", "Lift", "Open Terrace", "RCC Watertank (top & bottom)", "Balconies", "Wall Compound", "Separate Commercial Parking"], area: "—" },
+    { id: 2, name: "Shreetej Platinum-1", type: "Commercial", cityArea: "Nashik-Pune Highway", desc: "Commercial", status: "COMPLETED", statusColor: "bg-navy", img: "/images/shreetej platinum 1.jpeg", location: "Pune-Nashik Highway, Gunjalwadi", year: "—", details: "A commercial project at a prime location.", amenities: ["Parking", "Borewell", "RCC Watertank"], area: "19 units (17 shops, 2 halls)" },
+    { id: 3, name: "Samarth Heights", type: "Mixed", cityArea: "Ghulewadi", desc: "Residential + Commercial", status: "COMPLETED", statusColor: "bg-navy", img: "/images/samarth heights.jpeg", location: "Maldad Road, Ghulewadi", year: "—", details: "Mixed use property with excellent amenities.", amenities: ["Huge Parking", "Lift", "Open Terrace", "RCC Watertank", "Separate Electricity Transformer"], area: "28 flats (1BHK & RK), 7 shops" },
+    { id: 4, name: "Row House", type: "Residential", cityArea: "Malpani Nagar", desc: "Residential", status: "COMPLETED", statusColor: "bg-navy", img: "/images/layout.jpg.jpeg", location: "Malpani Nagar", year: "—", details: "Independent row houses for a premium lifestyle.", amenities: ["Underground Drainage", "Underground Watertank", "Individual Parking"], area: "5 units" },
+    { id: 5, name: "Bungalow (Suresh Sawale)", type: "Residential", cityArea: "Malpani Nagar", desc: "Residential", status: "COMPLETED", statusColor: "bg-navy", img: "/images/suresh sable basnglow.jpeg", location: "Malpani Nagar", year: "—", details: "Custom built bungalow.", amenities: [], area: "1 unit" },
+    { id: 6, name: "Arbitro Heights", type: "Commercial", cityArea: "Other", desc: "Commercial", status: "COMPLETED", statusColor: "bg-navy", img: "/images/arbitro heights.jpeg", location: "Ekta Chowk", year: "—", details: "A major commercial hub offering numerous shops.", amenities: ["Parking", "Lift", "RCC Watertank"], area: "32 shops" },
+    { id: 7, name: "Shreetej Platinum-3", type: "Mixed", cityArea: "Navin Nagar Road", desc: "Mixed", status: "COMPLETED", statusColor: "bg-navy", img: "/images/shreetej platinum 3.jpeg", location: "Navin Nagar Road", year: "—", details: "Mixed-use building with halls and shops.", amenities: [], area: "7 units (2 shops, 5 halls)" },
+    { id: 8, name: "Samarth Villa", type: "Mixed", cityArea: "Golden City", desc: "Residential + Commercial", status: "COMPLETED", statusColor: "bg-navy", img: "/images/samarth villa.jpeg", location: "Golden City", year: "—", details: "A beautiful villa complex.", amenities: ["Lift", "Parking", "RCC Watertank"], area: "12 flats, 1 commercial" },
+    { id: 9, name: "Commercial Building", type: "Mixed", cityArea: "Malpani Nagar", desc: "Mixed", status: "COMPLETED", statusColor: "bg-navy", img: "/images/arbitro alfa.jpeg", location: "Malpani Nagar", year: "—", details: "Mixed use commercial and residential complex.", amenities: [], area: "4 flats, 4 shops" },
+    { id: 10, name: "Samarth Roop", type: "Mixed", cityArea: "Golden City", desc: "Residential + Commercial", status: "COMPLETED", statusColor: "bg-navy", img: "/images/samarth roop.jpeg", location: "Golden City", year: "—", details: "Highly sought after mixed-use project.", amenities: [], area: "12 flats, 4 shops" },
+    { id: 11, name: "Bungalow", type: "Residential", cityArea: "Nashik-Pune Highway", desc: "Residential", status: "COMPLETED", statusColor: "bg-navy", img: "/images/11 nashik nagar bypass.jpeg", location: "Nagar-Nashik Bypass, Ghulewadi", year: "—", details: "Premium bungalow near Nashik bypass.", amenities: [], area: "1 unit" },
+    { id: 12, name: "Bungalow", type: "Residential", cityArea: "Malpani Nagar", desc: "Residential", status: "COMPLETED", statusColor: "bg-navy", img: "/images/malpani nagar banglow 12.jpeg", location: "Malpani Nagar", year: "—", details: "Spacious bungalow in Malpani Nagar.", amenities: [], area: "1 unit" },
+    { id: 13, name: "Apartment", type: "Residential", cityArea: "Katariya Nagar", desc: "Residential", status: "COMPLETED", statusColor: "bg-navy", img: "/images/katariya nagar 13.jpeg", location: "Katariya Nagar", year: "—", details: "Apartment complex with modern facilities.", amenities: [], area: "7 units" },
+    { id: 14, name: "Bungalow", type: "Residential", cityArea: "Ganesh Vihar", desc: "Residential", status: "COMPLETED", statusColor: "bg-navy", img: "/images/ganesh vihar.jpeg", location: "Ganesh Vihar", year: "—", details: "Luxurious single unit bungalow.", amenities: [], area: "1 unit" },
+    { id: 15, name: "Sai Samarth Plaza", type: "Mixed", cityArea: "Other", desc: "Mixed", status: "COMPLETED", statusColor: "bg-navy", img: "/images/sai samarth plaza.jpeg", location: "Maldad Road", year: "—", details: "Business and shopping plaza.", amenities: [], area: "16 units" },
+    { id: 16, name: "Bungalow (Bharat Khemnar)", type: "Residential", cityArea: "Malpani Nagar", desc: "Residential", status: "COMPLETED", statusColor: "bg-navy", img: "/images/bharat khemnar banglow.jpeg", location: "Malpani Nagar", year: "—", details: "Custom premium bungalow design.", amenities: [], area: "1 unit" },
+
+    // LAYOUTS
+    { id: 17, name: "Saiban Phase-9", type: "Layouts", cityArea: "Ghulewadi", desc: "NA Layout", status: "ONGOING", statusColor: "bg-blue-500", img: "/images/layout.jpg.jpeg", location: "Ghulewadi", year: "—", details: "Premium layout project with clear titles.", amenities: ["Collector NA Plots", "Wall Compound", "6m Internal Roads", "Street Light", "Underground Drainage"], area: "24 plots" },
+    { id: 18, name: "Bhagyoday Park", type: "Layouts", cityArea: "Other", desc: "NA Layout", status: "COMPLETED", statusColor: "bg-navy", img: "/images/untitled-bhagyoday park.jpg.jpeg", location: "Maldad Road", year: "—", details: "Fully developed NA plots.", amenities: ["NA Plots", "Internal Roads", "Street Light"], area: "16 plots" },
+    { id: 19, name: "Nizarneshwar Park", type: "Layouts", cityArea: "Kokangav", desc: "NA Layout", status: "COMPLETED", statusColor: "bg-navy", img: "/images/nijarneshwar park 1.jpg.jpeg", location: "Kokangav", year: "—", details: "Clear title NA plots.", amenities: ["NA Plots", "Internal Roads", "Street Light"], area: "21 plots" },
+    { id: 20, name: "Kanifnath Park", type: "Layouts", cityArea: "Ghulewadi", desc: "NA Layout", status: "AVAILABLE", statusColor: "bg-green-600", img: "/images/kanifnath park.jpg.jpeg", location: "Ghulewadi (near Kanifnath Temple)", year: "—", details: "NA approved plots behind Kanifnath temple.", amenities: ["NA Plots", "Compound Wall", "Internal Roads", "Street Light"], area: "10 plots" },
+    { id: 21, name: "Madhuban Park", type: "Layouts", cityArea: "Nashik-Pune Highway", desc: "NA Layout", status: "AVAILABLE", statusColor: "bg-green-600", img: "/images/madhuban park.jpg.jpeg", location: "Nasik-Pune Highway", year: "—", details: "Prime located plots on Nashik Highway.", amenities: [], area: "11 plots" }
   ];
 
-  const filteredProjects = filter === "all" ? projects : projects.filter(p => p.type === filter);
+  const filteredProjects = projects.filter(p => {
+    const passType = typeFilter === "All" || p.type === typeFilter;
+    const passArea = areaFilter === "All" || p.cityArea === areaFilter;
+    return passType && passArea;
+  });
 
   return (
     <section id="projects" className="py-24 px-[8%] max-w-[1400px] mx-auto">
@@ -168,72 +78,98 @@ export default function Projects() {
           <em className="text-gold not-italic italic">Securing Futures</em>
         </h2>
         <p className="text-[1.05rem] text-text-mid leading-relaxed font-light">
-          Over 15 years, we&apos;ve completed 55+ projects totalling over 5,50,000 sq.ft. across Sangamner and Ahmednagar district.
+          Over 16 years, we&apos;ve delivered diverse residential, commercial, and layout projects mapping thousands of happy customers.
         </p>
       </div>
 
-      {/* Filter Buttons */}
-      <div className="flex flex-wrap justify-center gap-3 mb-12">
-        {(["all", "residential", "commercial", "plots"] as const).map((type) => (
-          <button
-            key={type}
-            onClick={() => setFilter(type)}
-            className={`px-6 py-2.5 rounded-full border-2 text-xs font-bold tracking-[1px] uppercase transition-all duration-300 ${
-              filter === type
-                ? "bg-gold border-gold text-navy shadow-lg"
-                : "bg-transparent border-gold/30 text-text-mid hover:border-gold hover:text-gold"
-            }`}
-          >
-            {type === "plots" ? "Plot Development" : type === "all" ? "All Projects" : type}
-          </button>
-        ))}
+      {/* Filter Section */}
+      <div className="mb-12 flex flex-col items-center gap-6">
+        {/* Type Filter */}
+        <div className="flex flex-wrap justify-center gap-3">
+          {types.map((type) => (
+            <button
+              key={type}
+              onClick={() => setTypeFilter(type)}
+              className={`px-6 py-2.5 rounded-full border-2 text-xs font-bold tracking-[1px] uppercase transition-all duration-300 ${
+                typeFilter === type
+                  ? "bg-gold border-gold text-navy shadow-lg"
+                  : "bg-transparent border-gold/30 text-text-mid hover:border-gold hover:text-gold"
+              }`}
+            >
+              {type}
+            </button>
+          ))}
+        </div>
+
+        {/* Area Filter */}
+        <div className="flex flex-wrap justify-center gap-2">
+          {areas.map((area) => (
+            <button
+              key={area}
+              onClick={() => setAreaFilter(area)}
+              className={`px-4 py-1.5 rounded-full border border-navy/20 text-[10px] font-bold tracking-wider uppercase transition-all duration-300 ${
+                areaFilter === area
+                  ? "bg-navy border-navy text-white shadow-md"
+                  : "bg-white/50 text-navy hover:bg-navy/10 hover:border-navy/40"
+              }`}
+            >
+              {area}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        {filteredProjects.map((project) => (
-          <div
-            key={project.id}
-            onClick={() => setSelectedProject(project)}
-            className="group relative rounded-2xl overflow-hidden cursor-pointer h-[320px] lg:h-[380px] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
-          >
-            <Image
-              src={project.img}
-              alt={project.name}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-            
-            {/* Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
-            
-            {/* Status Tag */}
-            <div className={`absolute top-5 left-5 ${project.statusColor} text-white/90 text-[10px] font-bold tracking-[1.5px] uppercase px-3 py-1.5 rounded-full shadow-lg`}>
-              {project.status}
-            </div>
-
-            {/* Click Hint */}
-            <div className="absolute top-5 right-5 bg-white/20 backdrop-blur-sm text-white text-[10px] font-bold tracking-[1px] uppercase px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              Click for Details
-            </div>
-
-            {/* Content box */}
-            <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
-              <h4 className="font-serif text-[1.2rem] text-white font-bold mb-1.5">
-                {project.name}
-              </h4>
-              <p className="text-[10px] text-gold-light tracking-[1.5px] uppercase font-semibold">
-                {project.desc} · {project.year}
-              </p>
-            </div>
+        {filteredProjects.length === 0 ? (
+          <div className="col-span-1 md:col-span-2 xl:col-span-3 text-center py-20 text-text-mid text-lg font-medium">
+            No projects found matching the selected filters.
           </div>
-        ))}
+        ) : (
+          filteredProjects.map((project) => (
+            <div
+              key={project.id}
+              onClick={() => setSelectedProject(project)}
+              className="group relative rounded-2xl overflow-hidden cursor-pointer h-[320px] lg:h-[380px] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              <Image
+                src={project.img}
+                alt={project.name}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              
+              {/* Overlay Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
+              
+              {/* Status Tag */}
+              <div className={`absolute top-5 left-5 ${project.statusColor} text-white/90 text-[10px] font-bold tracking-[1.5px] uppercase px-3 py-1.5 rounded-full shadow-lg`}>
+                {project.status}
+              </div>
+
+              {/* Click Hint */}
+              <div className="absolute top-5 right-5 bg-white/20 backdrop-blur-sm text-white text-[10px] font-bold tracking-[1px] uppercase px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Click for Details
+              </div>
+
+              {/* Content box */}
+              <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
+                <h4 className="font-serif text-[1.2rem] text-white font-bold mb-1.5">
+                  {project.name}
+                </h4>
+                <p className="text-[10px] text-gold-light tracking-[1.5px] uppercase font-semibold">
+                  {project.type} · {project.location}
+                </p>
+              </div>
+            </div>
+          ))
+        )}
       </div>
 
       {/* Detail Modal */}
       {selectedProject && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
           onClick={() => setSelectedProject(null)}
         >
           {/* Backdrop */}
@@ -241,7 +177,7 @@ export default function Projects() {
           
           {/* Modal Content */}
           <div 
-            className="relative bg-white rounded-3xl overflow-hidden max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-scale-up"
+            className="relative bg-white rounded-3xl overflow-hidden max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-scale-up z-10"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -272,7 +208,7 @@ export default function Projects() {
                 <div className="flex items-center space-x-3 text-[10px] tracking-[2px] uppercase text-gold font-bold mb-3">
                   <span>{selectedProject.type}</span>
                   <div className="h-px bg-gold/40 w-8" />
-                  <span>{selectedProject.year}</span>
+                  <span>{selectedProject.location}</span>
                 </div>
 
                 <h2 className="font-serif text-[clamp(1.8rem,3vw,2.5rem)] text-navy font-bold mb-2">
@@ -288,17 +224,19 @@ export default function Projects() {
                 </p>
 
                 {/* Area */}
-                <div className="bg-cream rounded-2xl p-5 mb-6 border border-gold/10">
-                  <div className="flex items-center justify-between">
-                    <span className="text-navy/60 text-[10px] font-bold tracking-[1.5px] uppercase">Total Area</span>
-                    <span className="text-navy font-serif font-bold text-lg">{selectedProject.area}</span>
+                {(selectedProject.area && selectedProject.area !== "—") && (
+                  <div className="bg-cream rounded-2xl p-5 mb-6 border border-gold/10">
+                    <div className="flex items-center justify-between">
+                      <span className="text-navy/60 text-[10px] font-bold tracking-[1.5px] uppercase">Property Scale</span>
+                      <span className="text-navy font-serif font-bold text-lg">{selectedProject.area}</span>
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Amenities */}
-                {selectedProject.amenities.length > 0 && (
+                {selectedProject.amenities && selectedProject.amenities.length > 0 && (
                   <div className="mb-8">
-                    <h3 className="font-serif text-navy font-bold text-lg mb-4">Key Amenities</h3>
+                    <h3 className="font-serif text-navy font-bold text-lg mb-4">Features & Layout Details</h3>
                     <div className="flex flex-wrap gap-2">
                       {selectedProject.amenities.map((a, i) => (
                         <span
@@ -314,7 +252,7 @@ export default function Projects() {
 
                 {/* CTA */}
                 <a
-                  href="/contact"
+                  href="#contact"
                   className="inline-block bg-gradient-to-br from-gold to-gold-light text-navy font-bold text-[12px] tracking-[1.5px] uppercase px-8 py-4 rounded-xl hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(201,148,58,0.4)] transition-all duration-300"
                 >
                   Express Interest →

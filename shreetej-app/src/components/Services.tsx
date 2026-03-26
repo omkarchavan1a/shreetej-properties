@@ -1,47 +1,48 @@
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
 import ParticleBackground from "@/components/ParticleBackground";
+import { Map, Home, Scale, ClipboardList, Banknote, Users } from "lucide-react";
 
 export default function Services() {
   const servicesList = [
     {
       id: "land",
-      icon: "🌍",
+      icon: <Map className="w-8 h-8 text-gold" />,
       title: "Land & Plot Development",
       desc: "Legally verified plots with clear title deeds, ready for development or long-term investment. Options from 24 Guntha onwards.",
       img: "/assets/shreetej/IMG-20240711-WA0227-1-1024x576_335b545544.jpg",
     },
     {
       id: "residential",
-      icon: "🏠",
+      icon: <Home className="w-8 h-8 text-gold" />,
       title: "Residential & Commercial",
       desc: "Quality flats, duplexes, and commercial spaces tailored for your family and business needs at genuinely affordable prices.",
       img: "/assets/shreetej/3D-_page-0005-e1763446623738-768x384_35a42be3dc.jpg",
     },
     {
       id: "legal",
-      icon: "⚖️",
+      icon: <Scale className="w-8 h-8 text-gold" />,
       title: "Legal & Documentation",
       desc: "Expert guidance on L.A./N.A., town planning, and free legal verification of all documents. Your shield against real estate risk.",
       img: "/assets/shreetej/photo-1450101499163-c8848c66ca85_6f5c726a0c.jpg",
     },
     {
       id: "consultation",
-      icon: "📐",
+      icon: <ClipboardList className="w-8 h-8 text-gold" />,
       title: "Project Consultation",
       desc: "Strategic advisory for builders and developers — covering permissions, legal guidance, and complete project road-mapping.",
       img: "/assets/shreetej/photo-1517245386807-bb43f82c33c4_6fb844aac7.jpg",
     },
     {
       id: "loans",
-      icon: "🏦",
+      icon: <Banknote className="w-8 h-8 text-gold" />,
       title: "Property Loan Assistance",
       desc: "We facilitate up to 100% loan assistance through our network of trusted financial institutions. Hassle-free financing for all.",
       img: "/assets/shreetej/photo-1554224155-6726b3ff858f_fc82dcbf6e.jpg",
     },
     {
       id: "foundation",
-      icon: "❤️",
+      icon: <Users className="w-8 h-8 text-gold" />,
       title: "Shreetej Foundation",
       desc: "Our social arm — empowering women, supporting education, and driving community development in rural Maharashtra.",
       img: "/assets/shreetej/IMG-20250525-WA0082-1-226x300_3180cb91da.jpg",
@@ -50,6 +51,17 @@ export default function Services() {
 
   return (
     <section id="services" className="bg-navy py-24 px-[8%] relative overflow-hidden">
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none"
+      >
+        <source src="/images/front page office  video.mp4" type="video/mp4" />
+      </video>
+
       {/* Ambient particles */}
       <ParticleBackground count={12} color="gold" />
       

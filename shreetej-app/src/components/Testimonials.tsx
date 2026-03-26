@@ -45,6 +45,7 @@ export default function Testimonials() {
         </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+          {/* <!-- TODO: verify real customer data (names/quotes/photos) with the client --> */}
           {testimonials.map((t, i) => (
             <ScrollReveal key={i} direction="up" delay={i * 150} duration={800}>
               <div 
