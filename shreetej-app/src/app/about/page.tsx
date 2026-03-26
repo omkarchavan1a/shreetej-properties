@@ -27,28 +27,15 @@ export default function AboutPage() {
       </div>
 
       {/* Chairman Profile */}
-      <section className="py-24 px-[8%] max-w-[1200px] mx-auto">
-        <div className="flex flex-col md:flex-row gap-16 items-center">
-          <div className="w-full md:w-2/5 relative">
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl relative z-10">
-              {/* <!-- TODO: insert Founder photo (satish_raut.jpg / founder.jpg) to public/images/ --> */}
-              <img 
-                src="/images/founder.jpg" 
-                alt="Shri Satish B. Raut - Chairman" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute -inset-4 border-2 border-gold/20 rounded-3xl -z-10 translate-x-4 translate-y-4" />
-          </div>
-          <div className="w-full md:w-3/5">
-            <h2 className="text-[11px] tracking-[3px] uppercase text-gold font-bold mb-4">Leadership</h2>
-            <h3 className="font-serif text-4xl text-navy font-bold mb-2">Shri Satish B. Raut</h3>
-            <p className="text-gold font-bold uppercase tracking-[1px] text-sm mb-6">Chairman & Managing Director</p>
-            <p className="text-text-mid leading-relaxed mb-6">
-              The journey to success in the real estate sector was not an easy one. Through numerous challenges, experiences, and learning phases, Shri Satish B. Raut began his journey as a land developer in 2011. In the initial years, limited resources, the challenges of a constantly changing market, and the struggle to build trust helped shape a stronger and clearer vision. With 16+ years of experience, backed by integrity and transparent dealings, the company under his leadership has today earned the trust of 1,000+ satisfied customers. Quality planning, long-term value, and securing a safe future for customers' dreams remain the true driving forces behind his work.
-            </p>
-            <div className="font-serif italic text-4xl text-navy/80 mt-6 tracking-wider">Satish B. Raut</div>
-          </div>
+      <section className="py-24 px-[8%] max-w-[1200px] mx-auto text-center">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-[11px] tracking-[3px] uppercase text-gold font-bold mb-4">Leadership</h2>
+          <h3 className="font-serif text-4xl text-navy font-bold mb-2">Shri Satish B. Raut</h3>
+          <p className="text-gold font-bold uppercase tracking-[1px] text-sm mb-6">Chairman & Managing Director</p>
+          <p className="text-text-mid leading-relaxed mb-6">
+            The journey to success in the real estate sector was not an easy one. Through numerous challenges, experiences, and learning phases, Shri Satish B. Raut began his journey as a land developer in 2011. In the initial years, limited resources, the challenges of a constantly changing market, and the struggle to build trust helped shape a stronger and clearer vision. With 16+ years of experience, backed by integrity and transparent dealings, the company under his leadership has today earned the trust of 1,000+ satisfied customers. Quality planning, long-term value, and securing a safe future for customers' dreams remain the true driving forces behind his work.
+          </p>
+          <div className="font-serif italic text-4xl text-navy/80 mt-6 tracking-wider">Satish B. Raut</div>
         </div>
       </section>
 
@@ -99,20 +86,19 @@ export default function AboutPage() {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { name: 'HDFC Bank', file: 'hdfc-logo.svg' },
-              { name: 'SBI Home Loans', file: 'sbi-logo.svg' },
-              { name: 'ICICI Bank', file: 'icici-logo.svg' },
-              { name: 'Axis Bank', file: 'axis-logo.svg' }
+              { name: 'HDFC Bank', url: 'https://logo.clearbit.com/hdfcbank.com' },
+              { name: 'SBI Home Loans', url: 'https://logo.clearbit.com/sbi.co.in' },
+              { name: 'ICICI Bank', url: 'https://logo.clearbit.com/icicibank.com' },
+              { name: 'Axis Bank', url: 'https://logo.clearbit.com/axisbank.com' }
             ].map((partner, i) => (
               <div key={i} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center hover:bg-white/10 transition-colors">
-                {/* <!-- TODO: add actual bank logos to public/images/ folder --> */}
-                <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-4 overflow-hidden relative">
-                  <img src={`/images/${partner.file}`} alt={partner.name} className="w-10 h-10 object-contain text-transparent" />
+                <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-4 overflow-hidden relative shadow-inner">
+                  <img src={partner.url} alt={partner.name} className="w-10 h-10 object-contain" />
                 </div>
                 <span className="text-white font-bold tracking-wide">{partner.name}</span>
               </div>
             ))}
-            {/* <!-- TODO: Client to provide additional bank/partner names and logos --> */}
+            {/* <!-- TODO: Client to provide additional bank/partner names and logos if needed --> */}
           </div>
           <p className="text-white/60 mt-12 text-sm max-w-2xl mx-auto">
             We hold strategic partnerships with India's leading financial institutions to provide seamless, 100% home loan assistance to all our clients.
