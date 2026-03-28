@@ -21,11 +21,11 @@ export default function FeaturedProjects() {
     {
       id: 17,
       title: "Saiban Phase-9",
-      type: "Layouts",
+      type: "Residential",
       location: "Ghulewadi",
-      description: "The latest phase of the prestigious Saiban layout development, offering premium plotted plots in a well-planned township.",
+      description: "Saiban Project is a thoughtfully planned residential plotting development offering a limited collection of just 24 exclusive plots. Designed for those who aspire to build their dream home in a peaceful and well-connected environment, it offers essential infrastructure and a serene lifestyle.",
       imageUrl: "/images/layout.jpg.jpeg",
-      amenities: ["Wide Roads", "Underground Utilities", "Drainage System", "Green Spaces"],
+      amenities: ["Wide Roads", "Drainage System", "Street Lighting", "Clear Titles"],
       status: "Ongoing",
     },
   ];
