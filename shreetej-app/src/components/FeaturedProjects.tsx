@@ -24,7 +24,7 @@ export default function FeaturedProjects() {
 
   const ProjectCard = ({ project, index }: { project: any; index: number }) => (
     <ScrollReveal direction="up" delay={index * 150} duration={800}>
-      <Link href="/projects" className="group block h-full perspective-1000">
+      <Link href={`/residential/${project.id}`} className="group block h-full perspective-1000">
         <div className="bg-white rounded-3xl overflow-hidden shadow-xl border border-navy/5 h-full flex flex-col transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_30px_80px_rgba(13,27,42,0.15)] hover:border-gold/30 preserve-3d group-hover:[transform:rotateY(2deg)_rotateX(1deg)]">
           <div className="relative aspect-[4/3] overflow-hidden">
             {project.imageUrl ? (
