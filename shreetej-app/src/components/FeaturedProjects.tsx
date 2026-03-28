@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
-import { useState } from "react";
 
 export default function FeaturedProjects() {
   const upcomingProjects = [
@@ -31,8 +30,6 @@ export default function FeaturedProjects() {
     },
   ];
 
-  const [showUpcoming, setShowUpcoming] = useState(false);
-  const [showOngoing, setShowOngoing] = useState(false);
 
   const ProjectCard = ({ project, index }: { project: any; index: number }) => {
     // For upcoming projects not yet in DB (id >= 900), link to contact page
@@ -150,50 +147,6 @@ export default function FeaturedProjects() {
     );
   };
 
-  const ExploreButton = ({
-    label,
-    isOpen,
-    onClick,
-  }: {
-    label: string;
-    isOpen: boolean;
-    onClick: () => void;
-  }) => (
-    <div className="flex flex-col items-center gap-4 py-4">
-      <button
-        onClick={onClick}
-        className="group relative inline-flex items-center gap-3 bg-navy text-gold font-bold uppercase tracking-[2px] text-sm px-10 py-5 rounded-full shadow-[0_8px_40px_rgba(13,27,42,0.25)] hover:shadow-[0_12px_50px_rgba(13,27,42,0.35)] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
-      >
-        {/* Shimmer */}
-        <span className="absolute inset-0 bg-gradient-to-r from-transparent via-gold/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-        <span className="relative flex items-center gap-3">
-          {isOpen ? "Hide Projects" : `Explore ${label}`}
-          <span
-            className={`w-7 h-7 rounded-full bg-gold/20 flex items-center justify-center transition-transform duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-          </span>
-        </span>
-      </button>
-      {!isOpen && (
-        <p className="text-navy/40 text-xs tracking-[1.5px] uppercase font-medium">
-          Click to reveal {label.toLowerCase()} projects
-        </p>
-      )}
-    </div>
-  );
 
   return (
     <div className="w-full bg-cream py-24">
@@ -210,22 +163,11 @@ export default function FeaturedProjects() {
               <h2 className="font-serif text-[clamp(2.5rem,4vw,3.5rem)] text-navy font-bold mb-8">
                 New <em className="text-gold not-italic italic">Launching</em> Projects
               </h2>
-              <ExploreButton
-                label="New Launches"
-                isOpen={showUpcoming}
-                onClick={() => setShowUpcoming((v) => !v)}
-              />
             </div>
           </ScrollReveal>
 
-          {/* Expandable project cards */}
-          <div
-            className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 justify-items-center overflow-hidden transition-all duration-700 ease-in-out ${
-              showUpcoming
-                ? "max-h-[2000px] opacity-100 translate-y-0"
-                : "max-h-0 opacity-0 -translate-y-4 pointer-events-none"
-            }`}
-          >
+          {/* Project cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 justify-items-center">
             {upcomingProjects.map((p, i) => (
               <ProjectCard key={p.id} project={p} index={i} />
             ))}
@@ -247,22 +189,11 @@ export default function FeaturedProjects() {
               <h2 className="font-serif text-[clamp(2.5rem,4vw,3.5rem)] text-navy font-bold mb-8">
                 Ongoing <em className="text-gold not-italic italic">Developments</em>
               </h2>
-              <ExploreButton
-                label="Ongoing Projects"
-                isOpen={showOngoing}
-                onClick={() => setShowOngoing((v) => !v)}
-              />
             </div>
           </ScrollReveal>
 
-          {/* Expandable project cards */}
-          <div
-            className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 overflow-hidden transition-all duration-700 ease-in-out ${
-              showOngoing
-                ? "max-h-[2000px] opacity-100 translate-y-0"
-                : "max-h-0 opacity-0 -translate-y-4 pointer-events-none"
-            }`}
-          >
+          {/* Project cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
             {ongoingProjects.map((p, i) => (
               <ProjectCard key={p.id} project={p} index={i} />
             ))}
