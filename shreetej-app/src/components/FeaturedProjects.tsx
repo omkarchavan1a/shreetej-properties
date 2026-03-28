@@ -19,12 +19,12 @@ export default function FeaturedProjects() {
 
   const ongoingProjects = [
     {
-      id: 17,
+      id: 117,
       title: "Saiban Phase-9",
       type: "Residential",
       location: "Ghulewadi",
-      description: "Saiban Project is a thoughtfully planned residential plotting development offering a limited collection of just 24 exclusive plots. Designed for those who aspire to build their dream home in a peaceful and well-connected environment, it offers essential infrastructure and a serene lifestyle.",
-      imageUrl: "/images/layout.jpg.jpeg",
+      description: "Saiban Project is a thoughtfully planned residential plotting development offering a limited collection of just 24 exclusive plots, designed for those who aspire to build their dream home in a peaceful and well-connected environment. Surrounded by natural greenery and a calm atmosphere, the project creates a perfect balance between nature and modern living.",
+      imageUrl: "/images/saiban-phase-9.jpeg",
       amenities: ["Wide Roads", "Drainage System", "Street Lighting", "Clear Titles"],
       status: "Ongoing",
     },
