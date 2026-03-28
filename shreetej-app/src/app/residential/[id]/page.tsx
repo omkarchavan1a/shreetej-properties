@@ -91,6 +91,14 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
                       className="absolute inset-0"
                     />
                  </div>
+                 <a 
+                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(project.location + ', Ahmednagar, Maharashtra')}`}
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   className="inline-flex items-center gap-2 mt-4 text-gold hover:text-gold/80 font-semibold text-sm transition-colors"
+                 >
+                   <span>📍</span> Open in Google Maps
+                 </a>
               </div>
             )}
           </div>
