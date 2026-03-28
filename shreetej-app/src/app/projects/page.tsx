@@ -1,8 +1,11 @@
 import Navbar from "@/components/Navbar";
 import Projects from "@/components/Projects";
 import Footer from "@/components/Footer";
+import { getProjects } from "@/app/actions/projects";
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const allProjects = await getProjects();
+
   return (
     <div className="min-h-screen bg-cream text-text-dark font-sans selection:bg-gold/30 selection:text-navy">
       <Navbar />
@@ -20,10 +23,13 @@ export default function ProjectsPage() {
             Masterpieces in<br />
             <em className="text-gold italic not-italic">Real Estate</em>
           </h1>
+          <p className="text-white/60 text-sm tracking-[1px] uppercase max-w-2xl mx-auto">
+            Explore our curated collection of luxury residences, strategic commercial spaces, and premium investment plots.
+          </p>
         </div>
       </div>
 
-      <Projects />
+      <Projects initialProjects={allProjects} />
 
       <Footer />
     </div>
