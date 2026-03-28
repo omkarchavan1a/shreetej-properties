@@ -86,10 +86,10 @@ export default function AboutPage() {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { name: 'HDFC Bank', url: 'https://logo.clearbit.com/hdfcbank.com' },
-              { name: 'SBI Home Loans', url: 'https://logo.clearbit.com/sbi.co.in' },
-              { name: 'ICICI Bank', url: 'https://logo.clearbit.com/icicibank.com' },
-              { name: 'Axis Bank', url: 'https://logo.clearbit.com/axisbank.com' }
+              { name: 'HDFC Bank', url: '/assets/shreetej/logos/hdfc_logo.png' },
+              { name: 'SBI Home Loans', url: '/assets/shreetej/logos/sbi_logo.png' },
+              { name: 'ICICI Bank', url: '/assets/shreetej/logos/icici_logo.png' },
+              { name: 'Axis Bank', url: '/assets/shreetej/logos/axis_logo.png' }
             ].map((partner, i) => (
               <div key={i} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center hover:bg-white/10 transition-colors">
                 <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-4 overflow-hidden relative shadow-inner">
