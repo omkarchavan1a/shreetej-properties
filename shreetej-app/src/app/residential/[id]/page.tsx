@@ -39,7 +39,7 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
         <div className="max-w-[1400px] w-full mx-auto relative z-10 text-center">
           <div className="inline-flex items-center justify-center space-x-3 text-[11px] tracking-[3px] uppercase text-gold font-bold mb-6">
             <div className="h-px bg-gold/40 w-12" />
-            <span>Premium Living</span>
+            <span>{project.title.toLowerCase().includes("saiban") ? "Residential Plotting" : "Premium Living"}</span>
             <div className="h-px bg-gold/40 w-12" />
           </div>
           <h1 className="font-serif text-[clamp(2.5rem,5vw,4.5rem)] text-white font-bold leading-[1.1] mb-6">

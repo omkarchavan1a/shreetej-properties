@@ -30,7 +30,7 @@ const projectsToSync = [
     location: "Ghulewadi", 
     description: "Saiban Project is a thoughtfully planned residential plotting development offering a limited collection of just 24 exclusive plots, designed for those who aspire to build their dream home in a peaceful and well-connected environment. Surrounded by natural greenery and a calm atmosphere, the project creates a perfect balance between nature and modern living. With clear title plots and well-demarcated layouts, Saiban ensures transparency, security, and ease of investment. The development includes essential infrastructure such as internal roads, proper drainage systems, and street lighting, ensuring a comfortable and hassle-free lifestyle. Its strategic location provides easy access to schools, markets, and daily conveniences, making it ideal for both residential living and long-term investment. With limited availability and strong growth potential, Saiban Project is a perfect opportunity to secure your future in a serene yet well-connected location.", 
     imageUrl: "/images/layout.jpg.jpeg",
-    mapUrl: "https://goo.gl/maps/NNvswsnUnHGNMXFV8" 
+    mapUrl: "https://maps.google.com/maps?q=Ghulewadi,Ahmednagar,Maharashtra,India&output=embed&z=15" 
   },
   { id: 118, title: "Bhagyoday Park", type: "plots", status: "Completed", location: "Maldad Road", description: "Fully developed NA plots.", imageUrl: "/images/untitled-bhagyoday-park.jpg.jpeg" },
   { id: 119, title: "Nizarneshwar Park", type: "plots", status: "Completed", location: "Kokangav", description: "Clear title NA plots.", imageUrl: "/images/nijarneshwar-park-1.jpg.jpeg" },
