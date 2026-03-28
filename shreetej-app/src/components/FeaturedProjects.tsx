@@ -19,7 +19,7 @@ export default function FeaturedProjects() {
 
   const ongoingProjects = [
     {
-      id: 117,
+      id: 17,
       title: "Saiban Phase-9",
       type: "Residential",
       location: "Ghulewadi",
