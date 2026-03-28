@@ -23,13 +23,13 @@ const projectsToSync = [
   { id: 115, title: "Sai Samarth Plaza", type: "commercial", status: "Completed", location: "Maldad Road", description: "Business and shopping plaza.", imageUrl: "/images/sai-samarth-plaza.jpeg" },
   { id: 116, title: "Bungalow (Bharat Khemnar)", type: "residential", status: "Completed", location: "Malpani Nagar", description: "Custom premium bungalow design.", imageUrl: "/images/bharat-khemnar-banglow.jpeg" },
   { 
-    id: 117, 
     title: "Saiban Phase-9", 
     type: "residential", 
     status: "Ongoing", 
     location: "Ghulewadi", 
     description: "Saiban Project is a thoughtfully planned residential plotting development offering a limited collection of just 24 exclusive plots, designed for those who aspire to build their dream home in a peaceful and well-connected environment. Surrounded by natural greenery and a calm atmosphere, the project creates a perfect balance between nature and modern living. With clear title plots and well-demarcated layouts, Saiban ensures transparency, security, and ease of investment. The development includes essential infrastructure such as internal roads, proper drainage systems, and street lighting, ensuring a comfortable and hassle-free lifestyle. Its strategic location provides easy access to schools, markets, and daily conveniences, making it ideal for both residential living and long-term investment. With limited availability and strong growth potential, Saiban Project is a perfect opportunity to secure your future in a serene yet well-connected location.", 
     imageUrl: "/images/saiban-phase-9.jpeg",
+    amenities: "Wide Roads,Proper Drainage,Street Lighting,Clear Title Plots,Natural Greenery,Peaceful Environment",
     mapUrl: "https://maps.google.com/maps?q=Ghulewadi,Ahmednagar,Maharashtra,India&output=embed&z=16" 
   },
   { id: 118, title: "Bhagyoday Park", type: "plots", status: "Completed", location: "Maldad Road", description: "Fully developed NA plots.", imageUrl: "/images/untitled-bhagyoday-park.jpg.jpeg" },
@@ -57,7 +57,8 @@ async function main() {
             location: project.location,
             description: project.description,
             imageUrl: project.imageUrl,
-            mapUrl: project.mapUrl
+            amenities: project.amenities ?? null,
+            mapUrl: project.mapUrl ?? null
           })
           .where(eq(projects.title, project.title));
       } else {
@@ -69,7 +70,8 @@ async function main() {
           location: project.location,
           description: project.description,
           imageUrl: project.imageUrl,
-          mapUrl: project.mapUrl
+          amenities: project.amenities ?? null,
+          mapUrl: project.mapUrl ?? null
         });
       }
     } catch (err) {
