@@ -1,8 +1,5 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-import { db } from "./src/db";
-import { projects } from "./src/db/schema";
-import { eq } from "drizzle-orm";
 
 const projectsToSync = [
   { id: 999, title: "Shreetej Platinum-5", type: "residential", status: "Upcoming", location: "Sangamner", description: "Exclusive Pre-Launch. Premium apartments & commercial spaces.", imageUrl: "/images/shreetej-platinum-3.jpeg" },
@@ -14,7 +11,6 @@ const projectsToSync = [
   { id: 106, title: "Arbitro Heights", type: "commercial", status: "Completed", location: "Ekta Chowk", description: "A major commercial hub offering numerous shops.", imageUrl: "/images/arbitro-heights.jpeg" },
   { id: 107, title: "Shreetej Platinum-3", type: "residential", status: "Completed", location: "Navin Nagar Road", description: "Mixed-use building with halls and shops.", imageUrl: "/images/shreetej-platinum-3.jpeg" },
   { id: 108, title: "Samarth Villa", type: "residential", status: "Completed", location: "Golden City", description: "A beautiful villa complex.", imageUrl: "/images/samarth-villa.jpeg" },
-  { id: 109, title: "Commercial Building", type: "commercial", status: "Completed", location: "Malpani Nagar", description: "Mixed use commercial and residential complex.", imageUrl: "/images/arbitro-alfa.jpeg" },
   { id: 110, title: "Samarth Roop", type: "residential", status: "Completed", location: "Golden City", description: "Highly sought after mixed-use project.", imageUrl: "/images/samarth-roop.jpeg" },
   { id: 111, title: "Bungalow (Nashik Nagar Bypass)", type: "residential", status: "Completed", location: "Nagar-Nashik Bypass, Ghulewadi", description: "Premium bungalow near Nashik bypass.", imageUrl: "/images/11-nashik-nagar-bypass.jpeg" },
   { id: 112, title: "Bungalow (Malpani Nagar)", type: "residential", status: "Completed", location: "Malpani Nagar", description: "Spacious bungalow in Malpani Nagar.", imageUrl: "/images/malpani-nagar-banglow-12.jpeg" },
@@ -23,14 +19,15 @@ const projectsToSync = [
   { id: 115, title: "Sai Samarth Plaza", type: "commercial", status: "Completed", location: "Maldad Road", description: "Business and shopping plaza.", imageUrl: "/images/sai-samarth-plaza.jpeg" },
   { id: 116, title: "Bungalow (Bharat Khemnar)", type: "residential", status: "Completed", location: "Malpani Nagar", description: "Custom premium bungalow design.", imageUrl: "/images/bharat-khemnar-banglow.jpeg" },
   { 
-    title: "Saiban Phase-9", 
+    id: 117,
+    title: "Saiban Phase - 9", 
     type: "residential", 
     status: "Ongoing", 
     location: "Ghulewadi", 
-    description: "Saiban Project is a thoughtfully planned residential plotting development offering a limited collection of just 24 exclusive plots, designed for those who aspire to build their dream home in a peaceful and well-connected environment. Surrounded by natural greenery and a calm atmosphere, the project creates a perfect balance between nature and modern living. With clear title plots and well-demarcated layouts, Saiban ensures transparency, security, and ease of investment. The development includes essential infrastructure such as internal roads, proper drainage systems, and street lighting, ensuring a comfortable and hassle-free lifestyle. Its strategic location provides easy access to schools, markets, and daily conveniences, making it ideal for both residential living and long-term investment. With limited availability and strong growth potential, Saiban Project is a perfect opportunity to secure your future in a serene yet well-connected location.", 
+    description: "Saiban Project is a thoughtfully planned residential plotting development offering a limited collection of just 24 exclusive plots, designed for those aspire to build their dream home in a peaceful and well-connected environment. Surrounded by natural greenery and a calm atmosphere, the project creates a perfect balance between nature and modern living. With clear title plots and well-demarcated layouts, Saiban ensures transparency, security, and ease of investment. The development includes essential infrastructure such as internal roads, proper drainage systems, and street lighting, ensuring a comfortable and hassle-free lifestyle. Its strategic location provides easy access to schools, markets, and daily conveniences, making it ideal for both residential living and long-term investment. With limited availability and strong growth potential, Saiban Project is a perfect opportunity to secure your future in a serene yet well-connected location.", 
     imageUrl: "/images/saiban-phase-9.jpeg",
     amenities: "Wide Roads,Proper Drainage,Street Lighting,Clear Title Plots,Natural Greenery,Peaceful Environment",
-    mapUrl: "https://maps.google.com/maps?q=Ghulewadi,Ahmednagar,Maharashtra,India&output=embed&z=16" 
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3748.123456789!2d74.7!3d19.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDQyJzAwLjAiTiA3NMKwNDInMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
   },
   { id: 118, title: "Bhagyoday Park", type: "plots", status: "Completed", location: "Maldad Road", description: "Fully developed NA plots.", imageUrl: "/images/untitled-bhagyoday-park.jpg.jpeg" },
   { id: 119, title: "Nizarneshwar Park", type: "plots", status: "Completed", location: "Kokangav", description: "Clear title NA plots.", imageUrl: "/images/nijarneshwar-park-1.jpg.jpeg" },
@@ -39,10 +36,11 @@ const projectsToSync = [
 ];
 
 async function main() {
+  const { db } = await import("./src/db/index");
+  const { projects } = await import("./src/db/schema");
+  const { eq } = await import("drizzle-orm");
+
   console.log("Starting database sync...");
-  
-  // First, clear existing projects to avoid duplicates if necessary, or just upsert.
-  // We'll use title as a unique identifier for now since we don't want to mess up IDs if they are used elsewhere.
   
   for (const project of projectsToSync) {
     try {

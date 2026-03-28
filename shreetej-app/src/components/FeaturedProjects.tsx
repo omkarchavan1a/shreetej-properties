@@ -3,37 +3,37 @@
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
 
-export default function FeaturedProjects() {
-  const upcomingProjects = [
-    {
-      id: 999,
-      title: "Shreetej Platinum-5",
-      type: "Mixed",
-      location: "Sangamner",
-      description: "An exclusive pre-launch mixed-use development offering premium residential and commercial spaces in the heart of Sangamner.",
-      imageUrl: "",
-      amenities: ["Clubhouse", "Swimming Pool", "Landscaped Gardens", "24/7 Security"],
-      status: "Upcoming",
-    },
-  ];
-
-  const ongoingProjects = [
-    {
-      id: 17,
-      title: "Saiban Phase-9",
-      type: "Residential",
-      location: "Ghulewadi",
-      description: "Saiban Project is a thoughtfully planned residential plotting development offering a limited collection of just 24 exclusive plots, designed for those who aspire to build their dream home in a peaceful and well-connected environment. Surrounded by natural greenery and a calm atmosphere, the project creates a perfect balance between nature and modern living.",
-      imageUrl: "/images/saiban-phase-9.jpeg",
-      amenities: ["Wide Roads", "Drainage System", "Street Lighting", "Clear Titles"],
-      status: "Ongoing",
-    },
-  ];
+export default function FeaturedProjects({ 
+  upcomingProjects = [], 
+  ongoingProjects = [] 
+}: { 
+  upcomingProjects?: any[], 
+  ongoingProjects?: any[] 
+}) {
 
 
   const ProjectCard = ({ project, index }: { project: any; index: number }) => {
     // For upcoming projects not yet in DB (id >= 900), link to contact page
-    const detailHref = project.id >= 900 ? "/contact" : `/residential/${project.id}`;
+    const detailHref = project.id >= 900 ? "/contact" : 
+                      project.type?.toLowerCase() === "commercial" ? `/commercial/${project.id}` : 
+                      project.type?.toLowerCase() === "plots" ? "/contact" : 
+                      `/residential/${project.id}`;
+
+    let amenitiesList: string[] = [];
+    if (project.amenities) {
+      if (Array.isArray(project.amenities)) {
+        amenitiesList = project.amenities;
+      } else {
+        try {
+          amenitiesList = JSON.parse(project.amenities);
+          if (!Array.isArray(amenitiesList)) {
+            amenitiesList = project.amenities.split(",").map((a: string) => a.trim());
+          }
+        } catch {
+          amenitiesList = project.amenities.split(",").map((a: string) => a.trim());
+        }
+      }
+    }
 
     return (
       <Link
@@ -102,9 +102,9 @@ export default function FeaturedProjects() {
           </p>
 
           {/* Amenities */}
-          {project.amenities && project.amenities.length > 0 && (
+          {amenitiesList && amenitiesList.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-6">
-              {project.amenities.slice(0, 3).map((a: string, i: number) => (
+              {amenitiesList.slice(0, 3).map((a: string, i: number) => (
                 <span
                   key={i}
                   className="bg-cream text-navy text-[10px] font-semibold uppercase tracking-[1px] px-3 py-1 rounded-full border border-gold/20"
@@ -112,9 +112,9 @@ export default function FeaturedProjects() {
                   {a}
                 </span>
               ))}
-              {project.amenities.length > 3 && (
+              {amenitiesList.length > 3 && (
                 <span className="bg-cream text-navy/50 text-[10px] font-semibold uppercase tracking-[1px] px-3 py-1 rounded-full border border-navy/10">
-                  +{project.amenities.length - 3} more
+                  +{amenitiesList.length - 3} more
                 </span>
               )}
             </div>

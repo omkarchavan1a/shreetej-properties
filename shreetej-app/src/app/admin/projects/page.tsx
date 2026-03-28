@@ -203,6 +203,9 @@ export default function ProjectsCMS() {
         <div>
           <h1 className="font-serif text-3xl font-bold text-navy mb-2">Projects</h1>
           <p className="text-text-mid text-sm">Manage your properties and land developments.</p>
+          <p className="text-gold text-xs font-bold mt-2">
+            💡 Tip: Projects with status &quot;Upcoming&quot; appear in the Front Page &quot;New Launching Projects&quot; section. &quot;Ongoing&quot; projects appear in &quot;Ongoing Developments&quot;.
+          </p>
         </div>
         <button
           onClick={() => showForm ? setShowForm(false) : openNewForm()}
