@@ -13,7 +13,7 @@ async function isAdmin(): Promise<boolean> {
 // FileRouter for our app, can contain multiple FileRoutes
 export const ourFileRouter = {
   // Gallery Route
-  imageUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 10 } })
+  imageUploader: f({ image: { maxFileSize: "32MB", maxFileCount: 10 } })
     .middleware(async () => {
       if (!(await isAdmin())) throw new Error("Unauthorized");
       return { userId: "admin" };
@@ -24,7 +24,7 @@ export const ourFileRouter = {
     }),
 
   // Single Cover Image Route
-  coverImage: f({ image: { maxFileSize: "4MB", maxFileCount: 1 } })
+  coverImage: f({ image: { maxFileSize: "32MB", maxFileCount: 1 } })
     .middleware(async () => {
       if (!(await isAdmin())) throw new Error("Unauthorized");
       return { userId: "admin" };
@@ -34,7 +34,7 @@ export const ourFileRouter = {
     }),
 
   // HD Video Route
-  projectVideo: f({ video: { maxFileSize: "128MB", maxFileCount: 1 } })
+  projectVideo: f({ video: { maxFileSize: "256MB", maxFileCount: 1 } })
     .middleware(async () => {
       if (!(await isAdmin())) throw new Error("Unauthorized");
       return { userId: "admin" };
