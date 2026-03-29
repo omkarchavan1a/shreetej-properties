@@ -19,6 +19,7 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
 
   const project = projectDetails[0];
   const amenities = project.amenities ? project.amenities.split(",") : [];
+  const isSpecialProject = project.title.toLowerCase().includes("platinum 5");
 
   let galleryImages: string[] = [];
   if (project.galleryUrls) {
@@ -67,12 +68,19 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
           
           <div className="lg:col-span-2 space-y-12">
-            <div>
-              <h2 className="font-serif text-3xl text-navy font-bold mb-6">Overview</h2>
-              <p className="text-text-mid leading-relaxed text-lg font-light">
-                {project.description || "Experience the pinnacle of residential living with unmatched comfort and luxury."}
-              </p>
-            </div>
+            {isSpecialProject ? (
+              <div>
+                <h2 className="font-serif text-3xl text-navy font-bold mb-6">Overview</h2>
+                <p className="text-text-mid leading-relaxed text-lg font-light">
+                  {project.description || "Experience the pinnacle of residential living with unmatched comfort and luxury."}
+                </p>
+              </div>
+            ) : (
+              <div>
+                <h2 className="font-serif text-3xl text-navy font-bold mb-6 italic text-gold/80">Project Gallery</h2>
+                <ProjectGallery images={galleryImages} showTitle={false} isNested={true} />
+              </div>
+            )}
 
             {amenities.length > 0 && (
               <div>
@@ -160,7 +168,7 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
       <FlatTypes />
 
       {/* Gallery Section */}
-      <ProjectGallery images={galleryImages} />
+      {isSpecialProject && <ProjectGallery images={galleryImages} />}
 
       <Footer />
     </div>

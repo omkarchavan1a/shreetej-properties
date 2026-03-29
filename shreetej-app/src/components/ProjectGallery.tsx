@@ -1,17 +1,25 @@
 "use client";
 
-export default function ProjectGallery({ images }: { images: string[] }) {
+interface ProjectGalleryProps {
+  images: string[];
+  showTitle?: boolean;
+  isNested?: boolean;
+}
+
+export default function ProjectGallery({ images, showTitle = true, isNested = false }: ProjectGalleryProps) {
   if (!images || images.length === 0) return null;
 
-  return (
-    <section className="py-20 px-[8%] max-w-[1200px] mx-auto border-t border-gold/10">
-      <div className="text-center mb-12 animate-fade-in-up">
-        <h2 className="font-serif text-3xl md:text-4xl text-navy font-bold mb-4">Project Gallery</h2>
-        <div className="h-1 w-20 bg-gold mx-auto rounded-full"></div>
-        <p className="text-text-mid mt-4 text-sm uppercase tracking-[2px] font-semibold">Glimpses of luxury</p>
-      </div>
+  const content = (
+    <>
+      {showTitle && (
+        <div className="text-center mb-12 animate-fade-in-up">
+          <h2 className="font-serif text-3xl md:text-4xl text-navy font-bold mb-4">Project Gallery</h2>
+          <div className="h-1 w-20 bg-gold mx-auto rounded-full"></div>
+          <p className="text-text-mid mt-4 text-sm uppercase tracking-[2px] font-semibold">Glimpses of luxury</p>
+        </div>
+      )}
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className={`grid grid-cols-1 sm:grid-cols-2 ${isNested ? "lg:grid-cols-2" : "lg:grid-cols-3"} gap-8`}>
         {images.map((imgUrl, idx) => (
           <div 
             key={idx} 
@@ -30,6 +38,16 @@ export default function ProjectGallery({ images }: { images: string[] }) {
           </div>
         ))}
       </div>
+    </>
+  );
+
+  if (isNested) {
+    return <div className="space-y-12">{content}</div>;
+  }
+
+  return (
+    <section className="py-20 px-[8%] max-w-[1200px] mx-auto border-t border-gold/10">
+      {content}
     </section>
   );
 }
