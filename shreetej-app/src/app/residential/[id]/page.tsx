@@ -5,6 +5,7 @@ import { projects } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import ProjectGallery from "@/components/ProjectGallery";
+import FlatTypes from "@/components/FlatTypes";
 
 export const dynamic = "force-dynamic";
 
@@ -155,6 +156,8 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
           
         </div>
       </section>
+      
+      <FlatTypes />
 
       {/* Gallery Section */}
       <ProjectGallery images={galleryImages} />
