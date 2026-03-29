@@ -18,11 +18,11 @@ const servicesData: Record<string, any> = {
       "Flexible Plot Sizes from 24 Guntha",
       "End-to-end Assistance for Land Conversion (N.A.)"
     ],
-    heroImage: "/assets/shreetej/IMG-20240711-WA0227-1-1024x576_335b545544.jpg",
+    heroImage: "/assets/shreetej/layout.jpg",
     gallery: [
-      "/assets/shreetej/IMG-20240711-WA0227-1-1024x576_335b545544.jpg",
-      "/assets/shreetej/IMG-20240711-WA0122-1-300x200_fc720e6bed.jpg",
-      "/assets/shreetej/IMG-20240511-WA0293-1-300x225_8a03f286f3.jpg"
+      "/assets/shreetej/layout.jpg",
+      "/assets/shreetej/layout.jpg",
+      "/assets/shreetej/layout.jpg"
     ]
   },
   "residential": {
@@ -109,9 +109,9 @@ const servicesData: Record<string, any> = {
       "Community Health & Welfare Drives",
       "Environmental Sustainability Projects"
     ],
-    heroImage: "/assets/shreetej/IMG-20250525-WA0082-1-226x300_3180cb91da.jpg",
+    heroImage: "/assets/shreetej/foundation-logo.png",
     gallery: [
-      "/assets/shreetej/IMG-20250525-WA0082-1-226x300_3180cb91da.jpg",
+      "/assets/shreetej/foundation-logo.png",
       "/assets/shreetej/IMG-20240823-WA0147-1-300x225_75762e8553.jpg",
       "/assets/shreetej/IMG-20250717-WA0197-1-300x225_134b84e388.jpg"
     ]

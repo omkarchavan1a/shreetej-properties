@@ -10,7 +10,7 @@ export default function Services() {
       icon: <Map className="w-8 h-8 text-gold" />,
       title: "Land & Plot Development",
       desc: "Legally verified plots with clear title deeds, ready for development or long-term investment. Options from 24 Guntha onwards.",
-      img: "/assets/shreetej/IMG-20240711-WA0227-1-1024x576_335b545544.jpg",
+      img: "/assets/shreetej/layout.jpg",
     },
     {
       id: "residential",
@@ -45,7 +45,7 @@ export default function Services() {
       icon: <Users className="w-8 h-8 text-gold" />,
       title: "Shreetej Foundation",
       desc: "Our social arm — empowering women, supporting education, and driving community development in rural Maharashtra.",
-      img: "/assets/shreetej/IMG-20250525-WA0082-1-226x300_3180cb91da.jpg",
+      img: "/assets/shreetej/foundation-logo.png",
     },
   ];
 

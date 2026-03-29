@@ -65,7 +65,7 @@ export default function Navbar() {
       <Link ref={logoRef} href="/" className="flex items-center space-x-2 sm:space-x-3 group">
         <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center relative bg-white/5 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-105">
           <Image
-            src="https://shreetejproperties.com/wp-content/uploads/2025/09/Untitled-design-2.png"
+            src="/assets/shreetej/foundation-logo.png"
             alt="Shreetej Logo"
             fill
             className="object-contain p-1"
