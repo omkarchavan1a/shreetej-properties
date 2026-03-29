@@ -20,9 +20,9 @@ const servicesData: Record<string, any> = {
     ],
     heroImage: "/assets/shreetej/layout.jpg",
     gallery: [
-      "/assets/shreetej/layout.jpg",
-      "/assets/shreetej/layout.jpg",
-      "/assets/shreetej/layout.jpg"
+      "/assets/shreetej/bhagyoday-park.jpg",
+      "/assets/shreetej/nijarneshwar-park.jpg",
+      "/assets/shreetej/kanifnath-park.jpg"
     ]
   },
   "residential": {
