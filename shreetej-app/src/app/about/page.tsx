@@ -26,50 +26,37 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Chairman Profile */}
-      <section className="py-24 px-[8%] max-w-[1200px] mx-auto text-center">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-[11px] tracking-[3px] uppercase text-gold font-bold mb-4">Leadership</h2>
-          <h3 className="font-serif text-4xl text-navy font-bold mb-2">Shri Satish B. Raut</h3>
-          <p className="text-gold font-bold uppercase tracking-[1px] text-sm mb-6">Chairman & Managing Director</p>
-          <p className="text-text-mid leading-relaxed mb-6">
-            The journey to success in the real estate sector was not an easy one. Through numerous challenges, experiences, and learning phases, Shri Satish B. Raut began his journey as a land developer in 2011. In the initial years, limited resources, the challenges of a constantly changing market, and the struggle to build trust helped shape a stronger and clearer vision. With 16+ years of experience, backed by integrity and transparent dealings, the company under his leadership has today earned the trust of 1,000+ satisfied customers. Quality planning, long-term value, and securing a safe future for customers' dreams remain the true driving forces behind his work.
-          </p>
-          <div className="font-serif italic text-4xl text-navy/80 mt-6 tracking-wider">Satish B. Raut</div>
-        </div>
-      </section>
-
-      {/* Office Details & Video */}
-      <section className="bg-white py-24 px-[8%]">
+      {/* Chairman Profile — two-column: bio left, photo right */}
+      <section className="py-24 px-[8%]">
         <div className="max-w-[1200px] mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl text-navy font-bold mb-4">Our Operations Hub</h2>
-            <p className="text-text-mid">Experience excellence from our state-of-the-art corporate office in Sangamner.</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
-            <div className="rounded-3xl overflow-hidden shadow-xl aspect-video relative group">
-              <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
-                {/* Placeholder HD Office Video */}
-                <source src="https://cdn.pixabay.com/video/2021/08/21/85848-592186846_large.mp4" type="video/mp4" />
-              </video>
-              <div className="absolute inset-0 bg-navy/20 group-hover:bg-transparent transition-colors duration-500" />
-            </div>
-            <div className="rounded-3xl overflow-hidden shadow-xl aspect-video bg-navy/5">
-              <img src="/assets/shreetej/generated/corporate_office_interior_1774017146187.png" alt="Shreetej Corporate Office" className="w-full h-full object-cover" />
-            </div>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-12 lg:gap-16 items-center">
 
-          <div className="bg-cream rounded-3xl p-10 border border-gold/10 flex flex-col items-center text-center">
-            <span className="text-gold text-3xl mb-4">🏢</span>
-            <h3 className="font-serif text-2xl text-navy font-bold mb-4">Corporate Office</h3>
-            <p className="text-text-mid leading-relaxed max-w-lg mb-6">
-              Ekta Chauk, Ghulewadi, Tal-Sangamner, Dist-Ahmednagar, Maharashtra.<br/>
-              Equipped with modern infrastructure and a dedicated team of legal advisors, architects, and real estate consultants.
-            </p>
-            <a href="https://maps.google.com/?q=Ekta+Chauk,Ghulewadi,Sangamner" target="_blank" rel="noopener noreferrer" className="bg-navy text-gold font-bold tracking-[1.5px] uppercase px-8 py-4 rounded-xl hover:-translate-y-1 hover:shadow-xl transition-all">
-              Get Directions
-            </a>
+            {/* LEFT — text content */}
+            <div>
+              <h2 className="text-[11px] tracking-[3px] uppercase text-gold font-bold mb-4">Leadership</h2>
+              <h3 className="font-serif text-4xl text-navy font-bold mb-2">Shri Satish B. Raut</h3>
+              <p className="text-gold font-bold uppercase tracking-[1px] text-sm mb-6">Chairman &amp; Managing Director</p>
+              <p className="text-text-mid leading-relaxed mb-8">
+                The journey to success in the real estate sector was not an easy one. Through numerous challenges, experiences, and learning phases, Shri Satish B. Raut began his journey as a land developer in 2011. In the initial years, limited resources, the challenges of a constantly changing market, and the struggle to build trust helped shape a stronger and clearer vision. With 16+ years of experience, backed by integrity and transparent dealings, the company under his leadership has today earned the trust of 1,000+ satisfied customers. Quality planning, long-term value, and securing a safe future for customers&apos; dreams remain the true driving forces behind his work.
+              </p>
+              <div className="font-serif italic text-3xl text-navy/80 tracking-wider">Satish B. Raut</div>
+            </div>
+
+            {/* RIGHT — chairman photo */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative w-full max-w-sm lg:max-w-full aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl border border-gold/10">
+                <img
+                  src="/assets/shreetej/about/IMG_0253.JPG"
+                  alt="Shri Satish B. Raut — Chairman & Managing Director"
+                  className="w-full h-full object-cover object-top"
+                />
+                {/* subtle gold overlay at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-navy/60 to-transparent flex items-end px-6 pb-5">
+                  <span className="text-white font-serif italic text-sm tracking-wide">Shri Satish B. Raut</span>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -98,15 +85,14 @@ export default function AboutPage() {
                 <span className="text-white font-bold tracking-wide">{partner.name}</span>
               </div>
             ))}
-            {/* <!-- TODO: Client to provide additional bank/partner names and logos if needed --> */}
           </div>
           <p className="text-white/60 mt-12 text-sm max-w-2xl mx-auto">
-            We hold strategic partnerships with India's leading financial institutions to provide seamless, 100% home loan assistance to all our clients.
+            We hold strategic partnerships with India&apos;s leading financial institutions to provide seamless, 100% home loan assistance to all our clients.
           </p>
         </div>
       </section>
 
-      {/* Image Gallery */}
+      {/* Image Gallery — real company photos */}
       <section className="py-24 px-[8%] bg-white">
         <div className="max-w-[1400px] mx-auto text-center mb-16">
            <div className="inline-flex items-center justify-center space-x-3 text-[11px] tracking-[3px] uppercase text-gold font-bold mb-4">
@@ -118,19 +104,26 @@ export default function AboutPage() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-[1400px] mx-auto">
           {[
-            "/assets/shreetej/generated/luxury_apartment_exterior_1774017205362.png",
-            "/assets/shreetej/generated/family_receiving_keys_1774017210470.png",
-            "/assets/shreetej/generated/closing_deal_handshake_1774017230217.png",
-            "/assets/shreetej/generated/modern_construction_site_1774017252244.png",
-            "/assets/shreetej/generated/architect_reviewing_blueprints_1774017297292.png",
-            "/assets/shreetej/generated/luxury_residential_complex_1774017323268.png",
-            "/assets/shreetej/generated/modern_living_room_1774017351455.png",
-            "/assets/shreetej/generated/aerial_city_view_1774017377515.png",
+            "/assets/shreetej/about/IMG-20260329-WA0009.jpg",
+            "/assets/shreetej/about/IMG-20260329-WA0010.jpg",
+            "/assets/shreetej/about/IMG-20260329-WA0011.jpg",
+            "/assets/shreetej/about/IMG-20260329-WA0012.jpg",
+            "/assets/shreetej/about/IMG-20260329-WA0013.jpg",
+            "/assets/shreetej/about/IMG-20260329-WA0014.jpg",
+            "/assets/shreetej/about/IMG-20260329-WA0015.jpg",
+            "/assets/shreetej/about/IMG_0253.JPG",
+            "/assets/shreetej/about/IMG_1525.JPG",
+            "/assets/shreetej/about/IMG_1537.JPG",
           ].map((src, i) => (
-            <div key={i} className={`rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group relative ${i === 5 ? 'md:col-span-2 md:row-span-2' : 'aspect-[4/3]'}`}>
-              <img 
-                src={src} 
-                alt={`Shreetej Moments ${i + 1}`} 
+            <div
+              key={i}
+              className={`rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group relative ${
+                i === 4 ? 'md:col-span-2 md:row-span-2' : 'aspect-[4/3]'
+              }`}
+            >
+              <img
+                src={src}
+                alt={`Shreetej Moments ${i + 1}`}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-navy/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
