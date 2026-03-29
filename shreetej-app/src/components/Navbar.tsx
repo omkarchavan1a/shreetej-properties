@@ -63,12 +63,12 @@ export default function Navbar() {
     >
       {/* Logo */}
       <Link ref={logoRef} href="/" className="flex items-center space-x-2 sm:space-x-3 group">
-        <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center relative bg-white/5 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-105">
+        <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center relative transition-all duration-300 group-hover:scale-105">
           <Image
             src="/assets/shreetej/foundation-logo.png"
             alt="Shreetej Logo"
             fill
-            className="object-contain p-1"
+            className="object-contain"
           />
         </div>
         <div className="leading-tight">
