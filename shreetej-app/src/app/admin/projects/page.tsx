@@ -28,6 +28,8 @@ export default function ProjectsCMS() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [galleryPreviews, setGalleryPreviews] = useState<string[]>([]);
+  const [galleryFiles, setGalleryFiles] = useState<File[]>([]);
+  const [galleryFilePreviews, setGalleryFilePreviews] = useState<string[]>([]);
   const [videoName, setVideoName] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -60,6 +62,8 @@ export default function ProjectsCMS() {
     } else {
       setGalleryPreviews([]);
     }
+    setGalleryFiles([]);
+    setGalleryFilePreviews([]);
     setTimeout(() => {
       if (formRef.current) {
         const data = project as any;
@@ -75,6 +79,8 @@ export default function ProjectsCMS() {
     setSelectedProject(null);
     setImagePreview(null);
     setGalleryPreviews([]);
+    setGalleryFiles([]);
+    setGalleryFilePreviews([]);
     setVideoName(null);
     setShowForm(true);
   };
@@ -123,10 +129,9 @@ export default function ProjectsCMS() {
       }
 
       // Handle Gallery Upload
-      const galleryInput = formRef.current.querySelector('input[name="galleryFiles"]') as HTMLInputElement;
-      if (galleryInput?.files?.length) {
+      if (galleryFiles.length > 0) {
         const uploadData = new FormData();
-        Array.from(galleryInput.files).forEach(f => uploadData.append("files", f));
+        galleryFiles.forEach(f => uploadData.append("files", f));
         const uploadResult = await uploadMultipleImages(uploadData);
         if (uploadResult.success && uploadResult.urls.length > 0) {
           // Merge with existing gallery
@@ -138,8 +143,8 @@ export default function ProjectsCMS() {
           setSaving(false);
           return;
         }
-      } else if (selectedProject) {
-        data.galleryUrls = selectedProject.galleryUrls;
+      } else {
+        data.galleryUrls = JSON.stringify(galleryPreviews || []);
       }
 
       // Clean up form-only fields
@@ -166,6 +171,8 @@ export default function ProjectsCMS() {
         setSelectedProject(null);
         setImagePreview(null);
         setGalleryPreviews([]);
+        setGalleryFiles([]);
+        setGalleryFilePreviews([]);
         setVideoName(null);
       } else {
         alert(result.error || "Operation failed");
@@ -192,6 +199,27 @@ export default function ProjectsCMS() {
 
   const removeGalleryImage = (index: number) => {
     setGalleryPreviews(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const removeNewGalleryImage = (index: number) => {
+    setGalleryFiles(prev => prev.filter((_, i) => i !== index));
+    setGalleryFilePreviews(prev => {
+      const newPreviews = [...prev];
+      URL.revokeObjectURL(newPreviews[index]);
+      return newPreviews.filter((_, i) => i !== index);
+    });
+  };
+
+  const handleGalleryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length === 0) return;
+
+    setGalleryFiles(prev => [...prev, ...files]);
+    const newPreviews = files.map(f => URL.createObjectURL(f));
+    setGalleryFilePreviews(prev => [...prev, ...newPreviews]);
+    
+    // Reset input so the same files can be selected again if needed
+    e.target.value = "";
   };
 
   const inputClass = "w-full px-4 py-3 bg-[#f8f6f2] border border-gold/20 rounded-xl text-sm outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/10 transition-all";
@@ -318,23 +346,43 @@ export default function ProjectsCMS() {
                   <label className={labelClass}>Gallery Images (Multiple, PNG/JPG/WebP)</label>
                   <input
                     type="file"
-                    name="galleryFiles"
                     accept="image/png,image/jpeg,image/webp"
                     multiple
                     className={inputClass}
+                    onChange={handleGalleryChange}
                   />
-                  {galleryPreviews.length > 0 && (
-                    <div className="flex flex-wrap gap-3 mt-3">
+                  {(galleryPreviews.length > 0 || galleryFilePreviews.length > 0) && (
+                    <div className="flex flex-wrap gap-3 mt-4 p-4 bg-navy/5 rounded-2xl border border-navy/5">
+                      {/* Existing Images */}
                       {galleryPreviews.map((url, idx) => (
-                        <div key={idx} className="relative group">
+                        <div key={`old-${idx}`} className="relative group">
                           <img src={url} alt={`Gallery ${idx + 1}`} className="w-20 h-16 rounded-lg object-cover border border-gold/20 shadow-sm" />
-                          <button
-                            type="button"
-                            onClick={() => removeGalleryImage(idx)}
-                            className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                          >
-                            ✕
-                          </button>
+                          <div className="absolute inset-0 bg-navy/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                            <button
+                              type="button"
+                              onClick={() => removeGalleryImage(idx)}
+                              className="w-6 h-6 rounded-full bg-red-500 text-white text-[10px] flex items-center justify-center hover:bg-red-600 shadow-lg"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                          <span className="absolute bottom-0 left-0 right-0 bg-gold/80 text-navy text-[8px] font-bold text-center py-0.5 rounded-b-lg">Saved</span>
+                        </div>
+                      ))}
+                      {/* Newly Selected Images */}
+                      {galleryFilePreviews.map((url, idx) => (
+                        <div key={`new-${idx}`} className="relative group">
+                          <img src={url} alt={`New Gallery ${idx + 1}`} className="w-20 h-16 rounded-lg object-cover border border-gold/50 shadow-sm" />
+                          <div className="absolute inset-0 bg-navy/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                            <button
+                              type="button"
+                              onClick={() => removeNewGalleryImage(idx)}
+                              className="w-6 h-6 rounded-full bg-red-500 text-white text-[10px] flex items-center justify-center hover:bg-red-600 shadow-lg"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                          <span className="absolute bottom-0 left-0 right-0 bg-green-500/80 text-white text-[8px] font-bold text-center py-0.5 rounded-b-lg">New</span>
                         </div>
                       ))}
                     </div>

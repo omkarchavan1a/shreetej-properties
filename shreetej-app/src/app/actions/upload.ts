@@ -92,6 +92,7 @@ export async function uploadMultipleImages(formData: FormData) {
     }
 
     try {
+      console.log(`Uploading file: ${file.name} (${file.size} bytes)`);
       if (process.env.BLOB_READ_WRITE_TOKEN) {
         const blob = await put(file.name, file, {
           access: "public",
@@ -108,12 +109,14 @@ export async function uploadMultipleImages(formData: FormData) {
         await writeFile(filePath, buffer);
         urls.push(`/assets/${filename}`);
       }
+      console.log(`Successfully uploaded: ${file.name}`);
     } catch (error) {
-      console.error("Error saving file:", error);
-      return { success: false, error: `Failed to save "${file.name}"`, urls: [] };
+      console.error(`Error saving file ${file.name}:`, error);
+      return { success: false, error: `Failed to save "${file.name}": ${(error as Error).message}`, urls: [] };
     }
   }
 
+  console.log(`Batch upload completed. Total images: ${urls.length}`);
   return { success: true, urls };
 }
 
