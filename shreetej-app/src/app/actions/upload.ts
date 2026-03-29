@@ -51,7 +51,11 @@ export async function uploadImage(formData: FormData) {
       return { success: true, url: blob.url };
     }
 
-    // Local fallback for development
+    // Local fallback (Development only)
+    if (process.env.NODE_ENV === "production") {
+      return { success: false, error: "Cloud storage not configured. Please set UPLOADTHING_SECRET or BLOB_READ_WRITE_TOKEN." };
+    }
+
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 

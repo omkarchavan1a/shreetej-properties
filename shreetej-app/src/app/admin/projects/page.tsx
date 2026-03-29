@@ -2,7 +2,8 @@
 
 import { useEffect, useState, useRef } from "react";
 import { getProjects, createProject, updateProject, deleteProject } from "@/app/actions/projects";
-import { uploadImage, uploadMultipleImages, uploadVideo } from "@/app/actions/upload";
+import { uploadImage, uploadVideo } from "@/app/actions/upload";
+import { useUploadThing } from "@/lib/uploadthing";
 
 type Project = {
   id: number;
@@ -30,8 +31,52 @@ export default function ProjectsCMS() {
   const [galleryPreviews, setGalleryPreviews] = useState<string[]>([]);
   const [galleryFiles, setGalleryFiles] = useState<File[]>([]);
   const [galleryFilePreviews, setGalleryFilePreviews] = useState<string[]>([]);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [videoName, setVideoName] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
+
+  const { startUpload: startGalleryUpload } = useUploadThing("imageUploader", {
+    onClientUploadComplete: () => {
+      setIsUploading(false);
+      setUploadProgress(0);
+    },
+    onUploadProgress: (p: number) => {
+      setUploadProgress(p);
+    },
+    onUploadError: (e: Error) => {
+      setIsUploading(false);
+      alert(`Upload failed: ${e.message}`);
+    },
+  });
+
+  const { startUpload: startCoverUpload } = useUploadThing("coverImage", {
+    onClientUploadComplete: () => {
+      setIsUploading(false);
+      setUploadProgress(0);
+    },
+    onUploadProgress: (p: number) => {
+      setUploadProgress(p);
+    },
+    onUploadError: (e: Error) => {
+      setIsUploading(false);
+      alert(`Cover image upload failed: ${e.message}`);
+    },
+  });
+
+  const { startUpload: startVideoUpload } = useUploadThing("projectVideo", {
+    onClientUploadComplete: () => {
+      setIsUploading(false);
+      setUploadProgress(0);
+    },
+    onUploadProgress: (p: number) => {
+      setUploadProgress(p);
+    },
+    onUploadError: (e: Error) => {
+      setIsUploading(false);
+      alert(`Video upload failed: ${e.message}`);
+    },
+  });
 
   const fetchProjects = async () => {
     setLoading(true);
@@ -94,16 +139,14 @@ export default function ProjectsCMS() {
     try {
       setSaving(true);
 
-      // Handle Cover Image Upload
+      // Handle Cover Image Upload (via UploadThing)
       const imgInput = formRef.current.querySelector('input[name="coverFile"]') as HTMLInputElement;
       if (imgInput?.files?.length) {
-        const uploadData = new FormData();
-        uploadData.append("file", imgInput.files[0]);
-        const uploadResult = await uploadImage(uploadData);
-        if (uploadResult.success && uploadResult.url) {
-          data.imageUrl = uploadResult.url;
-        } else if (!uploadResult.success) {
-          alert(uploadResult.error || "Image upload failed");
+        setIsUploading(true);
+        const uploadResult = await startCoverUpload(Array.from(imgInput.files));
+        if (uploadResult && uploadResult[0]) {
+          data.imageUrl = uploadResult[0].url;
+        } else {
           setSaving(false);
           return;
         }
@@ -111,16 +154,14 @@ export default function ProjectsCMS() {
         data.imageUrl = selectedProject.imageUrl;
       }
 
-      // Handle Video Upload
+      // Handle Video Upload (via UploadThing)
       const vidInput = formRef.current.querySelector('input[name="videoFile"]') as HTMLInputElement;
       if (vidInput?.files?.length) {
-        const uploadData = new FormData();
-        uploadData.append("file", vidInput.files[0]);
-        const uploadResult = await uploadVideo(uploadData);
-        if (uploadResult.success && uploadResult.url) {
-          data.videoUrl = uploadResult.url;
-        } else if (!uploadResult.success) {
-          alert(uploadResult.error || "Video upload failed");
+        setIsUploading(true);
+        const uploadResult = await startVideoUpload(Array.from(vidInput.files));
+        if (uploadResult && uploadResult[0]) {
+          data.videoUrl = uploadResult[0].url;
+        } else {
           setSaving(false);
           return;
         }
@@ -128,24 +169,20 @@ export default function ProjectsCMS() {
         data.videoUrl = selectedProject.videoUrl;
       }
 
-      // Handle Gallery Upload
+      // Handle Gallery Upload (via UploadThing)
+      let finalGalleryUrls = [...galleryPreviews];
       if (galleryFiles.length > 0) {
-        const uploadData = new FormData();
-        galleryFiles.forEach(f => uploadData.append("files", f));
-        const uploadResult = await uploadMultipleImages(uploadData);
-        if (uploadResult.success && uploadResult.urls.length > 0) {
-          // Merge with existing gallery
-          const existing = galleryPreviews || [];
-          const allUrls = [...existing, ...uploadResult.urls];
-          data.galleryUrls = JSON.stringify(allUrls);
-        } else if (!uploadResult.success) {
-          alert(uploadResult.error || "Gallery upload failed");
+        setIsUploading(true);
+        const uploadResult = await startGalleryUpload(galleryFiles);
+        if (uploadResult && uploadResult.length > 0) {
+          const newUrls = uploadResult.map((res: any) => res.url);
+          finalGalleryUrls = [...finalGalleryUrls, ...newUrls];
+        } else {
           setSaving(false);
           return;
         }
-      } else {
-        data.galleryUrls = JSON.stringify(galleryPreviews || []);
       }
+      data.galleryUrls = JSON.stringify(finalGalleryUrls);
 
       // Clean up form-only fields
       delete data.coverFile;
@@ -443,11 +480,11 @@ export default function ProjectsCMS() {
               </button>
               <button
                 type="submit"
-                disabled={saving}
+                disabled={saving || isUploading}
                 className="bg-navy text-gold-light font-bold text-[12px] tracking-[1.5px] uppercase px-8 py-3 rounded-xl hover:bg-gold hover:text-navy transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
               >
-                {saving && <span className="w-4 h-4 border-2 border-gold/30 border-t-gold rounded-full animate-spin" />}
-                {saving ? "Saving..." : "Save Project"}
+                {(saving || isUploading) && <span className="w-4 h-4 border-2 border-gold/30 border-t-gold rounded-full animate-spin" />}
+                {isUploading ? `Uploading ${uploadProgress}%...` : saving ? "Saving..." : "Save Project"}
               </button>
             </div>
           </form>

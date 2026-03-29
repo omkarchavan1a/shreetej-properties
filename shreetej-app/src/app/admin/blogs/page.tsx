@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import { getBlogs, deleteBlog, createBlog, updateBlog } from "@/app/actions/blogs";
-import { uploadImage } from "@/app/actions/upload";
+import { useUploadThing } from "@/lib/uploadthing";
 
 type Blog = {
   id: number;
@@ -35,8 +35,24 @@ export default function BlogsCMS() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [blogStatus, setBlogStatus] = useState<string>("published");
   const [contentHtml, setContentHtml] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const formRef = useRef<HTMLFormElement>(null);
   const editorRef = useRef<HTMLDivElement>(null);
+
+  const { startUpload } = useUploadThing("coverImage", {
+    onClientUploadComplete: () => {
+      setIsUploading(false);
+      setUploadProgress(0);
+    },
+    onUploadProgress: (p: number) => {
+      setUploadProgress(p);
+    },
+    onUploadError: (e: Error) => {
+      setIsUploading(false);
+      alert(`Upload failed: ${e.message}`);
+    },
+  });
 
   const fetchBlogs = async () => {
     setLoading(true);
@@ -109,16 +125,14 @@ export default function BlogsCMS() {
     try {
       setSaving(true);
 
-      // Handle Image Upload
+      // Handle Image Upload (via UploadThing)
       const fileInput = formRef.current.querySelector('input[name="file"]') as HTMLInputElement;
       if (fileInput?.files?.length) {
-        const uploadData = new FormData();
-        uploadData.append("file", fileInput.files[0]);
-        const uploadResult = await uploadImage(uploadData);
-        if (uploadResult.success && uploadResult.url) {
-          data.imageUrl = uploadResult.url;
-        } else if (!uploadResult.success) {
-          alert(uploadResult.error || "Image upload failed");
+        setIsUploading(true);
+        const uploadResult = await startUpload(Array.from(fileInput.files));
+        if (uploadResult && uploadResult[0]) {
+          data.imageUrl = uploadResult[0].url;
+        } else {
           setSaving(false);
           return;
         }
@@ -331,11 +345,11 @@ export default function BlogsCMS() {
               </button>
               <button
                 type="submit"
-                disabled={saving}
+                disabled={saving || isUploading}
                 className="px-8 py-3 rounded-xl bg-navy text-white font-bold uppercase tracking-[1px] text-xs hover:bg-navy/90 transition-all shadow-lg disabled:opacity-50 flex items-center gap-2"
               >
-                {saving && <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
-                {saving ? "Saving..." : selectedBlog ? "Update Blog" : blogStatus === "draft" ? "Save Draft" : "Publish Blog"}
+                {(saving || isUploading) && <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
+                {isUploading ? `Uploading ${uploadProgress}%...` : saving ? "Saving..." : selectedBlog ? "Update Blog" : blogStatus === "draft" ? "Save Draft" : "Publish Blog"}
               </button>
             </div>
           </form>
