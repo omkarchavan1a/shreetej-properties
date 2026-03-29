@@ -352,7 +352,23 @@ export default function ProjectsCMS() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className={labelClass}>Map Embed URL</label>
-                  <input name="mapUrl" placeholder="Google Maps Embed Src" className={inputClass} />
+                  <input 
+                    name="mapUrl" 
+                    placeholder="Paste Google Maps Embed URL or iframe" 
+                    className={inputClass} 
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (val.includes('<iframe')) {
+                        const match = val.match(/src="([^"]+)"/);
+                        if (match && match[1]) {
+                          e.target.value = match[1];
+                        }
+                      }
+                    }}
+                  />
+                  <p className="text-[10px] text-text-mid mt-1 italic">
+                    Go to Google Maps → Share → Embed a map → Copy the <b>src</b> link or the whole <b>iframe</b> tag.
+                  </p>
                 </div>
                 <div>
                   <label className={labelClass}>Brochure URL</label>

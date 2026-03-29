@@ -1,5 +1,6 @@
 "use server";
 
+import { put } from "@vercel/blob";
 import { writeFile, mkdir } from "fs/promises";
 import { join } from "path";
 import { cookies } from "next/headers";
@@ -27,9 +28,8 @@ export async function uploadImage(formData: FormData) {
   if (!(await isAdmin())) return { success: false, error: "Unauthorized" };
 
   const file = formData.get("file") as File;
-  if (!file || file.size === 0) return { success: true, url: null }; // No file uploaded is fine
+  if (!file || file.size === 0) return { success: true, url: null };
 
-  // Enforce allowed image types
   const ext = "." + file.name.split(".").pop()?.toLowerCase();
   if (
     !ALLOWED_IMAGE_TYPES.includes(file.type) &&
@@ -42,6 +42,16 @@ export async function uploadImage(formData: FormData) {
   }
 
   try {
+    // Check if Vercel Blob is configured (production)
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      const blob = await put(file.name, file, {
+        access: "public",
+        addRandomSuffix: true,
+      });
+      return { success: true, url: blob.url };
+    }
+
+    // Local fallback for development
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
@@ -54,7 +64,7 @@ export async function uploadImage(formData: FormData) {
     return { success: true, url: `/assets/${filename}` };
   } catch (error) {
     console.error("Error saving file:", error);
-    return { success: false, error: "Failed to save image" };
+    return { success: false, error: "Failed to save image. " + (error as Error).message };
   }
 }
 
@@ -65,9 +75,7 @@ export async function uploadMultipleImages(formData: FormData) {
   if (!files || files.length === 0) return { success: true, urls: [] };
 
   const urls: string[] = [];
-  const publicPath = join(process.cwd(), "public", "assets");
-  await mkdir(publicPath, { recursive: true });
-
+  
   for (const file of files) {
     if (file.size === 0) continue;
 
@@ -78,18 +86,28 @@ export async function uploadMultipleImages(formData: FormData) {
     ) {
       return {
         success: false,
-        error: `File "${file.name}" is not an allowed image type. Only PNG, JPG, JPEG, and WebP.`,
+        error: `File "${file.name}" is not allowed. Only PNG, JPG, JPEG, and WebP.`,
         urls: [],
       };
     }
 
     try {
-      const bytes = await file.arrayBuffer();
-      const buffer = Buffer.from(bytes);
-      const filename = `${Date.now()}-${file.name.replace(/\s+/g, "_")}`;
-      const filePath = join(publicPath, filename);
-      await writeFile(filePath, buffer);
-      urls.push(`/assets/${filename}`);
+      if (process.env.BLOB_READ_WRITE_TOKEN) {
+        const blob = await put(file.name, file, {
+          access: "public",
+          addRandomSuffix: true,
+        });
+        urls.push(blob.url);
+      } else {
+        const bytes = await file.arrayBuffer();
+        const buffer = Buffer.from(bytes);
+        const filename = `${Date.now()}-${file.name.replace(/\s+/g, "_")}`;
+        const publicPath = join(process.cwd(), "public", "assets");
+        const filePath = join(publicPath, filename);
+        await mkdir(publicPath, { recursive: true });
+        await writeFile(filePath, buffer);
+        urls.push(`/assets/${filename}`);
+      }
     } catch (error) {
       console.error("Error saving file:", error);
       return { success: false, error: `Failed to save "${file.name}"`, urls: [] };
@@ -113,12 +131,19 @@ export async function uploadVideo(formData: FormData) {
     return { success: false, error: "Only MP4 videos are allowed" };
   }
 
-  // Limit video to 100MB
   if (file.size > 100 * 1024 * 1024) {
     return { success: false, error: "Video must be under 100MB" };
   }
 
   try {
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      const blob = await put(file.name, file, {
+        access: "public",
+        addRandomSuffix: true,
+      });
+      return { success: true, url: blob.url };
+    }
+
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
