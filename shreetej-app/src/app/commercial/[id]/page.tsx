@@ -18,6 +18,15 @@ export default async function CommercialDetailsPage({ params }: { params: Promis
   const project = projectDetails[0];
   const amenities = project.amenities ? project.amenities.split(",") : [];
 
+  let galleryImages: string[] = [];
+  if (project.galleryUrls) {
+    try {
+      galleryImages = JSON.parse(project.galleryUrls);
+    } catch {
+      galleryImages = project.galleryUrls.split(",").map((url: string) => url.trim()).filter(Boolean);
+    }
+  }
+
   return (
     <div className="min-h-screen bg-cream text-text-dark font-sans selection:bg-gold/30 selection:text-navy">
       <Navbar />
@@ -55,12 +64,6 @@ export default async function CommercialDetailsPage({ params }: { params: Promis
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
           
           <div className="lg:col-span-2 space-y-12">
-            <div>
-              <h2 className="font-serif text-3xl text-navy font-bold mb-6">Overview</h2>
-              <p className="text-text-mid leading-relaxed text-lg font-light">
-                {project.description || "A premier commercial development offering exceptional spaces for modern businesses."}
-              </p>
-            </div>
 
             {amenities.length > 0 && (
               <div>
@@ -128,6 +131,35 @@ export default async function CommercialDetailsPage({ params }: { params: Promis
           
         </div>
       </section>
+
+      {/* Gallery Section */}
+      {galleryImages.length > 0 && (
+        <section className="py-20 px-[8%] max-w-[1200px] mx-auto border-t border-gold/10">
+          <div className="text-center mb-12 animate-fade-in-up">
+            <h2 className="font-serif text-3xl md:text-4xl text-navy font-bold mb-4">Project Gallery</h2>
+            <div className="h-1 w-20 bg-gold mx-auto rounded-full"></div>
+            <p className="text-text-mid mt-4 text-sm uppercase tracking-[2px] font-semibold">Commercial Spaces</p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {galleryImages.map((imgUrl, idx) => (
+              <div 
+                key={idx} 
+                className="group relative rounded-3xl overflow-hidden shadow-xl aspect-square cursor-pointer border border-gold/10"
+              >
+                <div 
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${imgUrl})` }}
+                />
+                <div className="absolute inset-0 bg-navy/10 group-hover:bg-navy/0 transition-colors duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                  <span className="text-white font-bold tracking-[1px]">Image {idx + 1}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <Footer />
     </div>

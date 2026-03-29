@@ -89,9 +89,13 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
             {project.mapUrl && (
               <div>
                  <h2 className="font-serif text-3xl text-navy font-bold mb-6">Location Map</h2>
-                 <div className="rounded-3xl overflow-hidden shadow-xl border border-gold/10 h-96 relative">
+                 <div className="rounded-3xl overflow-hidden shadow-xl border border-gold/10 h-96 relative bg-gray-100 flex items-center justify-center">
                     <iframe 
-                      src={project.mapUrl} 
+                      src={
+                        project.mapUrl.includes('google.com/maps/embed') || project.mapUrl.includes('output=embed')
+                          ? project.mapUrl
+                          : `https://maps.google.com/maps?q=${encodeURIComponent(project.location + ', Ahmednagar, Maharashtra')}&t=&z=14&ie=UTF8&iwloc=&output=embed`
+                      } 
                       width="100%" 
                       height="100%" 
                       style={{ border: 0 }} 
@@ -102,7 +106,11 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
                     />
                  </div>
                  <a 
-                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(project.location + ', Ahmednagar, Maharashtra')}`}
+                   href={
+                     project.mapUrl.includes('http') && !project.mapUrl.includes('google.com/maps/embed') && !project.mapUrl.includes('<iframe')
+                      ? project.mapUrl
+                      : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(project.location + ', Ahmednagar, Maharashtra')}`
+                   }
                    target="_blank" 
                    rel="noopener noreferrer"
                    className="inline-flex items-center gap-2 mt-4 text-gold hover:text-gold/80 font-semibold text-sm transition-colors"
