@@ -14,9 +14,9 @@ export default function ContactPage() {
           <img 
             src="/images/contact-bg.jpeg" 
             alt="Real estate development" 
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy/50 via-navy/80 to-navy" />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy/40 via-navy/70 to-navy" />
         </div>
         
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-gold/5 to-transparent rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none" />

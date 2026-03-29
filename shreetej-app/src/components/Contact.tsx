@@ -33,14 +33,14 @@ export default function Contact() {
     <section id="contact" className="py-24 relative overflow-hidden scroll-mt-20">
       {/* Background Image Layer */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-white/95 mix-blend-overlay z-10" />
+        <div className="absolute inset-0 bg-white/80 z-10" />
         <img 
           src="/images/contact-bg.jpeg" 
           alt="" 
-          className="w-full h-full object-cover opacity-15 grayscale-[30%] scale-105"
+          className="w-full h-full object-cover opacity-50 scale-105 transition-opacity duration-1000"
         />
         {/* Decorative mask for soft edges */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white/80 z-20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white/60 z-20" />
       </div>
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-[8%]">
