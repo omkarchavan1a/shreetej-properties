@@ -33,7 +33,7 @@ export default function WhyChooseUs() {
           <div className="relative rounded-3xl overflow-hidden h-[350px] sm:h-[500px] lg:h-[600px] shadow-2xl group">
             <Image
               src="/assets/shreetej/shree-1_fd66a6ec83.png"
-              alt="Shreetej Properties Building"
+              alt="Shreetej Properties Builders & Developers Building"
               fill
               className="object-cover transition-transform duration-[1.5s] group-hover:scale-105"
             />

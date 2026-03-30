@@ -21,7 +21,7 @@ export default function AboutPage() {
             <em className="text-gold italic not-italic">One Family at a Time</em>
           </h1>
           <p className="text-white/70 max-w-2xl mx-auto text-[1.1rem] font-light leading-relaxed">
-            Founded in 2011, Shreetej Properties has transformed the real estate landscape of Maharashtra with 100% legally clear titles and premium construction quality.
+            Founded in 2011, Shreetej Properties Builders & Developers has transformed the real estate landscape of Maharashtra with 100% legally clear titles and premium construction quality.
           </p>
         </div>
       </div>
@@ -100,15 +100,15 @@ export default function AboutPage() {
             <span>Our Journey</span>
             <div className="h-px bg-gold/40 w-12" />
           </div>
-          <h2 className="font-serif text-4xl text-navy font-bold">Moments at Shreetej Properties</h2>
+          <h2 className="font-serif text-4xl text-navy font-bold">Moments at Shreetej Properties Builders & Developers</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-[1400px] mx-auto">
           {[
             "/assets/shreetej/about/IMG-20260329-WA0009.jpg",
             "/assets/shreetej/about/IMG-20260329-WA0010.jpg",
             "/assets/shreetej/about/IMG-20260329-WA0011.jpg",
-            "/assets/shreetej/about/IMG-20260329-WA0012.jpg",
             "/assets/shreetej/about/IMG-20260329-WA0013.jpg",
+            "/assets/shreetej/about/IMG-20260329-WA0012.jpg",  // Shree Swami Samarth Paduka — big image
             "/assets/shreetej/about/IMG-20260329-WA0014.jpg",
             "/assets/shreetej/about/IMG-20260329-WA0015.jpg",
             "/assets/shreetej/about/IMG_0253.JPG",

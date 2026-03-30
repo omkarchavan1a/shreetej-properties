@@ -11,7 +11,7 @@ export async function submitContactForm(prevState: any, formData: FormData) {
   // Log to mock the server sending email/SMS
   console.log(`[ACTION: SEND EMAIL & SMS]`);
   console.log(`To: ${name} <${email}>, Tel: ${phone}`);
-  console.log(`Subject: Welcome to Shreetej Properties - Brochure Attached`);
+  console.log(`Subject: Welcome to Shreetej Properties Builders & Developers - Brochure Attached`);
   console.log(`Body: Thank you for connecting with us. Please find our comprehensive project brochure attached.`);
 
   return { 

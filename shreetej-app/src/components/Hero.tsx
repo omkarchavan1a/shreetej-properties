@@ -132,7 +132,7 @@ export default function Hero() {
         {/* Subheading */}
         <p ref={subRef} className="text-[clamp(1rem,1.5vw,1.2rem)] text-white/70 max-w-2xl leading-relaxed mb-12 font-light tracking-wide opacity-0">
           From land acquisition and development to 100% loan assistance —
-          Shreetej Properties is your Total Real Estate Solution with 16+ years of trusted expertise.
+          Shreetej Properties Builders & Developers is your Total Real Estate Solution with 16+ years of trusted expertise.
         </p>
 
         {/* Actions */}

@@ -24,7 +24,7 @@ const raleway = Raleway({
 });
 
 export const metadata: Metadata = {
-  title: "Shreetej Properties – Total Real Estate Solution",
+  title: "Shreetej Properties Builders & Developers – Total Real Estate Solution",
   description: "Total Real Estate Solution. Legally Secured.",
 };
 

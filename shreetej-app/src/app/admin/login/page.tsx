@@ -39,7 +39,7 @@ export default function AdminLogin() {
       <div className="w-full max-w-md bg-white rounded-3xl p-10 shadow-2xl">
         <div className="text-center mb-8">
           <h1 className="font-serif text-3xl font-bold text-navy mb-2">Admin Portal</h1>
-          <p className="text-text-mid text-sm">Shreetej Properties CMS</p>
+          <p className="text-text-mid text-sm">Shreetej Properties Builders & Developers CMS</p>
         </div>
 
         {error && (

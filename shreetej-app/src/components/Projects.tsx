@@ -138,7 +138,7 @@ export default function Projects({ initialProjects }: { initialProjects: Project
                   {project.title}
                 </h3>
                 <p className="text-text-mid text-sm leading-relaxed line-clamp-2 mb-0 opacity-80 group-hover:opacity-100 transition-opacity">
-                  {project.description || "A premium development by Shreetej Properties, offering unmatched luxury and quality."}
+                  {project.description || "A premium development by Shreetej Properties Builders & Developers, offering unmatched luxury and quality."}
                 </p>
               </div>
             </NextLink>

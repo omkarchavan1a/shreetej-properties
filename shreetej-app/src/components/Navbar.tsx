@@ -73,7 +73,7 @@ export default function Navbar() {
         </div>
         <div className="leading-tight">
           <strong className="block font-serif text-white text-[15px] font-bold tracking-wide group-hover:text-gold-light transition-colors duration-300">
-            Shreetej Properties
+            Shreetej Properties Builders & Developers
           </strong>
           <span className="text-[10px] text-gold-light tracking-[2px] uppercase font-medium">
             Total Real Estate Solution

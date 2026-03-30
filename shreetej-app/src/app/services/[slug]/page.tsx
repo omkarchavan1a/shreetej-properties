@@ -28,7 +28,7 @@ const servicesData: Record<string, any> = {
   "residential": {
     title: "Residential & Commercial Properties",
     subtitle: "Built for Your Family, Designed for Your Business",
-    description: "From cozy 1BHK apartments to luxurious duplexes, and prime commercial retail spaces, we offer high-quality constructions tailored to perfectly fit your lifestyle and business requirements. Shreetej Properties stands as a hallmark of premium build quality offering genuinely affordable prices without compromising on structural integrity or modern amenities.",
+    description: "From cozy 1BHK apartments to luxurious duplexes, and prime commercial retail spaces, we offer high-quality constructions tailored to perfectly fit your lifestyle and business requirements. Shreetej Properties Builders & Developers stands as a hallmark of premium build quality offering genuinely affordable prices without compromising on structural integrity or modern amenities.",
     features: [
       "Premium Construction Quality",
       "Vastu-Compliant Layouts",
@@ -101,7 +101,7 @@ const servicesData: Record<string, any> = {
   "foundation": {
     title: "Shreetej Foundation",
     subtitle: "Putting Community at the Heart of Everything",
-    description: "At Shreetej Properties, we believe in giving back. Shreetej Foundation is our dedicated social arm aimed at fostering sustainable community growth across rural Maharashtra. From empowering vulnerable women to supporting fundamental child education and organizing local health camps, we are deeply committed to elevating the society we thrive in.",
+    description: "At Shreetej Properties Builders & Developers, we believe in giving back. Shreetej Foundation is our dedicated social arm aimed at fostering sustainable community growth across rural Maharashtra. From empowering vulnerable women to supporting fundamental child education and organizing local health camps, we are deeply committed to elevating the society we thrive in.",
     features: [
       "Women Empowerment Initiatives",
       "Child Education Sponsorships",
@@ -128,7 +128,7 @@ export async function generateMetadata({ params }: Props) {
   if (!service) return { title: "Service Not Found" };
   
   return {
-    title: `${service.title} | Shreetej Properties`,
+    title: `${service.title} | Shreetej Properties Builders & Developers`,
     description: service.description.substring(0, 160),
   };
 }

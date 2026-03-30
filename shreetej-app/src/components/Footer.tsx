@@ -19,7 +19,7 @@ export default function Footer() {
           <div className="lg:col-span-5">
             <ScrollReveal direction="up" delay={0}>
               <h3 className="font-serif text-[1.6rem] text-white font-bold mb-4">
-                Shreetej Properties
+                Shreetej Properties Builders & Developers
               </h3>
               <p className="text-[0.9rem] leading-[1.8] max-w-sm mb-8 font-light">
                 Your trusted Total Real Estate Solution, providing legal security, quality construction, and full customer satisfaction since 2011. Founded by Shri Satish B. Raut.
@@ -118,7 +118,7 @@ export default function Footer() {
         <ScrollReveal direction="up" delay={100}>
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
             <span className="font-serif text-gold-light font-bold text-[14px]">
-              Shreetej Properties © 2025
+              Shreetej Properties Builders & Developers © 2025
             </span>
             <span className="tracking-wide">
               All Rights Reserved · Crafted with ❤️ for Maharashtra&apos;s Families
