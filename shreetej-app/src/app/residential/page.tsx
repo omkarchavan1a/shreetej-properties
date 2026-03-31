@@ -8,7 +8,18 @@ import { desc, eq } from "drizzle-orm";
 export const revalidate = 60;
 
 export default async function ResidentialPage() {
-  const residentialProjects = await db.select().from(projects).where(eq(projects.type, 'residential')).orderBy(desc(projects.createdAt));
+  const allResidentialProjects = await db.select().from(projects).where(eq(projects.type, 'residential')).orderBy(desc(projects.createdAt));
+  
+  // Custom sort: Apartments/Flats/Platinum/Heights first
+  const residentialProjects = [...allResidentialProjects].sort((a, b) => {
+    const priorityKeywords = ['apartment', 'flat', 'platinum', 'heights'];
+    const aIsPriority = priorityKeywords.some(kw => a.title.toLowerCase().includes(kw));
+    const bIsPriority = priorityKeywords.some(kw => b.title.toLowerCase().includes(kw));
+    
+    if (aIsPriority && !bIsPriority) return -1;
+    if (!aIsPriority && bIsPriority) return 1;
+    return 0; // Maintain createdAt order for others
+  });
 
   return (
     <div className="min-h-screen bg-cream text-text-dark font-sans selection:bg-gold/30 selection:text-navy">

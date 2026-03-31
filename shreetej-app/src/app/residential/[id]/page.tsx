@@ -165,7 +165,7 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
         </div>
       </section>
       
-      <FlatTypes />
+      {project.status !== "Ongoing" && !project.title.toLowerCase().includes("saiban") && <FlatTypes />}
 
       {/* Gallery Section */}
       {isSpecialProject && <ProjectGallery images={galleryImages} />}

@@ -45,7 +45,7 @@ export default function Services() {
       icon: <Users className="w-8 h-8 text-gold" />,
       title: "Shreetej Foundation",
       desc: "Our social arm — empowering women, supporting education, and driving community development in rural Maharashtra.",
-      img: "/assets/shreetej/foundation-logo.png",
+      img: "/assets/shreetej/new-logo.png",
     },
   ];
 
