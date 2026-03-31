@@ -44,14 +44,14 @@ export default function LayoutsClient({ layouts }: { layouts: any[] }) {
       // Cards Animation
       if (cardsRef.current) {
         gsap.from(cardsRef.current.children, {
-          y: 60,
+          y: 40,
           opacity: 0,
-          duration: 0.8,
-          stagger: 0.15,
+          duration: 0.6,
+          stagger: 0.1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: cardsRef.current,
-            start: "top 85%",
+            start: "top 90%",
           }
         });
       }
@@ -106,10 +106,10 @@ export default function LayoutsClient({ layouts }: { layouts: any[] }) {
             layouts.map((layout, index) => (
               <div 
                 key={layout.id} 
-                className="group glass-card rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gold/10"
+                className="group bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gold/20 shadow-xl"
               >
                 {/* Image Container */}
-                <div className="relative h-64 overflow-hidden bg-navy/5">
+                <div className="relative h-64 overflow-hidden bg-navy/10">
                   {layout.imageUrl && (
                     <Image 
                       src={layout.imageUrl} 
@@ -124,8 +124,8 @@ export default function LayoutsClient({ layouts }: { layouts: any[] }) {
                   <div className="absolute top-4 right-4">
                     <span className={`px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase shadow-lg backdrop-blur-md ${
                       layout.status === 'Completed' 
-                        ? 'bg-emerald-500/90 text-white' 
-                        : 'bg-gold/90 text-navy'
+                        ? 'bg-emerald-600 text-white' 
+                        : 'bg-gold text-navy'
                     }`}>
                       {layout.status}
                     </span>
@@ -140,18 +140,18 @@ export default function LayoutsClient({ layouts }: { layouts: any[] }) {
                   
                   <div className="flex items-start space-x-2 mb-6">
                     <MapPin className="w-4 h-4 text-gold mt-1 flex-shrink-0" />
-                    <span className="text-text-mid text-sm leading-relaxed">{layout.location}</span>
+                    <span className="text-navy/80 text-sm leading-relaxed">{layout.location}</span>
                   </div>
 
                   {layout.amenities && (
                     <div className="mb-8">
-                      <h4 className="text-[11px] font-bold text-gold tracking-widest uppercase mb-4 py-2 border-y border-gold/5">
+                      <h4 className="text-[11px] font-bold text-gold tracking-widest uppercase mb-4 py-2 border-y border-gold/10">
                         Premium Amenities
                       </h4>
                       <ul className="space-y-3">
                         {layout.amenities.split(",").map((item: string, i: number) => (
-                          <li key={i} className="flex items-center text-text-dark text-sm">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-gold/60 mr-2.5" />
+                          <li key={i} className="flex items-center text-navy/80 text-sm">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-gold mr-2.5" />
                             {item.trim()}
                           </li>
                         ))}
@@ -159,13 +159,13 @@ export default function LayoutsClient({ layouts }: { layouts: any[] }) {
                     </div>
                   )}
 
-                  <div className="flex items-center justify-between pt-6 border-t border-gold/10">
+                  <div className="flex items-center justify-between pt-6 border-t border-gold/20">
                     <div className="flex flex-col">
-                      <span className="text-[10px] text-text-light uppercase tracking-widest mb-1">Project Details</span>
+                      <span className="text-[10px] text-navy/40 uppercase tracking-widest mb-1">Project Details</span>
                       <span className="text-base font-serif text-navy">View Info</span>
                     </div>
                     <div className="w-10 h-10 rounded-full bg-navy/5 flex items-center justify-center group-hover:bg-gold/10 transition-colors duration-300">
-                      <Info className="w-5 h-5 text-navy/40 group-hover:text-gold transition-colors duration-300" />
+                      <Info className="w-5 h-5 text-navy/60 group-hover:text-gold transition-colors duration-300" />
                     </div>
                   </div>
                 </div>
