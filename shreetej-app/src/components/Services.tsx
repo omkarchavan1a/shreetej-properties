@@ -96,15 +96,15 @@ export default function Services() {
               >
                 {/* Background Image */}
                 <div 
-                  className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-15 transition-opacity duration-700 scale-100 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${svc.img})`, transition: 'opacity 0.7s, transform 8s' }}
+                  className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-15 transition-opacity duration-300 scale-100 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${svc.img})`, transition: 'opacity 0.3s, transform 8s' }}
                 />
                 
                 {/* Top Gradient Bar animation */}
                 <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-gold to-gold-light origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-600 ease-out" />
                 
                 {/* Bottom glow line */}
-                <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
                 <div className="relative z-10 p-6 sm:p-9">
                   <span className="text-[2.5rem] mb-6 block transition-transform duration-500 group-hover:scale-110 group-hover:animate-[iconBounce_0.6s_ease]">

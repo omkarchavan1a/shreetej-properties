@@ -34,9 +34,9 @@ export default function Projects({ initialProjects }: { initialProjects: Project
   });
 
   return (
-    <section className="py-24 px-[8%] max-w-[1400px] mx-auto min-h-screen">
+    <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-[8%] max-w-[1400px] mx-auto min-h-screen">
       {/* Search and Filter Bar */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16">
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6 sm:gap-8 mb-12 sm:mb-16">
         {/* Filters */}
         <div className="flex flex-wrap justify-center gap-3">
           {filters.map((filter) => {
@@ -66,7 +66,7 @@ export default function Projects({ initialProjects }: { initialProjects: Project
             placeholder="Search projects..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-6 py-4 bg-white border border-navy/10 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all shadow-sm"
+            className="w-full pl-12 pr-6 py-3.5 sm:py-4 bg-white border border-navy/10 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold transition-all shadow-sm"
           />
         </div>
       </div>
@@ -81,7 +81,7 @@ export default function Projects({ initialProjects }: { initialProjects: Project
           <p className="text-text-mid">Try adjusting your filters or search query.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
           {filteredProjects.map((project, index) => (
             <Link
               href={`/${project.type === "commercial" ? "commercial" : "residential"}/${project.id}`}
@@ -90,7 +90,7 @@ export default function Projects({ initialProjects }: { initialProjects: Project
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Image Container */}
-              <div className="h-72 relative overflow-hidden bg-navy/5">
+              <div className="h-60 sm:h-72 relative overflow-hidden bg-navy/5">
                 {project.imageUrl ? (
                   <Image
                     src={project.imageUrl}
@@ -124,7 +124,7 @@ export default function Projects({ initialProjects }: { initialProjects: Project
                 </div>
 
                 {/* Preview Link (Visible on hover) */}
-                <div className="absolute inset-x-0 bottom-0 p-8 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                   <span className="inline-flex items-center gap-2 text-white text-xs font-bold uppercase tracking-[2px]">
                     Explore Project <ArrowRight size={14} className="text-gold" />
                   </span>
@@ -132,12 +132,12 @@ export default function Projects({ initialProjects }: { initialProjects: Project
               </div>
 
               {/* Content */}
-              <div className="p-8">
+              <div className="p-6 sm:p-8">
                 <div className="flex items-center gap-2 text-[10px] font-bold text-gold uppercase tracking-[2px] mb-3">
                   <div className="w-8 h-px bg-gold/40" />
                   <span>{project.location}</span>
                 </div>
-                <h3 className="font-serif text-2xl font-bold text-navy mb-4 group-hover:text-gold transition-colors duration-300">
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-navy mb-4 group-hover:text-gold transition-colors duration-300">
                   {project.title}
                 </h3>
                 <p className="text-text-mid text-sm leading-relaxed line-clamp-2 mb-0 opacity-80 group-hover:opacity-100 transition-opacity">

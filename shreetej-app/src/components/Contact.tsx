@@ -30,7 +30,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden scroll-mt-20">
+    <section id="contact" className="py-16 sm:py-24 relative overflow-hidden scroll-mt-20">
       {/* Background Image Layer */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-white/80 z-10" />
@@ -43,14 +43,14 @@ export default function Contact() {
         <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white/60 z-20" />
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 md:px-[8%]">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-[8%]">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-3xl -z-10" />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
           
           {/* Contact Info Side */}
           <div className="lg:col-span-5">
             <ScrollReveal direction="left">
-              <div className="flex items-center space-x-3 text-[11px] tracking-[3px] uppercase text-gold font-bold mb-4">
+              <div className="flex items-center space-x-2 sm:space-x-3 text-[10px] sm:text-[11px] tracking-[2px] sm:tracking-[3px] uppercase text-gold font-bold mb-4">
                 <span>Contact Details</span>
                 <div className="h-px bg-gold/40 w-12" />
               </div>
@@ -60,7 +60,7 @@ export default function Contact() {
                 <em className="text-gold not-italic italic">to Help You</em>
               </h2>
               
-              <p className="text-[1.05rem] text-text-mid leading-relaxed font-light mb-12">
+              <p className="text-base sm:text-[1.05rem] text-text-mid leading-relaxed font-light mb-8 sm:mb-12">
                 Speak to our experts about any real estate query — properties, legal documentation, loan assistance, or builder consultation.
               </p>
             </ScrollReveal>
@@ -68,7 +68,7 @@ export default function Contact() {
             <div className="space-y-6">
               {/* Phone */}
               <ScrollReveal direction="left" delay={100}>
-                <a href="tel:+917588464644" className="flex gap-5 p-6 bg-white/60 backdrop-blur-md border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400 cursor-pointer w-full text-left block">
+                <a href="tel:+917588464644" className="flex gap-4 sm:gap-5 p-4 sm:p-6 bg-white/60 backdrop-blur-md border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400 cursor-pointer w-full text-left block">
                   <div className="w-12 h-12 shrink-0 bg-gradient-to-br from-gold/15 to-gold/5 border border-gold/20 rounded-xl flex items-center justify-center text-xl shadow-inner group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(201,148,58,0.15)] transition-all duration-300">
                     <Phone className="w-5 h-5 text-gold" />
                   </div>
@@ -83,7 +83,7 @@ export default function Contact() {
 
               {/* Email */}
               <ScrollReveal direction="left" delay={200}>
-                <a href="mailto:info@shreetejproperties.com" className="flex gap-5 p-6 bg-white/60 backdrop-blur-md border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400 cursor-pointer w-full text-left block">
+                <a href="mailto:info@shreetejproperties.com" className="flex gap-4 sm:gap-5 p-4 sm:p-6 bg-white/60 backdrop-blur-md border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400 cursor-pointer w-full text-left block">
                   <div className="w-12 h-12 shrink-0 bg-gradient-to-br from-gold/15 to-gold/5 border border-gold/20 rounded-xl flex items-center justify-center text-xl shadow-inner group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(201,148,58,0.15)] transition-all duration-300">
                     <Mail className="w-5 h-5 text-gold" />
                   </div>
@@ -98,7 +98,7 @@ export default function Contact() {
 
               {/* Location */}
               <ScrollReveal direction="left" delay={300}>
-                <a href="https://maps.google.com/?q=Ekta+Chauk,Ghulewadi,Sangamner,Ahmednagar,Maharashtra" target="_blank" rel="noopener noreferrer" className="flex gap-5 p-6 bg-white/60 backdrop-blur-md border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400 cursor-pointer w-full text-left block">
+                <a href="https://maps.google.com/?q=Ekta+Chauk,Ghulewadi,Sangamner,Ahmednagar,Maharashtra" target="_blank" rel="noopener noreferrer" className="flex gap-4 sm:gap-5 p-4 sm:p-6 bg-white/60 backdrop-blur-md border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400 cursor-pointer w-full text-left block">
                   <div className="w-12 h-12 shrink-0 bg-gradient-to-br from-gold/15 to-gold/5 border border-gold/20 rounded-xl flex items-center justify-center text-xl shadow-inner group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(201,148,58,0.15)] transition-all duration-300">
                     <MapPin className="w-5 h-5 text-gold" />
                   </div>
@@ -116,7 +116,7 @@ export default function Contact() {
           {/* Form Side */}
           <div className="lg:col-span-7 relative z-10">
             <ScrollReveal direction="right" duration={900}>
-              <div className="bg-white/90 backdrop-blur-xl rounded-[2rem] p-6 sm:p-10 lg:p-14 shadow-2xl border border-gold/10 relative overflow-hidden group hover:shadow-[0_30px_80px_rgba(13,27,42,0.12)] transition-shadow duration-700">
+              <div className="bg-white/90 backdrop-blur-xl rounded-[1.5rem] sm:rounded-[2rem] p-5 sm:p-10 lg:p-14 shadow-2xl border border-gold/10 relative overflow-hidden group hover:shadow-[0_30px_80px_rgba(13,27,42,0.12)] transition-shadow duration-700">
                 {/* Subtle Gradient Border on Hover */}
                 <div className="absolute inset-0 border-2 border-transparent group-hover:border-gold/10 rounded-[2rem] pointer-events-none transition-colors duration-700" />
                 
@@ -145,10 +145,10 @@ export default function Contact() {
                     <h3 className="font-serif text-[1.8rem] text-text-dark font-bold mb-2">
                       Send Us a Message
                     </h3>
-                    <p className="text-text-mid text-[0.95rem] mb-10">Register your interest to receive our comprehensive brochure.</p>
+                    <p className="text-text-mid text-[0.95rem] mb-8 sm:mb-10">Register your interest to receive our comprehensive brochure.</p>
 
                     <form ref={formRef} action={handleAction} className="space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                         <div className="relative group/input">
                           <label htmlFor="name" className="block text-[11px] font-bold tracking-[1.5px] uppercase text-text-mid mb-2 group-focus-within/input:text-gold transition-colors">
                             Full Name *

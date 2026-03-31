@@ -16,22 +16,22 @@ export default function Preloader() {
           clearInterval(interval);
           return 100;
         }
-        const increment = prev < 60 ? 5 : prev < 85 ? 3 : 2;
+        const increment = prev < 60 ? 8 : prev < 85 ? 5 : 4;
         return Math.min(prev + increment, 100);
       });
-    }, 20);
+    }, 12);
 
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     if (progress === 100) {
-      const t1 = setTimeout(() => setPhase("complete"), 100);
-      const t2 = setTimeout(() => setPhase("exit"), 250);
+      const t1 = setTimeout(() => setPhase("complete"), 50);
+      const t2 = setTimeout(() => setPhase("exit"), 150);
       const t3 = setTimeout(() => {
         setPhase("hidden");
         document.body.style.overflow = "";
-      }, 600);
+      }, 350);
       return () => {
         clearTimeout(t1);
         clearTimeout(t2);

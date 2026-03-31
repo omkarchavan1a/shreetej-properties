@@ -8,10 +8,10 @@ export default function AboutPage() {
       <Navbar />
       
       {/* Page Header */}
-      <div className="bg-navy pt-32 pb-20 px-[8%] relative overflow-hidden">
+      <div className="bg-navy pt-28 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-[8%] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-gold/5 to-transparent rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none" />
         <div className="max-w-[1400px] mx-auto relative z-10 text-center">
-          <div className="inline-flex items-center justify-center space-x-3 text-[11px] tracking-[3px] uppercase text-gold font-bold mb-6">
+          <div className="inline-flex items-center justify-center space-x-2 sm:space-x-3 text-[10px] sm:text-[11px] tracking-[2px] sm:tracking-[3px] uppercase text-gold font-bold mb-6">
             <div className="h-px bg-gold/40 w-12" />
             <span>Our Foundation</span>
             <div className="h-px bg-gold/40 w-12" />
@@ -20,14 +20,14 @@ export default function AboutPage() {
             Building Trust,<br />
             <em className="text-gold italic not-italic">One Family at a Time</em>
           </h1>
-          <p className="text-white/70 max-w-2xl mx-auto text-[1.1rem] font-light leading-relaxed">
+          <p className="text-white/70 max-w-2xl mx-auto text-base sm:text-[1.1rem] font-light leading-relaxed">
             Founded in 2011, Shreetej Properties Builders & Developers has transformed the real estate landscape of Maharashtra with 100% legally clear titles and premium construction quality.
           </p>
         </div>
       </div>
 
       {/* Chairman Profile — two-column: bio left, photo right */}
-      <section className="py-24 px-[8%]">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-[8%]">
         <div className="max-w-[1200px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-12 lg:gap-16 items-center">
 
@@ -62,7 +62,7 @@ export default function AboutPage() {
       </section>
 
       {/* Tie-Ups / Partnerships */}
-      <section className="py-24 px-[8%] bg-navy relative overflow-hidden">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-[8%] bg-navy relative overflow-hidden">
         <div className="max-w-[1200px] mx-auto text-center relative z-10">
           <div className="inline-flex items-center justify-center space-x-3 text-[11px] tracking-[3px] uppercase text-gold font-bold mb-6">
             <div className="h-px bg-gold/40 w-12" />
@@ -93,7 +93,7 @@ export default function AboutPage() {
       </section>
 
       {/* Image Gallery — real company photos */}
-      <section className="py-24 px-[8%] bg-white">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-[8%] bg-white">
         <div className="max-w-[1400px] mx-auto text-center mb-16">
            <div className="inline-flex items-center justify-center space-x-3 text-[11px] tracking-[3px] uppercase text-gold font-bold mb-4">
             <div className="h-px bg-gold/40 w-12" />

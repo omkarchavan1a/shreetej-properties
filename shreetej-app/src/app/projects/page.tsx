@@ -11,10 +11,10 @@ export default async function ProjectsPage() {
       <Navbar />
       
       {/* Page Header */}
-      <div className="bg-navy pt-32 pb-20 px-[8%] relative overflow-hidden">
+      <div className="bg-navy pt-28 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-[8%] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-gold/5 to-transparent rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none" />
         <div className="max-w-[1400px] mx-auto relative z-10 text-center">
-          <div className="inline-flex items-center justify-center space-x-3 text-[11px] tracking-[3px] uppercase text-gold font-bold mb-6">
+          <div className="inline-flex items-center justify-center space-x-2 sm:space-x-3 text-[10px] sm:text-[11px] tracking-[2px] sm:tracking-[3px] uppercase text-gold font-bold mb-6">
             <div className="h-px bg-gold/40 w-12" />
             <span>Our Portfolio</span>
             <div className="h-px bg-gold/40 w-12" />
@@ -23,7 +23,7 @@ export default async function ProjectsPage() {
             Masterpieces in<br />
             <em className="text-gold italic not-italic">Real Estate</em>
           </h1>
-          <p className="text-white/60 text-sm tracking-[1px] uppercase max-w-2xl mx-auto">
+          <p className="text-white/60 text-xs sm:text-sm tracking-[1px] uppercase max-w-2xl mx-auto">
             Explore our curated collection of luxury residences, strategic commercial spaces, and premium investment plots.
           </p>
         </div>

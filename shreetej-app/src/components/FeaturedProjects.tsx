@@ -16,6 +16,7 @@ export default function FeaturedProjects({
   const ProjectCard = ({ project, index }: { project: any; index: number }) => {
     // For upcoming projects not yet in DB (id >= 900), link to contact page
     const detailHref = project.id >= 900 ? "/contact" : 
+                      project.type?.toLowerCase() === "layout" ? "/layouts" :
                       project.type?.toLowerCase() === "commercial" ? `/commercial/${project.id}` : 
                       project.type?.toLowerCase() === "plots" ? "/contact" : 
                       `/residential/${project.id}`;
@@ -98,7 +99,7 @@ export default function FeaturedProjects({
 
         {/* Content */}
         <div className="p-6 sm:p-8 flex flex-col flex-grow">
-          <h3 className="font-serif text-2xl font-bold text-navy mb-2 group-hover:text-gold transition-colors duration-300">
+          <h3 className="font-serif text-xl sm:text-2xl font-bold text-navy mb-2 group-hover:text-gold transition-colors duration-300">
             {project.title}
           </h3>
           <p className="text-text-mid text-sm flex items-center gap-2 mb-4">
@@ -129,7 +130,7 @@ export default function FeaturedProjects({
 
           {/* CTA */}
           <div className="mt-auto pt-6 border-t border-navy/10 flex items-center justify-between">
-            <span className="inline-flex items-center gap-2 bg-navy text-gold text-xs font-bold uppercase tracking-[1.5px] px-5 py-2.5 rounded-full group-hover:bg-gold group-hover:text-navy transition-all duration-300">
+            <span className="inline-flex items-center gap-2 bg-navy text-gold text-[11px] sm:text-xs font-bold uppercase tracking-[1.2px] sm:tracking-[1.5px] px-4 sm:px-5 py-2.5 rounded-full group-hover:bg-gold group-hover:text-navy transition-all duration-300">
               {project.id >= 900 ? "Enquire Now" : "Explore Project"}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -156,13 +157,13 @@ export default function FeaturedProjects({
 
 
   return (
-    <div className="w-full bg-cream py-24">
+    <div className="w-full bg-cream py-16 sm:py-24">
       {/* New Launching Projects Section */}
       {upcomingProjects.length > 0 && (
-        <section className="px-6 md:px-[8%] max-w-[1400px] mx-auto mb-32 relative">
+        <section className="px-4 sm:px-6 lg:px-[8%] max-w-[1400px] mx-auto mb-20 sm:mb-32 relative">
           <ScrollReveal direction="up" duration={800}>
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center justify-center space-x-3 text-[11px] tracking-[3px] uppercase text-gold font-bold mb-4">
+            <div className="text-center mb-10 sm:mb-12">
+              <div className="inline-flex items-center justify-center space-x-2 sm:space-x-3 text-[10px] sm:text-[11px] tracking-[2px] sm:tracking-[3px] uppercase text-gold font-bold mb-4">
                 <div className="h-px bg-gold/40 w-12" />
                 <span>Exclusive Pre-Launch</span>
                 <div className="h-px bg-gold/40 w-12" />
@@ -184,11 +185,11 @@ export default function FeaturedProjects({
 
       {/* Ongoing Projects Section */}
       {ongoingProjects.length > 0 && (
-        <section className="px-6 md:px-[8%] max-w-[1400px] mx-auto relative">
+        <section className="px-4 sm:px-6 lg:px-[8%] max-w-[1400px] mx-auto relative">
           <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-gold/5 rounded-full blur-3xl -translate-y-1/2 -z-10" />
           <ScrollReveal direction="up" duration={800}>
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center justify-center space-x-3 text-[11px] tracking-[3px] uppercase text-gold font-bold mb-4">
+            <div className="text-center mb-10 sm:mb-12">
+              <div className="inline-flex items-center justify-center space-x-2 sm:space-x-3 text-[10px] sm:text-[11px] tracking-[2px] sm:tracking-[3px] uppercase text-gold font-bold mb-4">
                 <div className="h-px bg-gold/40 w-12" />
                 <span>Currently Under Construction</span>
                 <div className="h-px bg-gold/40 w-12" />

@@ -8,7 +8,7 @@ export default function Footer() {
   const [showMap, setShowMap] = useState(false);
 
   return (
-    <footer className="bg-navy text-white/60 pt-20 pb-8 px-6 md:px-[8%] relative overflow-hidden">
+    <footer className="bg-navy text-white/60 pt-16 sm:pt-20 pb-8 px-4 sm:px-6 lg:px-[8%] relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gold/[0.03] rounded-full blur-[120px] pointer-events-none" />
       
@@ -18,7 +18,7 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="lg:col-span-5">
             <ScrollReveal direction="up" delay={0}>
-              <h3 className="font-serif text-[1.6rem] text-white font-bold mb-4">
+              <h3 className="font-serif text-[1.35rem] sm:text-[1.6rem] text-white font-bold mb-4">
                 Shreetej Properties Builders & Developers
               </h3>
               <p className="text-[0.9rem] leading-[1.8] max-w-sm mb-8 font-light">
@@ -116,11 +116,11 @@ export default function Footer() {
 
         {/* Bottom */}
         <ScrollReveal direction="up" delay={100}>
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
-            <span className="font-serif text-gold-light font-bold text-[14px]">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4 text-xs text-center md:text-left">
+            <span className="font-serif text-gold-light font-bold text-[13px] sm:text-[14px]">
               Shreetej Properties Builders & Developers © 2025
             </span>
-            <span className="tracking-wide">
+            <span className="tracking-wide max-w-xl">
               All Rights Reserved · Crafted with ❤️ for Maharashtra&apos;s Families
             </span>
           </div>

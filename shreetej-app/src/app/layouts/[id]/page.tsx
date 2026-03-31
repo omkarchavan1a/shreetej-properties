@@ -5,11 +5,10 @@ import { projects } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import ProjectGallery from "@/components/ProjectGallery";
-import FlatTypes from "@/components/FlatTypes";
 
 export const dynamic = "force-dynamic";
 
-export default async function ResidentialDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function LayoutDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
   const projectId = parseInt(resolvedParams.id);
   if (isNaN(projectId)) return notFound();
@@ -19,7 +18,9 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
 
   const project = projectDetails[0];
   const amenities = project.amenities ? project.amenities.split(",") : [];
-  const isSpecialProject = project.title.toLowerCase().includes("platinum 5");
+  
+  // Use saiban logic
+  const isSaiban = project.title.toLowerCase().includes("saiban");
 
   let galleryImages: string[] = [];
   if (project.galleryUrls) {
@@ -29,7 +30,6 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
       galleryImages = project.galleryUrls.split(",").map((url: string) => url.trim()).filter(Boolean);
     }
   }
-
 
   return (
     <div className="min-h-screen bg-cream text-text-dark font-sans selection:bg-gold/30 selection:text-navy">
@@ -52,7 +52,7 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
         <div className="max-w-[1400px] w-full mx-auto relative z-10 text-center">
           <div className="inline-flex items-center justify-center space-x-2 sm:space-x-3 text-[10px] sm:text-[11px] tracking-[2px] sm:tracking-[3px] uppercase text-gold font-bold mb-6">
             <div className="h-px bg-gold/40 w-12" />
-            <span>{project.title.toLowerCase().includes("saiban") ? "Residential Plotting" : "Premium Living"}</span>
+            <span>Premium Layout</span>
             <div className="h-px bg-gold/40 w-12" />
           </div>
           <h1 className="font-serif text-[clamp(2.5rem,5vw,4.5rem)] text-white font-bold leading-[1.1] mb-6">
@@ -68,25 +68,18 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 sm:gap-16">
           
           <div className="lg:col-span-2 space-y-12">
-            {(isSpecialProject || project.title.toLowerCase().includes("saiban")) ? (
-              <div>
-                <h2 className="font-serif text-3xl text-navy font-bold mb-6">Overview</h2>
-                {(() => {
-                  const descriptionText = project.description || (project.title.toLowerCase().includes("saiban") ? "Saiban Project is a thoughtfully planned residential plotting development offering a limited collection of just 24 exclusive plots, designed for those who aspire to build their dream home in a peaceful and well-connected environment. Surrounded by natural greenery and a calm atmosphere, the project creates a perfect balance between nature and modern living. With clear title plots and well-demarcated layouts, Saiban ensures transparency, security, and ease of investment. The development includes essential infrastructure such as internal roads, proper drainage systems, and street lighting, ensuring a comfortable and hassle-free lifestyle. Its strategic location provides easy access to schools, markets, and daily conveniences, making it ideal for both residential living and long-term investment. With limited availability and strong growth potential, Saiban Project is a perfect opportunity to secure your future in a serene yet well-connected location." : "Experience the pinnacle of residential living with unmatched comfort and luxury.");
-                  const paragraphs = descriptionText.split(/\n\n+/);
-                  return paragraphs.map((paragraph, idx) => (
-                    <p key={idx} className="text-text-mid leading-relaxed text-lg font-light mb-4 last:mb-0">
-                      {paragraph}
-                    </p>
-                  ));
-                })()}
-              </div>
-            ) : (
-              <div>
-                <h2 className="font-serif text-3xl text-navy font-bold mb-6 italic text-gold/80">Project Gallery</h2>
-                <ProjectGallery images={galleryImages} showTitle={false} isNested={true} />
-              </div>
-            )}
+            <div>
+              <h2 className="font-serif text-3xl text-navy font-bold mb-6">Overview</h2>
+              {(() => {
+                const descriptionText = project.description || (isSaiban ? "Saiban Project is a thoughtfully planned residential plotting development offering a limited collection of just 24 exclusive plots, designed for those who aspire to build their dream home in a peaceful and well-connected environment. Surrounded by natural greenery and a calm atmosphere, the project creates a perfect balance between nature and modern living. With clear title plots and well-demarcated layouts, Saiban ensures transparency, security, and ease of investment. The development includes essential infrastructure such as internal roads, proper drainage systems, and street lighting, ensuring a comfortable and hassle-free lifestyle. Its strategic location provides easy access to schools, markets, and daily conveniences, making it ideal for both residential living and long-term investment. With limited availability and strong growth potential, Saiban Project is a perfect opportunity to secure your future in a serene yet well-connected location." : "Discover thoughtfully planned land developments and plots designed for your future home. Quality infrastructure in prime locations.");
+                const paragraphs = descriptionText.split(/\n\n+/);
+                return paragraphs.map((paragraph, idx) => (
+                  <p key={idx} className="text-text-mid leading-relaxed text-lg font-light mb-4 last:mb-0">
+                    {paragraph}
+                  </p>
+                ));
+              })()}
+            </div>
 
             {amenities.length > 0 && (
               <div>
@@ -102,13 +95,13 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
               </div>
             )}
             
-            {(project.mapUrl || project.title.toLowerCase().includes("saiban")) && (
+            {(project.mapUrl || isSaiban) && (
               <div>
                  <h2 className="font-serif text-3xl text-navy font-bold mb-6">Location Map</h2>
                  <div className="rounded-3xl overflow-hidden shadow-xl border border-gold/10 h-96 relative bg-gray-100 flex items-center justify-center">
                     <iframe 
                       src={
-                        project.title.toLowerCase().includes("saiban") 
+                        isSaiban 
                           ? "https://maps.google.com/maps?q=Saiban+Phase+9+Ahmednagar&t=&z=14&ie=UTF8&iwloc=&output=embed"
                           : (project.mapUrl?.includes('google.com/maps/embed') || project.mapUrl?.includes('output=embed')
                               ? project.mapUrl
@@ -125,7 +118,7 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
                  </div>
                  <a 
                    href={
-                     project.title.toLowerCase().includes("saiban") 
+                     isSaiban 
                        ? "https://goo.gl/maps/NNvswsnUnHGNMXFV8" 
                        : (project.mapUrl?.includes('http') && !project.mapUrl?.includes('google.com/maps/embed') && !project.mapUrl?.includes('<iframe')
                           ? project.mapUrl
@@ -174,11 +167,9 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
           
         </div>
       </section>
-      
-      {project.status !== "Ongoing" && !project.title.toLowerCase().includes("saiban") && <FlatTypes />}
 
       {/* Gallery Section */}
-      {isSpecialProject && <ProjectGallery images={galleryImages} />}
+      {galleryImages.length > 0 && <ProjectGallery images={galleryImages} />}
 
       <Footer />
     </div>

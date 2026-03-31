@@ -108,11 +108,11 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-[8%] pt-32 pb-24">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-[8%] pt-28 sm:pt-32 pb-20 sm:pb-24">
         {/* Badge */}
-        <div ref={badgeRef} className="inline-flex items-center space-x-2 bg-gold/15 border border-gold/30 rounded-full px-4 py-2 mb-8 opacity-0">
+        <div ref={badgeRef} className="inline-flex items-center space-x-2 bg-gold/15 border border-gold/30 rounded-full px-3 sm:px-4 py-2 mb-6 sm:mb-8 opacity-0">
           <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse-slow" />
-          <span className="text-[11px] font-bold tracking-[2.5px] uppercase text-gold-light">
+          <span className="text-[10px] sm:text-[11px] font-bold tracking-[2px] sm:tracking-[2.5px] uppercase text-gold-light">
             Trusted since 2011 · Sangamner, Maharashtra
           </span>
         </div>
@@ -130,29 +130,29 @@ export default function Hero() {
         </div>
 
         {/* Subheading */}
-        <p ref={subRef} className="text-[clamp(1rem,1.5vw,1.2rem)] text-white/70 max-w-2xl leading-relaxed mb-12 font-light tracking-wide opacity-0">
+        <p ref={subRef} className="text-[clamp(0.95rem,1.5vw,1.2rem)] text-white/70 max-w-2xl leading-relaxed mb-10 sm:mb-12 font-light tracking-wide opacity-0">
           From land acquisition and development to 100% loan assistance —
           Shreetej Properties Builders & Developers is your Total Real Estate Solution with 16+ years of trusted expertise.
         </p>
 
         {/* Actions */}
-        <div ref={actionsRef} className="flex flex-wrap gap-4">
+        <div ref={actionsRef} className="flex flex-wrap gap-3 sm:gap-4">
           <Link
             href="#contact"
-            className="btn-ripple bg-gradient-to-br from-gold to-gold-light text-navy font-bold text-[13px] tracking-[1.5px] uppercase px-9 py-4 rounded-xl hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(201,148,58,0.4)] transition-all duration-300"
+            className="btn-ripple bg-gradient-to-br from-gold to-gold-light text-navy font-bold text-[12px] sm:text-[13px] tracking-[1.2px] sm:tracking-[1.5px] uppercase px-5 sm:px-9 py-3.5 sm:py-4 rounded-xl hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(201,148,58,0.4)] transition-all duration-300"
           >
             Get Free Consultation
           </Link>
           <Link
             href="#projects"
-            className="border-2 border-white/30 text-white font-semibold text-[13px] tracking-[1.5px] uppercase px-9 py-4 rounded-xl hover:border-gold-light hover:text-gold-light hover:-translate-y-1 transition-all duration-300"
+            className="border-2 border-white/30 text-white font-semibold text-[12px] sm:text-[13px] tracking-[1.2px] sm:tracking-[1.5px] uppercase px-5 sm:px-9 py-3.5 sm:py-4 rounded-xl hover:border-gold-light hover:text-gold-light hover:-translate-y-1 transition-all duration-300"
           >
             View Our Projects
           </Link>
         </div>
 
         {/* Stats with counter animation */}
-        <div ref={statsRef} className="mt-16 lg:mt-0 lg:absolute lg:bottom-16 lg:right-[8%] flex flex-wrap gap-4 sm:gap-6 lg:gap-10">
+        <div ref={statsRef} className="mt-12 sm:mt-16 lg:mt-0 lg:absolute lg:bottom-16 lg:right-[8%] grid grid-cols-1 min-[420px]:grid-cols-2 lg:flex gap-3 sm:gap-6 lg:gap-10">
           <StatCard target={1500} suffix="+" label="Transactions" />
           <StatCard target={55} suffix="+" label="Projects" />
           <StatCard target={16} suffix="+" label="Years" />

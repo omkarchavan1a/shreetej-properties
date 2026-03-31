@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MapPin, CheckCircle2, Info, Layout as LayoutIcon } from "lucide-react";
@@ -27,7 +28,7 @@ export default function LayoutsClient({ layouts }: { layouts: any[] }) {
           opacity: 0,
           duration: 1,
           ease: "power3.out",
-          delay: 0.5
+          delay: 0.2
         });
       }
 
@@ -37,7 +38,7 @@ export default function LayoutsClient({ layouts }: { layouts: any[] }) {
           opacity: 0,
           duration: 1,
           ease: "power3.out",
-          delay: 0.7
+          delay: 0.3
         });
       }
 
@@ -51,7 +52,7 @@ export default function LayoutsClient({ layouts }: { layouts: any[] }) {
           ease: "power3.out",
           scrollTrigger: {
             trigger: cardsRef.current,
-            start: "top 90%",
+            start: "top 95%",
           }
         });
       }
@@ -104,9 +105,10 @@ export default function LayoutsClient({ layouts }: { layouts: any[] }) {
             </div>
           ) : (
             layouts.map((layout, index) => (
-              <div 
+              <Link 
+                href={`/layouts/${layout.id}`}
                 key={layout.id} 
-                className="group bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gold/20 shadow-xl"
+                className="group block bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gold/20 shadow-xl"
               >
                 {/* Image Container */}
                 <div className="relative h-64 overflow-hidden bg-navy/10">
@@ -169,7 +171,7 @@ export default function LayoutsClient({ layouts }: { layouts: any[] }) {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             )
           ))}
         </div>
