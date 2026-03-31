@@ -27,12 +27,12 @@ export default function Preloader() {
 
   useEffect(() => {
     if (progress === 100) {
-      const t1 = setTimeout(() => setPhase("complete"), 300);
-      const t2 = setTimeout(() => setPhase("exit"), 900);
+      const t1 = setTimeout(() => setPhase("complete"), 200);
+      const t2 = setTimeout(() => setPhase("exit"), 500);
       const t3 = setTimeout(() => {
         setPhase("hidden");
         document.body.style.overflow = "";
-      }, 1800);
+      }, 1000);
       return () => {
         clearTimeout(t1);
         clearTimeout(t2);
@@ -48,7 +48,7 @@ export default function Preloader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-navy transition-all duration-[900ms] ${
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-navy transition-all duration-[500ms] ${
         phase === "exit" ? "opacity-0 -translate-y-full" : "opacity-100 translate-y-0"
       }`}
       style={{ transitionTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)" }}

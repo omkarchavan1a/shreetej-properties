@@ -26,7 +26,7 @@ export default function Hero() {
         y: 30,
         opacity: 0,
         duration: 0.8,
-        delay: 1.8,
+        delay: 0.8,
         ease: "power3.out",
       });
 
@@ -39,7 +39,7 @@ export default function Hero() {
           rotateX: -40,
           duration: 1,
           stagger: 0.15,
-          delay: 2.0,
+          delay: 1.0,
           ease: "power4.out",
         });
       }
@@ -49,7 +49,7 @@ export default function Hero() {
         y: 30,
         opacity: 0,
         duration: 0.8,
-        delay: 2.5,
+        delay: 1.5,
         ease: "power3.out",
       });
 
@@ -60,7 +60,7 @@ export default function Hero() {
           opacity: 0,
           duration: 0.6,
           stagger: 0.15,
-          delay: 2.7,
+          delay: 1.7,
           ease: "power3.out",
         });
       }
@@ -73,7 +73,7 @@ export default function Hero() {
           scale: 0.9,
           duration: 0.7,
           stagger: 0.12,
-          delay: 3.0,
+          delay: 2.0,
           ease: "back.out(1.7)",
         });
       }

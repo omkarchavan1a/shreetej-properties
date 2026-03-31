@@ -12,6 +12,7 @@ interface ScrollRevealProps {
   threshold?: number;
   className?: string;
   once?: boolean;
+  hidden?: boolean;
 }
 
 const directionStyles: Record<Direction, { initial: string; visible: string }> = {
@@ -49,9 +50,10 @@ export default function ScrollReveal({
   threshold = 0.15,
   className = "",
   once = true,
+  hidden = true,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(!hidden);
 
   useEffect(() => {
     const el = ref.current;
