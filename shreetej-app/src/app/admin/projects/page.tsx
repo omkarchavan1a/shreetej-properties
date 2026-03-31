@@ -304,6 +304,7 @@ export default function ProjectsCMS() {
                     <option value="residential">Residential</option>
                     <option value="commercial">Commercial</option>
                     <option value="plots">Plots / Land</option>
+                    <option value="layout">Layout</option>
                   </select>
                 </div>
                 <div>
