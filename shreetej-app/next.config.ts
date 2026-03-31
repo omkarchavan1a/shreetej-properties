@@ -23,6 +23,11 @@ const nextConfig: NextConfig = {
         hostname: 'images.houseofhiranandani.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'utfs.io',
+        pathname: '/**',
+      },
     ],
   },
 };
