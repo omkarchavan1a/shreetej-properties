@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export default function FeaturedProjects({ 
@@ -44,16 +45,22 @@ export default function FeaturedProjects({
         {/* Image */}
         <div className="relative aspect-[4/3] overflow-hidden">
           {project.imageUrl ? (
-            <img
+            <Image
               src={project.imageUrl}
               alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           ) : (
-            <img
+            <Image
               src="/assets/shreetej/Shreetej-Properties_Display-Images_PDF-1_page-0004-1024x615_4b6e1e87d3.jpg"
               alt="Project Placeholder"
-              className="w-full h-full object-cover opacity-40 mix-blend-luminosity transition-transform duration-700 group-hover:scale-110"
+              fill
+              className="object-cover opacity-40 mix-blend-luminosity transition-transform duration-700 group-hover:scale-110"
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />

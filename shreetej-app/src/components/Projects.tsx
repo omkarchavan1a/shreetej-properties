@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "react-dom"; // Actually, next/link is better
-import NextLink from "next/link";
+import Link from "next/link";
+import Image from "next/image";
 import { Search, MapPin, Building2, Home, Layout, ArrowRight } from "lucide-react";
 
 interface Project {
@@ -83,7 +83,7 @@ export default function Projects({ initialProjects }: { initialProjects: Project
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {filteredProjects.map((project, index) => (
-            <NextLink
+            <Link
               href={`/${project.type === "commercial" ? "commercial" : "residential"}/${project.id}`}
               key={project.id}
               className="group relative bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border border-transparent hover:border-gold/20"
@@ -92,10 +92,13 @@ export default function Projects({ initialProjects }: { initialProjects: Project
               {/* Image Container */}
               <div className="h-72 relative overflow-hidden bg-navy/5">
                 {project.imageUrl ? (
-                  <img
+                  <Image
                     src={project.imageUrl}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center font-serif text-gold/30 text-3xl">
@@ -141,7 +144,7 @@ export default function Projects({ initialProjects }: { initialProjects: Project
                   {project.description || "A premium development by Shreetej Properties Builders & Developers, offering unmatched luxury and quality."}
                 </p>
               </div>
-            </NextLink>
+            </Link>
           ))}
         </div>
       )}

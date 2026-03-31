@@ -20,21 +20,21 @@ export default function Navbar() {
 
     // Logo entrance animation
     gsap.from(logoRef.current, {
-      x: -30,
+      x: -20,
       opacity: 0,
-      duration: 0.8,
-      delay: 1.6,
+      duration: 0.5,
+      delay: 0.2,
       ease: "power3.out",
     });
 
     // Nav links stagger entrance
     if (linksRef.current) {
       gsap.from(linksRef.current.children, {
-        y: -15,
+        y: -10,
         opacity: 0,
-        duration: 0.5,
-        stagger: 0.08,
-        delay: 1.8,
+        duration: 0.4,
+        stagger: 0.05,
+        delay: 0.3,
         ease: "power3.out",
       });
     }

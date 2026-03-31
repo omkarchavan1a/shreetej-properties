@@ -22,6 +22,15 @@ export async function getProjects() {
   }
 }
 
+export async function getProjectsByType(type: string) {
+  try {
+    return await db.select().from(projects).where(eq(projects.type, type));
+  } catch (error) {
+    console.error("Error fetching projects:", error);
+    return [];
+  }
+}
+
 export async function createProject(data: any) {
   if (!(await isAdmin())) return { success: false, error: "Unauthorized" };
   try {
@@ -29,6 +38,8 @@ export async function createProject(data: any) {
     revalidatePath("/admin/projects");
     revalidatePath("/commercial");
     revalidatePath("/residential");
+    revalidatePath("/layouts");
+    revalidatePath("/");
     return { success: true };
   } catch (error) {
     console.error("Error creating project:", error);
@@ -43,6 +54,8 @@ export async function updateProject(id: number, data: any) {
     revalidatePath("/admin/projects");
     revalidatePath(`/commercial/${id}`);
     revalidatePath(`/residential/${id}`);
+    revalidatePath("/layouts");
+    revalidatePath("/");
     return { success: true };
   } catch (error) {
     console.error("Error updating project:", error);
@@ -55,6 +68,8 @@ export async function deleteProject(id: number) {
   try {
     await db.delete(projects).where(eq(projects.id, id));
     revalidatePath("/admin/projects");
+    revalidatePath("/layouts");
+    revalidatePath("/");
     return { success: true };
   } catch (error) {
     console.error("Error deleting project:", error);

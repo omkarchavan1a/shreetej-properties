@@ -9,8 +9,6 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { getProjects } from "@/app/actions/projects";
 
-export const dynamic = "force-dynamic";
-
 export default async function Home() {
   const allProjects = await getProjects();
   const priorityKeywords = ['apartment', 'flat', 'platinum', 'heights'];

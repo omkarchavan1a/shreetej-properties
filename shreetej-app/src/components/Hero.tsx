@@ -25,8 +25,8 @@ export default function Hero() {
       gsap.from(badgeRef.current, {
         y: 30,
         opacity: 0,
-        duration: 0.8,
-        delay: 0.8,
+        duration: 0.6,
+        delay: 0.3,
         ease: "power3.out",
       });
 
@@ -34,33 +34,33 @@ export default function Hero() {
       if (headingRef.current) {
         const lines = headingRef.current.querySelectorAll(".hero-line");
         gsap.from(lines, {
-          y: 80,
+          y: 60,
           opacity: 0,
-          rotateX: -40,
-          duration: 1,
-          stagger: 0.15,
-          delay: 1.0,
+          rotateX: -30,
+          duration: 0.7,
+          stagger: 0.1,
+          delay: 0.4,
           ease: "power4.out",
         });
       }
 
       // Subheading
       gsap.from(subRef.current, {
-        y: 30,
+        y: 20,
         opacity: 0,
-        duration: 0.8,
-        delay: 1.5,
+        duration: 0.6,
+        delay: 0.7,
         ease: "power3.out",
       });
 
       // Action buttons stagger
       if (actionsRef.current) {
         gsap.from(actionsRef.current.children, {
-          y: 30,
+          y: 20,
           opacity: 0,
-          duration: 0.6,
-          stagger: 0.15,
-          delay: 1.7,
+          duration: 0.5,
+          stagger: 0.1,
+          delay: 0.8,
           ease: "power3.out",
         });
       }
@@ -68,12 +68,12 @@ export default function Hero() {
       // Stats stagger
       if (statsRef.current) {
         gsap.from(statsRef.current.children, {
-          y: 40,
+          y: 30,
           opacity: 0,
-          scale: 0.9,
-          duration: 0.7,
-          stagger: 0.12,
-          delay: 2.0,
+          scale: 0.95,
+          duration: 0.5,
+          stagger: 0.08,
+          delay: 1.0,
           ease: "back.out(1.7)",
         });
       }
