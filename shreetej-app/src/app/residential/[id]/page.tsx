@@ -18,7 +18,19 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
   if (projectDetails.length === 0) return notFound();
 
   const project = projectDetails[0];
-  const amenities = project.amenities ? project.amenities.split(",") : [];
+  let amenities: any[] = [];
+  if (project.amenities) {
+    if (Array.isArray(project.amenities)) {
+      amenities = project.amenities;
+    } else if (typeof project.amenities === 'string') {
+      try {
+        const parsed = JSON.parse(project.amenities);
+        amenities = Array.isArray(parsed) ? parsed : project.amenities.split(",");
+      } catch {
+        amenities = project.amenities.split(",");
+      }
+    }
+  }
   const isSpecialProject = project.title.toLowerCase().includes("platinum 5");
 
   let galleryImages: string[] = [];

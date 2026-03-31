@@ -151,10 +151,21 @@ export default function LayoutsClient({ layouts }: { layouts: any[] }) {
                         Premium Amenities
                       </h4>
                       <ul className="space-y-3">
-                        {layout.amenities.split(",").map((item: string, i: number) => (
+                        {(Array.isArray(layout.amenities)
+                          ? layout.amenities
+                          : (() => {
+                              if (typeof layout.amenities !== 'string') return [];
+                              try {
+                                const parsed = JSON.parse(layout.amenities);
+                                return Array.isArray(parsed) ? parsed : layout.amenities.split(",");
+                              } catch {
+                                return layout.amenities.split(",");
+                              }
+                            })()
+                        ).map((item: any, i: number) => (
                           <li key={i} className="flex items-center text-navy/80 text-sm">
                             <CheckCircle2 className="w-3.5 h-3.5 text-gold mr-2.5" />
-                            {item.trim()}
+                            {typeof item === 'string' ? item.trim() : item}
                           </li>
                         ))}
                       </ul>
