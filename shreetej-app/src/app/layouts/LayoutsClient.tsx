@@ -23,43 +23,60 @@ export default function LayoutsClient({ layouts }: { layouts: any[] }) {
       const p = heroRef.current?.querySelector("p");
 
       if (h1) {
-        gsap.from(h1, {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out",
-          delay: 0.2
-        });
+        gsap.fromTo(h1, 
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            delay: 0.2,
+            clearProps: "all"
+          }
+        );
       }
 
       if (p) {
-        gsap.from(p, {
-          y: 30,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out",
-          delay: 0.3
-        });
+        gsap.fromTo(p, 
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            delay: 0.3,
+            clearProps: "all"
+          }
+        );
       }
 
       // Cards Animation
-      if (cardsRef.current) {
-        gsap.from(cardsRef.current.children, {
-          y: 40,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: cardsRef.current,
-            start: "top 95%",
+      if (cardsRef.current && cardsRef.current.children.length > 0) {
+        gsap.fromTo(
+          cardsRef.current.children,
+          { 
+            y: 50, 
+            opacity: 0 
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power3.out",
+            clearProps: "all",
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: "top 85%", // Trigger slightly earlier
+              toggleActions: "play none none none"
+            }
           }
-        });
+        );
       }
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [layouts]);
 
   return (
     <div ref={containerRef}>
