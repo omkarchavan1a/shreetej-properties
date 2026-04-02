@@ -46,7 +46,7 @@ export default function AboutPage() {
             <div className="flex justify-center lg:justify-end">
               <div className="relative w-full max-w-sm lg:max-w-full aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl border border-gold/10">
                 <img
-                  src="/assets/shreetej/about/IMG_0253.JPG"
+                  src="/assets/shreetej/about/satish-raut.JPG"
                   alt="Shri Satish B. Raut — Chairman & Managing Director"
                   className="w-full h-full object-cover object-top"
                 />
@@ -111,7 +111,7 @@ export default function AboutPage() {
             "/assets/shreetej/about/IMG-20260329-WA0012.jpg",  // Shree Swami Samarth Paduka — big image
             "/assets/shreetej/about/IMG-20260329-WA0014.jpg",
             "/assets/shreetej/about/IMG-20260329-WA0015.jpg",
-            "/assets/shreetej/about/IMG_0253.JPG",
+            "/assets/shreetej/about/satish-raut.JPG",
             "/assets/shreetej/about/IMG_1525.JPG",
             "/assets/shreetej/about/IMG_1537.JPG",
           ].map((src, i) => (
