@@ -71,17 +71,16 @@ export default function AboutPage() {
           </div>
           <h2 className="font-serif text-4xl text-white font-bold mb-16">Strategic Tie-Ups</h2>
           
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 sm:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             {[
-              { name: 'Reliance', url: '/assets/shreetej/logos/reliance_logo.png' },
-              { name: 'Confidence Petroleum', url: '/assets/shreetej/logos/confidence_petroleum_logo.png' },
+              { name: 'Reliance', url: '/assets/shreetej/logos/reliance_logo.jpeg' },
+              { name: 'Confidence Petroleum', url: '/assets/shreetej/logos/confidence_petroleum_logo.jpeg' },
               { name: 'Nobel Group', url: '/assets/shreetej/logos/nobel_group_logo.jpeg' },
-              { name: 'Arbitro Realtors & Sons', url: '/assets/shreetej/logos/arbitro_realtors_logo.jpeg' },
-              { name: 'SBI', url: '/assets/shreetej/logos/sbi_logo.png' }
+              { name: 'Arbitro Realtors & Sons', url: '/assets/shreetej/logos/arbitro_realtors_logo.jpeg' }
             ].map((partner, i) => (
               <div key={i} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center hover:bg-white/10 transition-colors">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white flex items-center justify-center mb-4 overflow-hidden relative shadow-inner">
-                  <img src={partner.url} alt={partner.name} className="w-12 h-12 sm:w-14 sm:h-14 object-contain" />
+                <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-white flex items-center justify-center mb-4 overflow-hidden relative shadow-inner">
+                  <img src={partner.url} alt={partner.name} className="w-14 h-14 sm:w-20 sm:h-20 object-contain" />
                 </div>
                 <span className="text-white text-xs sm:text-sm font-bold tracking-wide text-center">{partner.name}</span>
               </div>
