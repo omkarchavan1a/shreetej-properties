@@ -158,9 +158,35 @@ export default function FeaturedProjects({
 
   return (
     <div className="w-full bg-cream py-16 sm:py-24">
+      {/* Ongoing Projects Section */}
+      {ongoingProjects.length > 0 && (
+        <section className="px-4 sm:px-6 lg:px-[8%] max-w-[1400px] mx-auto mb-20 sm:mb-32 relative">
+          <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-gold/5 rounded-full blur-3xl -translate-y-1/2 -z-10" />
+          <ScrollReveal direction="up" duration={800}>
+            <div className="text-center mb-10 sm:mb-12">
+              <div className="inline-flex items-center justify-center space-x-2 sm:space-x-3 text-[10px] sm:text-[11px] tracking-[2px] sm:tracking-[3px] uppercase text-gold font-bold mb-4">
+                <div className="h-px bg-gold/40 w-12" />
+                <span>Currently Under Construction</span>
+                <div className="h-px bg-gold/40 w-12" />
+              </div>
+              <h2 className="font-serif text-[clamp(2.5rem,4vw,3.5rem)] text-navy font-bold mb-8">
+                Ongoing <em className="text-gold not-italic italic">Developments</em>
+              </h2>
+            </div>
+          </ScrollReveal>
+
+          {/* Project cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 justify-items-center">
+            {ongoingProjects.map((p, i) => (
+              <ProjectCard key={p.id} project={p} index={i} />
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* New Launching Projects Section */}
       {upcomingProjects.length > 0 && (
-        <section className="px-4 sm:px-6 lg:px-[8%] max-w-[1400px] mx-auto mb-20 sm:mb-32 relative">
+        <section className="px-4 sm:px-6 lg:px-[8%] max-w-[1400px] mx-auto relative">
           <ScrollReveal direction="up" duration={800}>
             <div className="text-center mb-10 sm:mb-12">
               <div className="inline-flex items-center justify-center space-x-2 sm:space-x-3 text-[10px] sm:text-[11px] tracking-[2px] sm:tracking-[3px] uppercase text-gold font-bold mb-4">
@@ -177,32 +203,6 @@ export default function FeaturedProjects({
           {/* Project cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 justify-items-center">
             {upcomingProjects.map((p, i) => (
-              <ProjectCard key={p.id} project={p} index={i} />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Ongoing Projects Section */}
-      {ongoingProjects.length > 0 && (
-        <section className="px-4 sm:px-6 lg:px-[8%] max-w-[1400px] mx-auto relative">
-          <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-gold/5 rounded-full blur-3xl -translate-y-1/2 -z-10" />
-          <ScrollReveal direction="up" duration={800}>
-            <div className="text-center mb-10 sm:mb-12">
-              <div className="inline-flex items-center justify-center space-x-2 sm:space-x-3 text-[10px] sm:text-[11px] tracking-[2px] sm:tracking-[3px] uppercase text-gold font-bold mb-4">
-                <div className="h-px bg-gold/40 w-12" />
-                <span>Currently Under Construction</span>
-                <div className="h-px bg-gold/40 w-12" />
-              </div>
-              <h2 className="font-serif text-[clamp(2.5rem,4vw,3.5rem)] text-navy font-bold mb-8">
-                Ongoing <em className="text-gold not-italic italic">Developments</em>
-              </h2>
-            </div>
-          </ScrollReveal>
-
-          {/* Project cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
-            {ongoingProjects.map((p, i) => (
               <ProjectCard key={p.id} project={p} index={i} />
             ))}
           </div>

@@ -31,7 +31,11 @@ export default async function Home() {
 
   const layoutProjects = allProjects
     .filter((p: any) => p.type?.toLowerCase() === "layout")
-    .sort(sortByPriority);
+    .sort((a: any, b: any) => {
+      if (a.status === "Ongoing" && b.status !== "Ongoing") return -1;
+      if (a.status !== "Ongoing" && b.status === "Ongoing") return 1;
+      return sortByPriority(a, b);
+    });
 
   return (
     <div className="min-h-screen bg-cream text-text-dark font-sans selection:bg-gold/30 selection:text-navy">
