@@ -3,22 +3,22 @@ import ScrollReveal from "@/components/ScrollReveal";
 export default function Testimonials() {
   const testimonials = [
     {
-      text: "Shreetej handled all our documentation and legal verification. The entire process was transparent and we had zero stress. The post-sale support they promised was real — they helped us even 6 months after purchase.",
-      author: "Rajesh Kulkarni",
-      loc: "Sangamner · Flat Owner",
-      initials: "R"
+      text: "Hello, I recently connected with Shreetej Properties regarding a plot/flat, and my overall experience has been very good. The entire team is very cooperative and explained every detail clearly. The most important thing is that all the documentation is completely clear, and the entire process is handled in a very transparent manner, which builds strong trust. The location, amenities, and planning are also very impressive.",
+      author: "Dr. Bharat Khemnar",
+      loc: "Banglow Owner · Malpani Nagar",
+      initials: "B"
     },
     {
-      text: "We were first-time buyers and terrified of legal complications. Satish sir personally verified every document. The free legal vetting service alone saved us from a fraudulent deal we almost walked into.",
-      author: "Priya & Amit Deshmukh",
-      loc: "Nashik Road · Plot Buyers",
-      initials: "P"
+      text: "My name is Durga Ghosale. I run a parlour here. I used to run it from my home. It was my dream to have my own shop. And Shreetej Properties helped me to realise that dream. They gave me a place here. It is very precious. They helped me a lot to get this property. And their service is also very good.",
+      author: "Durga Ghosale",
+      loc: "Shop Owner · Client Review",
+      initials: "D"
     },
     {
-      text: "As a builder, I needed a consultant who understood both legal permissions and market realities. Shreetej's consultation for our commercial project saved us months of delays and lakhs in avoidable costs.",
-      author: "Manoj Patil",
-      loc: "Ahmednagar · Builder",
-      initials: "M"
+      text: "My name is Babasaheb Ranganath Murtadak. I have a lift business. While doing this business, I felt the need to buy a flat. I met Shreetej Properties and Satish Raut Chairman. Through them, I got a good flat in Samarth Roop Apartment, Golden City. Their service was excellent for 5 years. Construction work is exceptional. Work space, area, porch, balconies, all areas are good.",
+      author: "Babasaheb Murtadak",
+      loc: "Flat Owner · Samarth Roop Apartment",
+      initials: "B"
     }
   ];
 
