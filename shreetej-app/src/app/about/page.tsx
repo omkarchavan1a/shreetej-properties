@@ -133,26 +133,31 @@ export default function AboutPage() {
             "/assets/shreetej/about/IMG-20260329-WA0010.jpg",
             "/assets/shreetej/about/IMG-20260329-WA0011.jpg",
             "/assets/shreetej/about/IMG-20260329-WA0013.jpg",
-            "/assets/shreetej/about/IMG-20260329-WA0012.jpg",  // Shree Swami Samarth Paduka — big image
+            "/assets/shreetej/about/IMG-20260329-WA0012.jpg",  // Swami Samarth Paduka — keep as big image
             "/assets/shreetej/about/IMG-20260329-WA0014.jpg",
             "/assets/shreetej/about/IMG-20260329-WA0015.jpg",
+            "/assets/shreetej/about/IMG_0253.JPG",
             "/assets/shreetej/about/satish-raut.JPG",
             "/assets/shreetej/about/IMG_1525.JPG",
             "/assets/shreetej/about/IMG_1537.JPG",
           ].map((src, i) => (
             <div
               key={i}
-              className={`rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group relative ${
-                i === 4 ? 'md:col-span-2 md:row-span-2' : 'aspect-[4/3]'
+              className={`rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-700 group relative bg-cream ${
+                i === 4 ? 'md:col-span-2 md:row-span-2' : 'aspect-square sm:aspect-[4/5] lg:aspect-square'
               }`}
             >
               <img
                 src={src}
                 alt={`Shreetej Moments ${i + 1}`}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-navy/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                <span className="text-white font-serif italic text-lg opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">Shreetej</span>
+              <div className="absolute inset-0 bg-navy/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center p-4">
+                <span className="text-gold font-bold tracking-[2px] uppercase text-[10px] mb-2 translate-y-4 group-hover:translate-y-0 transition-all duration-500">Shreetej</span>
+                <span className="text-white font-serif italic text-lg text-center opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                  {i === 4 ? 'Devotional Moments' : 'Our Team & Culture'}
+                </span>
+                <div className="mt-4 h-px bg-gold/50 w-8 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-200" />
               </div>
             </div>
           ))}
