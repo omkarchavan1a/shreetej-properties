@@ -102,7 +102,7 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="absolute -inset-4 bg-gold/5 rounded-[2rem] blur-2xl transition-colors duration-500" />
                 <img 
-                  src="/assets/shreetej/shreetej-logo.png" 
+                  src="/assets/shreetej/new-logo.png" 
                   alt="Shreetej Properties Logo" 
                   className="relative w-full max-w-[280px] sm:max-w-[320px] h-auto object-contain drop-shadow-lg"
                 />
