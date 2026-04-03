@@ -98,13 +98,13 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[35%_1fr] gap-12 lg:gap-20 items-start">
             
             {/* Logo Column */}
-            <div className="flex justify-center lg:justify-start lg:sticky lg:top-32">
-              <div className="relative group">
-                <div className="absolute -inset-4 bg-gold/5 rounded-[2rem] blur-2xl group-hover:bg-gold/10 transition-colors duration-500" />
+            <div className="flex justify-center lg:justify-start">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gold/5 rounded-[2rem] blur-2xl transition-colors duration-500" />
                 <img 
                   src="/assets/shreetej/shreetej-logo.png" 
                   alt="Shreetej Properties Logo" 
-                  className="relative w-full max-w-[280px] sm:max-w-[320px] h-auto object-contain drop-shadow-xl transition-transform duration-700 group-hover:scale-105"
+                  className="relative w-full max-w-[280px] sm:max-w-[320px] h-auto object-contain drop-shadow-lg"
                 />
               </div>
             </div>
