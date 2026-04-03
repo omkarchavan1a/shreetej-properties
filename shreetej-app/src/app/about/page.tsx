@@ -93,26 +93,44 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* About Shreetej Properties Detailed Section */}
       <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-[8%] bg-white">
-        <div className="max-w-[1000px] mx-auto">
-          <div className="inline-flex items-center space-x-3 text-[11px] tracking-[3px] uppercase text-gold font-bold mb-6">
-            <div className="h-px bg-gold/40 w-12" />
-            <span>Company Profile</span>
-            <div className="h-px bg-gold/40 w-12" />
-          </div>
-          <h2 className="font-serif text-4xl text-navy font-bold mb-10">About Shreetej Properties</h2>
-          
-          <div className="space-y-6 text-text-mid text-lg leading-relaxed">
-            <p>
-              Shreetej Properties is a trusted name in the real estate industry, committed to delivering quality developments and building long-term relationships with its clients. With over <span className="text-navy font-bold">1500+ successful transactions</span>, the company has consistently earned the confidence of homebuyers and investors through transparency, reliability, and customer-focused service.
-            </p>
-            <p>
-              Over the years, Shreetej Properties has successfully developed and completed <span className="text-navy font-bold">55+ residential and commercial projects</span>, along with <span className="text-navy font-bold">12+ well-planned layouts</span> designed to meet modern lifestyle needs. With a total construction footprint exceeding <span className="text-navy font-bold">5,50,000 sq. ft.</span>, the company reflects strong execution capability and attention to detail in every project.
-            </p>
-            <p>
-              Driven by a vision to create a distinct identity similar to a well-planned mini-city, Shreetej Properties focuses on delivering thoughtfully designed spaces that combine comfort, convenience, and future growth potential. Every project is a step towards building not just properties, but a secure and fulfilling future for its customers.
-            </p>
+        <div className="max-w-[1200px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-[35%_1fr] gap-12 lg:gap-20 items-start">
+            
+            {/* Logo Column */}
+            <div className="flex justify-center lg:justify-start lg:sticky lg:top-32">
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gold/5 rounded-[2rem] blur-2xl group-hover:bg-gold/10 transition-colors duration-500" />
+                <img 
+                  src="/assets/shreetej/shreetej-logo.png" 
+                  alt="Shreetej Properties Logo" 
+                  className="relative w-full max-w-[280px] sm:max-w-[320px] h-auto object-contain drop-shadow-xl transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            </div>
+
+            {/* Text Column */}
+            <div>
+              <div className="inline-flex items-center space-x-3 text-[11px] tracking-[3px] uppercase text-gold font-bold mb-6">
+                <div className="h-px bg-gold/40 w-12" />
+                <span>Company Profile</span>
+                <div className="h-px bg-gold/40 w-12" />
+              </div>
+              <h2 className="font-serif text-4xl sm:text-5xl text-navy font-bold mb-10 leading-tight">About Shreetej Properties</h2>
+              
+              <div className="space-y-8 text-text-mid text-lg leading-relaxed">
+                <p>
+                  Shreetej Properties is a trusted name in the real estate industry, committed to delivering quality developments and building long-term relationships with its clients. With over <span className="text-navy font-bold border-b-2 border-gold/20 pb-0.5">1500+ successful transactions</span>, the company has consistently earned the confidence of homebuyers and investors through transparency, reliability, and customer-focused service.
+                </p>
+                <p>
+                  Over the years, Shreetej Properties has successfully developed and completed <span className="text-navy font-bold">55+ residential and commercial projects</span>, along with <span className="text-navy font-bold">12+ well-planned layouts</span> designed to meet modern lifestyle needs. With a total construction footprint exceeding <span className="text-navy font-bold font-serif text-xl tracking-tight">5,50,000 sq. ft.</span>, the company reflects strong execution capability and attention to detail in every project.
+                </p>
+                <p>
+                  Driven by a vision to create a distinct identity similar to a well-planned mini-city, Shreetej Properties focuses on delivering thoughtfully designed spaces that combine comfort, convenience, and future growth potential. Every project is a step towards building not just properties, but a secure and fulfilling future for its customers.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
