@@ -10,6 +10,11 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { getProjects } from "@/app/actions/projects";
 
+export const metadata = {
+  title: "Shreetej Properties | Best Real Estate & Builders in Sangamner",
+  description: "Looking for properties in Sangamner? Shreetej Properties offers the top residential flats, commercial spaces, and layout plots for sale in Sangamner, Nashik and Pune.",
+};
+
 export default async function Home() {
   const allProjects = await getProjects();
   const priorityKeywords = ['apartment', 'flat', 'platinum', 'heights'];
