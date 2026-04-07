@@ -24,6 +24,7 @@ const raleway = Raleway({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://shreetejproperties.com"),
   title: {
     default: "Shreetej Properties Builders & Developers | Sangamner Properties",
     template: "%s | Shreetej Properties",
