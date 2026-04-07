@@ -1,7 +1,14 @@
+import type { Metadata } from 'next';
 import Navbar from "@/components/Navbar";
 import Projects from "@/components/Projects";
 import Footer from "@/components/Footer";
 import { getProjects } from "@/app/actions/projects";
+
+export const metadata: Metadata = {
+  title: "Our Projects | Shreetej Properties",
+  description: "Explore our curated collection of luxury residences, strategic commercial spaces, and premium investment plots in Sangamner.",
+  keywords: ["Shreetej Properties projects", "buy flats Sangamner", "commercial spaces Sangamner", "ongoing real estate projects"],
+};
 
 export default async function ProjectsPage() {
   const allProjects = await getProjects();

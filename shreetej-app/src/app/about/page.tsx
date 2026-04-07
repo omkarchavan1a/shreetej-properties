@@ -1,6 +1,13 @@
+import type { Metadata } from 'next';
 import Navbar from "@/components/Navbar";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "About Us | Shreetej Properties",
+  description: "Learn about Shreetej Properties Builders & Developers. Transforming the real estate landscape of Maharashtra with 100% legally clear titles and premium construction since 2011.",
+  keywords: ["About Shreetej Properties", "Builders in Maharashtra", "Satish B. Raut Real Estate", "trusted builders Sangamner"],
+};
 
 export default function AboutPage() {
   return (

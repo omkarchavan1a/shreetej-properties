@@ -56,6 +56,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Shreetej Properties",
+    "image": "https://shreetejproperties.com/assets/shreetej/new-logo.png",
+    "url": "https://shreetejproperties.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Sangamner",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN"
+    },
+    "description": "Total Real Estate Solution. Legally Secured. Best residential and commercial properties, land, and plots for sale in Sangamner."
+  };
+
   return (
     <html lang="en">
       <body
@@ -64,7 +79,10 @@ export default function RootLayout({
         <Preloader />
         <CustomCursor />
         {children}
-
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+        />
       </body>
     </html>
   );
