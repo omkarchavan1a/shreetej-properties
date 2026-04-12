@@ -90,7 +90,7 @@ export default function Contact() {
                   <div>
                     <h4 className="font-bold text-[13px] tracking-[1px] uppercase text-text-dark mb-1">Email</h4>
                     <p className="text-[0.9rem] text-text-mid leading-relaxed break-all">
-                      info@shreetejproperties.com
+                      shreetejproperties11@gmail.co
                     </p>
                   </div>
                 </a>
