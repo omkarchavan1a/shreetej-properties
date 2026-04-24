@@ -34,6 +34,9 @@ export const metadata: Metadata = {
   verification: {
     google: "yWe-B2dWboZZqEC7BWYLgfzyCGXiIAv-jJ2ltrlgMFo",
   },
+  other: {
+    "google-adsense-account": "ca-pub-4859712483063735",
+  },
   openGraph: {
     title: "Shreetej Properties Builders & Developers | Sangamner Properties",
     description: "Total Real Estate Solution. Discover the best properties in Sangamner.",
