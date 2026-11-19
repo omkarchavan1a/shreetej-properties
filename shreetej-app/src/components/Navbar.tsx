@@ -57,9 +57,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 px-3 sm:px-4 lg:px-[5%] transition-all duration-500 border-b border-gold/20 flex items-center justify-between backdrop-blur-md ${
-        scrolled ? "h-16 bg-navy/95 shadow-[0_4px_30px_rgba(0,0,0,0.3)]" : "h-20 bg-navy/80"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 px-3 sm:px-4 lg:px-[5%] transition-all duration-500 border-b border-gold/20 flex items-center justify-between backdrop-blur-md ${scrolled ? "h-16 bg-navy/95 shadow-[0_4px_30px_rgba(0,0,0,0.3)]" : "h-20 bg-navy/80"
+        }`}
     >
       {/* Logo */}
       <Link ref={logoRef} href="/" className="flex items-center space-x-2 sm:space-x-3 group">
@@ -73,7 +72,7 @@ export default function Navbar() {
         </div>
         <div className="leading-tight max-w-[48vw] sm:max-w-none">
           <strong className="block font-serif text-white text-[12px] sm:text-[14px] lg:text-[15px] font-bold tracking-wide group-hover:text-gold-light transition-colors duration-300 truncate sm:whitespace-normal">
-            Shreetej Properties Builders & Developers
+            Shreetej Properties Pvt.Ltd
           </strong>
           <span className="hidden sm:block text-[10px] text-gold-light tracking-[2px] uppercase font-medium">
             Total Real Estate Solution
@@ -101,7 +100,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu Button */}
-      <button 
+      <button
         className="md:hidden flex flex-col space-y-1.5 p-2"
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
       >
@@ -112,11 +111,10 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`absolute top-full left-0 right-0 bg-navy-mid/95 backdrop-blur-xl border-b border-gold/20 flex-col px-4 sm:px-6 py-4 space-y-2 shadow-2xl md:hidden transition-all duration-500 max-h-[75vh] overflow-y-auto ${
-          mobileMenuOpen 
-            ? 'flex opacity-100 translate-y-0' 
+        className={`absolute top-full left-0 right-0 bg-navy-mid/95 backdrop-blur-xl border-b border-gold/20 flex-col px-4 sm:px-6 py-4 space-y-2 shadow-2xl md:hidden transition-all duration-500 max-h-[75vh] overflow-y-auto ${mobileMenuOpen
+            ? 'flex opacity-100 translate-y-0'
             : 'hidden opacity-0 -translate-y-4'
-        }`}
+          }`}
       >
         <div ref={mobileMenuRef} className="flex flex-col space-y-2">
           <MobileNavLink href="/" onClick={() => setMobileMenuOpen(false)}>Home</MobileNavLink>
@@ -136,11 +134,10 @@ function NavLink({ href, children, active }: { href: string; children: React.Rea
   return (
     <Link
       href={href}
-      className={`nav-link-underline text-[12.5px] font-semibold tracking-widest uppercase px-4 py-2 rounded-full transition-all duration-300 ${
-        active
+      className={`nav-link-underline text-[12.5px] font-semibold tracking-widest uppercase px-4 py-2 rounded-full transition-all duration-300 ${active
           ? "text-gold-light bg-gold/15"
           : "text-white/80 hover:text-white hover:bg-white/5"
-      }`}
+        }`}
     >
       {children}
     </Link>

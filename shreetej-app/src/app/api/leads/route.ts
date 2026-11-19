@@ -6,6 +6,32 @@ import { NextResponse } from "next/server";
 import { eq, asc } from "drizzle-orm";
 import { cookies } from "next/headers";
 
+// In-memory rate limiter for lead submissions: max 5 requests per 2 minutes per IP
+const rateLimitMap = new Map<string, { count: number; expiresAt: number }>();
+
+function isRateLimited(identifier: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(identifier);
+
+  // Clean expired
+  if (entry && entry.expiresAt < now) {
+    rateLimitMap.delete(identifier);
+  }
+
+  const current = rateLimitMap.get(identifier);
+  if (!current) {
+    rateLimitMap.set(identifier, { count: 1, expiresAt: now + 2 * 60 * 1000 });
+    return false;
+  }
+
+  if (current.count >= 5) {
+    return true;
+  }
+
+  current.count += 1;
+  return false;
+}
+
 // Helper: Check if the request comes from an authenticated admin
 async function isAuthenticated(): Promise<boolean> {
   const cookieStore = await cookies();
@@ -28,6 +54,17 @@ function sanitize(input: string): string {
 
 export async function POST(req: Request) {
   try {
+    // Rate limiting by client IP
+    const forwardedFor = req.headers.get("x-forwarded-for");
+    const ip = forwardedFor ? forwardedFor.split(",")[0].trim() : "unknown-ip";
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: "Too many requests. Please wait a moment before sending another message." },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
     const { name, email, phone, message } = body;
 
