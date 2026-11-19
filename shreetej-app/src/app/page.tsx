@@ -8,6 +8,7 @@ import LayoutsSection from "@/components/LayoutsSection";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ChatWidget from "@/components/ChatWidget";
 import { getProjects } from "@/app/actions/projects";
 
 export const metadata = {
@@ -54,6 +55,7 @@ export default async function Home() {
       <Testimonials />
       <Contact />
       <Footer />
+      <ChatWidget />
     </div>
   );
 }

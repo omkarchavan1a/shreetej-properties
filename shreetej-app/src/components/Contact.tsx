@@ -68,17 +68,25 @@ export default function Contact() {
             <div className="space-y-6">
               {/* Phone */}
               <ScrollReveal direction="left" delay={100}>
-                <a href="tel:+917588464644" className="flex gap-4 sm:gap-5 p-4 sm:p-6 bg-white/60 backdrop-blur-md border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400 cursor-pointer w-full text-left block">
+                <div className="flex gap-4 sm:gap-5 p-4 sm:p-6 bg-white/60 backdrop-blur-md border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400 w-full text-left">
                   <div className="w-12 h-12 shrink-0 bg-gradient-to-br from-gold/15 to-gold/5 border border-gold/20 rounded-xl flex items-center justify-center text-xl shadow-inner group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(201,148,58,0.15)] transition-all duration-300">
                     <Phone className="w-5 h-5 text-gold" />
                   </div>
                   <div>
                     <h4 className="font-bold text-[13px] tracking-[1px] uppercase text-text-dark mb-1">Phone</h4>
-                    <p className="text-[0.9rem] text-text-mid leading-relaxed">
-                      +91 75884 64644<br />Landline: 02425-451461
-                    </p>
+                    <div className="text-[0.9rem] text-text-mid leading-relaxed flex flex-col space-y-1">
+                      <a href="tel:+917588464644" className="hover:text-gold transition-colors duration-200">
+                        +91 75884 64644
+                      </a>
+                      <a href="tel:+919130155533" className="hover:text-gold transition-colors duration-200">
+                        +91 91301 55533
+                      </a>
+                      <a href="tel:02425451461" className="hover:text-gold transition-colors duration-200">
+                        Landline: 02425-451461
+                      </a>
+                    </div>
                   </div>
-                </a>
+                </div>
               </ScrollReveal>
 
               {/* Email */}
@@ -96,16 +104,37 @@ export default function Contact() {
                 </a>
               </ScrollReveal>
 
-              {/* Location */}
+              {/* Sangamner Office */}
               <ScrollReveal direction="left" delay={300}>
                 <a href="https://maps.google.com/?q=Ekta+Chauk,Ghulewadi,Sangamner,Ahmednagar,Maharashtra" target="_blank" rel="noopener noreferrer" className="flex gap-4 sm:gap-5 p-4 sm:p-6 bg-white/60 backdrop-blur-md border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400 cursor-pointer w-full text-left block">
                   <div className="w-12 h-12 shrink-0 bg-gradient-to-br from-gold/15 to-gold/5 border border-gold/20 rounded-xl flex items-center justify-center text-xl shadow-inner group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(201,148,58,0.15)] transition-all duration-300">
                     <MapPin className="w-5 h-5 text-gold" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-[13px] tracking-[1px] uppercase text-text-dark mb-1">Office Address</h4>
+                    <div className="flex items-center justify-between mb-1">
+                      <h4 className="font-bold text-[13px] tracking-[1px] uppercase text-text-dark">Office Address (Sangamner)</h4>
+                      <span className="text-[11px] text-gold font-medium group-hover:underline">View Map &rarr;</span>
+                    </div>
                     <p className="text-[0.9rem] text-text-mid leading-relaxed">
                       Near Kanchan Comfort Building, Ekta Chowk, Behind Law College, Nashik-Pune Highway, Ghulewadi, Tal. Sangamner, Dist. Ahmednagar.
+                    </p>
+                  </div>
+                </a>
+              </ScrollReveal>
+
+              {/* Pune Branch Office */}
+              <ScrollReveal direction="left" delay={400}>
+                <a href="https://maps.app.goo.gl/c5Tkw9qvXHsFWW8x8?g_st=aw" target="_blank" rel="noopener noreferrer" className="flex gap-4 sm:gap-5 p-4 sm:p-6 bg-white/60 backdrop-blur-md border border-gold/15 rounded-2xl group hover:bg-white hover:shadow-xl hover:border-gold/30 hover:-translate-y-1 transition-all duration-400 cursor-pointer w-full text-left block">
+                  <div className="w-12 h-12 shrink-0 bg-gradient-to-br from-gold/15 to-gold/5 border border-gold/20 rounded-xl flex items-center justify-center text-xl shadow-inner group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(201,148,58,0.15)] transition-all duration-300">
+                    <MapPin className="w-5 h-5 text-gold" />
+                  </div>
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <h4 className="font-bold text-[13px] tracking-[1px] uppercase text-text-dark">Branch Office (Pune)</h4>
+                      <span className="text-[11px] text-gold font-medium group-hover:underline">View Map &rarr;</span>
+                    </div>
+                    <p className="text-[0.9rem] text-text-mid leading-relaxed">
+                      Shreetej Properties Private Limited, Shop No. 101, Pristine Commerce Street, Pune–Nashik Highway, Opposite Pune International Exhibition and Convention Centre, Moshi, Pune.
                     </p>
                   </div>
                 </a>

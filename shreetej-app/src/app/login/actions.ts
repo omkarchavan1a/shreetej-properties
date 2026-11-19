@@ -81,7 +81,7 @@ export async function loginAction(formData: FormData) {
     clearAttempts(email);
     const cookieStore = await cookies();
     cookieStore.set("admin_session", "true", {
-      httpOnly: false,
+      httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
       maxAge: 60 * 60 * 24, // 1 day
