@@ -180,7 +180,7 @@ export default function AboutPage() {
           </div>
 
           <h3 className="font-serif text-2xl sm:text-3xl text-white font-bold mb-2">
-            Our Next Chapter Begins Here.
+            Our Next Chapter Begins Here Shreetej Properties proudly marks a new milestone in its growth journey with its expansion into Pune. With our new office at Pristine Commerce Street, Moshi, Pune, we take our first step towards exploring greater opportunities and expanding our presence in the real estate sector. From our strong roots in Sangamner to new beginnings in Pune, our journey continues with the same vision, commitment and trust. This is not just an expansion; it's the beginning of a bigger vision and a brighter future. From Sangamner to Pune – Growing Beyond Boundaries! .
           </h3>
           <p className="text-gold text-xs sm:text-sm uppercase tracking-[2px] font-semibold mb-8">
             Pristine Commerce Street | Moshi, Pune

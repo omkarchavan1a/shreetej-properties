@@ -210,20 +210,20 @@ export default function FeaturedProjects({
 
           {/* Coming Soon Heading */}
           <ScrollReveal direction="up" duration={800}>
-            <h2 className="text-center font-serif font-bold uppercase text-gold leading-[1.1] tracking-[2px] sm:tracking-[4px] text-[clamp(2rem,6vw,5rem)] mb-10 sm:mb-14 drop-shadow-[0_4px_20px_rgba(201,148,58,0.35)]">
-              #Something Big Is Coming Soon
+            <h2 className="text-center font-serif font-bold uppercase text-navy leading-tight tracking-[1.5px] sm:tracking-[3px] text-[clamp(1rem,2vw,1.6rem)] mb-8 sm:mb-10">
+              #Something Big Is <span className="text-gold">Coming Soon</span>
             </h2>
           </ScrollReveal>
 
           {/* Ongoing Development Video */}
           <ScrollReveal direction="up" duration={800}>
-            <div className="relative left-1/2 -translate-x-1/2 w-screen max-w-[100vw] mb-14 sm:mb-20 bg-navy shadow-[0_25px_80px_rgba(13,27,42,0.25)] overflow-hidden">
+            <div className="w-full h-[350px] sm:h-[500px] lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl border border-gold/10 mb-12 sm:mb-16 bg-navy">
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="w-full h-auto max-h-[80vh] object-cover"
+                className="w-full h-full object-cover"
               >
                 <source src="/videos/ongoing-development.mp4" type="video/mp4" />
               </video>
