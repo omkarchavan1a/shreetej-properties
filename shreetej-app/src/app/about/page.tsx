@@ -144,6 +144,30 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Pune Expansion Section */}
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-[8%] bg-white">
+        <div className="max-w-[1200px] mx-auto text-center">
+          <h2 className="font-serif text-3xl sm:text-5xl text-navy font-bold tracking-[2px] sm:tracking-[4px] uppercase mb-10">
+            BEYOND BOUNDARIES TOWARDS BIGGER DREAMS
+          </h2>
+          <div className="relative w-full max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-gold/10 mb-10">
+            <img
+              src="/assets/shreetej/about/pune-expansion.jpeg"
+              alt="Shreetej Properties Pune Expansion"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+          <p className="text-text-mid text-lg leading-relaxed max-w-3xl mx-auto">
+            our next chapter begin here Shreetej Properties proudly marks a new milestone in its growth journey with its expansion into Pune. With our new office at Pristine Commerce Street, Moshi, Pune, we take our first step towards exploring greater opportunities and expanding our presence in the real estate sector. From our strong roots in Sangamner to new beginnings in Pune, our journey continues with the same vision, commitment and trust. This is not just an expansion; it&apos;s the beginning of a bigger vision and a brighter future. From Sangamner to Pune – Growing Beyond Boundaries!
+          </p>
+        </div>
+        <div>
+          <p>
+            SANGAMNER - PUNE
+          </p>
+        </div>
+      </section>
+
       {/* Dubai Gallery Section */}
       <section className="pt-16 sm:pt-24 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-[8%] bg-white">
         <div className="max-w-[1400px] mx-auto text-center mb-16">

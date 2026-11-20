@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 import ProjectGallery from "@/components/ProjectGallery";
 import FlatTypes from "@/components/FlatTypes";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export default async function ResidentialDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
@@ -18,6 +18,9 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
   if (projectDetails.length === 0) return notFound();
 
   const project = projectDetails[0];
+  if (project.imageUrl) {
+    project.imageUrl = project.imageUrl.replace(/ /g, "-");
+  }
   let amenities: any[] = [];
   if (project.amenities) {
     if (Array.isArray(project.amenities)) {
@@ -172,8 +175,8 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
               </ul>
               
               <div className="mt-10 space-y-4">
-                {project.brochureUrl && (
-                  <a href={project.brochureUrl} target="_blank" rel="noopener noreferrer" className="block w-full bg-navy text-gold text-center font-bold tracking-[1.5px] uppercase py-4 rounded-xl hover:-translate-y-1 hover:shadow-lg transition-all">
+                {(project.brochureUrl || isSpecialProject) && (
+                  <a href={project.brochureUrl || "/brochures/shreetej-platinum-5.pdf"} target="_blank" rel="noopener noreferrer" className="block w-full bg-navy text-gold text-center font-bold tracking-[1.5px] uppercase py-4 rounded-xl hover:-translate-y-1 hover:shadow-lg transition-all">
                     Download Brochure
                   </a>
                 )}

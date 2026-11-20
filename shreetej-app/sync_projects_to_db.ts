@@ -2,7 +2,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const projectsToSync = [
-  { id: 999, title: "Shreetej Platinum-5", type: "residential", status: "Upcoming", location: "Sangamner", description: "Exclusive Pre-Launch. Premium apartments & commercial spaces.", imageUrl: "/images/shreetej-platinum-3.jpeg" },
+  { id: 999, title: "Shreetej Platinum-5", type: "residential", status: "Upcoming", location: "Sangamner", description: "Exclusive Pre-Launch. Premium apartments & commercial spaces.", imageUrl: "/images/shreetej-platinum-3.jpeg", brochureUrl: "/brochures/shreetej-platinum-5.pdf" },
   { id: 101, title: "Shreetej Platinum-2", type: "residential", status: "Completed", location: "Saishradha Chowk, Ghulewadi", description: "Residential + Commercial project with modern amenities.", imageUrl: "/images/shreetej-platinum-1.jpeg" },
   { id: 102, title: "Shreetej Platinum-1", type: "commercial", status: "Completed", location: "Pune-Nashik Highway, Gunjalwadi", description: "Prime located commercial project.", imageUrl: "/images/shreetej-platinum-1.jpeg" },
   { id: 103, title: "Samarth Heights", type: "residential", status: "Completed", location: "Maldad Road, Ghulewadi", description: "Mixed use property with excellent amenities.", imageUrl: "/images/samarth-heights.jpeg" },
