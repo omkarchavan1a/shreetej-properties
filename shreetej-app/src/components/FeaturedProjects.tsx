@@ -217,13 +217,13 @@ export default function FeaturedProjects({
 
           {/* Ongoing Development Video */}
           <ScrollReveal direction="up" duration={800}>
-            <div className="w-full h-[350px] sm:h-[500px] lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl border border-gold/10 mb-12 sm:mb-16 bg-navy">
+            <div className="w-full aspect-[1120/368] h-auto rounded-3xl overflow-hidden shadow-2xl border border-gold/10 mb-12 sm:mb-16 bg-navy">
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               >
                 <source src="/videos/ongoing-development.mp4" type="video/mp4" />
               </video>
