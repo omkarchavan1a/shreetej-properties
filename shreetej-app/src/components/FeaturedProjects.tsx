@@ -208,15 +208,22 @@ export default function FeaturedProjects({
         <section className="px-4 sm:px-6 lg:px-[8%] max-w-[1400px] mx-auto mb-20 sm:mb-32 relative">
           <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-gold/5 rounded-full blur-3xl -translate-y-1/2 -z-10" />
 
+          {/* Coming Soon Heading */}
+          <ScrollReveal direction="up" duration={800}>
+            <h2 className="text-center font-serif font-bold uppercase text-gold leading-[1.1] tracking-[2px] sm:tracking-[4px] text-[clamp(2rem,6vw,5rem)] mb-10 sm:mb-14 drop-shadow-[0_4px_20px_rgba(201,148,58,0.35)]">
+              #Something Big Is Coming Soon
+            </h2>
+          </ScrollReveal>
+
           {/* Ongoing Development Video */}
           <ScrollReveal direction="up" duration={800}>
-            <div className="rounded-3xl overflow-hidden shadow-2xl border border-gold/10 mb-12 sm:mb-16 bg-navy">
+            <div className="relative left-1/2 -translate-x-1/2 w-screen max-w-[100vw] mb-14 sm:mb-20 bg-navy shadow-[0_25px_80px_rgba(13,27,42,0.25)] overflow-hidden">
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="w-full h-auto max-h-[560px] object-cover"
+                className="w-full h-auto max-h-[80vh] object-cover"
               >
                 <source src="/videos/ongoing-development.mp4" type="video/mp4" />
               </video>
