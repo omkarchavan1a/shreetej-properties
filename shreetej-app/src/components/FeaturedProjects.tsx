@@ -207,6 +207,22 @@ export default function FeaturedProjects({
       {ongoingProjects.length > 0 && (
         <section className="px-4 sm:px-6 lg:px-[8%] max-w-[1400px] mx-auto mb-20 sm:mb-32 relative">
           <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-gold/5 rounded-full blur-3xl -translate-y-1/2 -z-10" />
+
+          {/* Ongoing Development Video */}
+          <ScrollReveal direction="up" duration={800}>
+            <div className="rounded-3xl overflow-hidden shadow-2xl border border-gold/10 mb-12 sm:mb-16 bg-navy">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-auto max-h-[560px] object-cover"
+              >
+                <source src="/videos/ongoing-development.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </ScrollReveal>
+
           <ScrollReveal direction="up" duration={800}>
             <div className="text-center mb-10 sm:mb-12">
               <div className="inline-flex items-center justify-center space-x-2 sm:space-x-3 text-[10px] sm:text-[11px] tracking-[2px] sm:tracking-[3px] uppercase text-gold font-bold mb-4">
