@@ -88,6 +88,52 @@ export default function WhyChooseUs() {
               </ScrollReveal>
             ))}
           </div>
+
+          {/* Legacy Stats */}
+          <ScrollReveal direction="right">
+            <div className="mt-10">
+              <h3 className="font-serif text-[1.6rem] sm:text-[1.9rem] text-[#6b5530] font-semibold tracking-[1px] mb-6 text-center">
+                THE LEGACY OF TRUST &amp; EXCELLENCE
+              </h3>
+              <div className="grid grid-cols-3 gap-3 sm:gap-4">
+                {[
+                  { value: 16, suffix: "+", label: "YEARS\nof Expertise", gold: false },
+                  { value: 550000, suffix: "+", label: "Sq. Ft. Area\nDeveloped", gold: true, formatted: "5,50,000+" },
+                  { value: 1500, suffix: "+", label: "Successful Property\nTransactions", gold: false },
+                  { value: 55, suffix: "+", label: "Residential &\nCommercial Projects", gold: true },
+                  { value: 15, suffix: "+", label: "Successfully\nDeveloped Layouts", gold: false },
+                ].map((stat, idx) => (
+                  <div
+                    key={idx}
+                    className={`rounded-xl px-3 py-5 sm:py-6 text-center border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+                      stat.gold
+                        ? "bg-gold border-gold text-white"
+                        : "bg-white border-gold/20 text-text-dark"
+                    }`}
+                  >
+                    <div className="font-serif text-xl sm:text-3xl font-bold leading-none">
+                      {stat.formatted ? (
+                        stat.formatted
+                      ) : (
+                        <CounterAnimation target={stat.value} suffix={stat.suffix} />
+                      )}
+                    </div>
+                    <div className={`text-[9px] sm:text-[11px] leading-tight mt-2 whitespace-pre-line ${stat.gold ? "text-white/90" : "text-text-mid"}`}>
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+                <div className="rounded-xl px-3 py-5 sm:py-6 text-center border bg-gold border-gold text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                  <div className="font-serif text-lg sm:text-2xl font-bold leading-tight">
+                    A TRUSTED NAME
+                  </div>
+                  <div className="text-[9px] sm:text-[11px] leading-tight mt-2 text-white/90">
+                    In Real Estate<br />Development
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
 
       </div>

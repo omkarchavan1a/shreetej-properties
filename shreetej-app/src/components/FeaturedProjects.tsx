@@ -14,8 +14,22 @@ export default function FeaturedProjects({
 
 
   const ProjectCard = ({ project, index }: { project: any; index: number }) => {
+    const isPlatinum5 = /platinum[-\s]?5/i.test(project.title || "");
+
+    const handleBrochureDownload = (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const link = document.createElement("a");
+      link.href = "/brochures/shreetej-platinum-5.pdf";
+      link.download = "Shreetej Platinum 5 Brochure.pdf";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    };
+
     // For upcoming projects not yet in DB (id >= 900), link to contact page
-    const detailHref = project.id >= 900 ? "/contact" : 
+    const detailHref = isPlatinum5 ? `/residential/${project.id}` :
+                      project.id >= 900 ? "/contact" : 
                       project.type?.toLowerCase() === "layout" ? "/layouts" :
                       project.type?.toLowerCase() === "commercial" ? `/commercial/${project.id}` : 
                       project.type?.toLowerCase() === "plots" ? "/contact" : 
@@ -89,7 +103,7 @@ export default function FeaturedProjects({
           {/* Hover overlay with Explore cta */}
           <div className="absolute inset-0 bg-navy/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
             <span className="text-white font-bold uppercase tracking-[2px] text-sm flex items-center gap-2">
-              {project.id >= 900 ? "Enquire Now" : "View Details"}
+              {project.id >= 900 && !isPlatinum5 ? "Enquire Now" : "View Details"}
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
@@ -129,23 +143,54 @@ export default function FeaturedProjects({
           )}
 
           {/* CTA */}
-          <div className="mt-auto pt-6 border-t border-navy/10 flex items-center justify-between">
-            <span className="inline-flex items-center gap-2 bg-navy text-gold text-[11px] sm:text-xs font-bold uppercase tracking-[1.2px] sm:tracking-[1.5px] px-4 sm:px-5 py-2.5 rounded-full group-hover:bg-gold group-hover:text-navy transition-all duration-300">
-              {project.id >= 900 ? "Enquire Now" : "Explore Project"}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </span>
+          <div className="mt-auto pt-6 border-t border-navy/10 flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center gap-3">
+              {isPlatinum5 && (
+                <span
+                  role="button"
+                  tabIndex={0}
+                  onClick={handleBrochureDownload}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleBrochureDownload(e as unknown as React.MouseEvent);
+                    }
+                  }}
+                  className="inline-flex items-center gap-2 bg-gold text-navy text-[11px] sm:text-xs font-bold uppercase tracking-[1.2px] sm:tracking-[1.5px] px-4 sm:px-5 py-2.5 rounded-full cursor-pointer hover:bg-navy hover:text-gold transition-all duration-300"
+                >
+                  Download Brochure
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                  </svg>
+                </span>
+              )}
+              <span className="inline-flex items-center gap-2 bg-navy text-gold text-[11px] sm:text-xs font-bold uppercase tracking-[1.2px] sm:tracking-[1.5px] px-4 sm:px-5 py-2.5 rounded-full group-hover:bg-gold group-hover:text-navy transition-all duration-300">
+                {project.id >= 900 && !isPlatinum5 ? "Enquire Now" : "Explore Project"}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </span>
+            </div>
             <span className="text-xs font-semibold text-navy/50 group-hover:text-gold transition-colors duration-300 tracking-[1px] uppercase">
               {project.location}
             </span>
