@@ -145,20 +145,16 @@ export default function AboutPage() {
       </section>
 
       {/* Dubai Gallery Section */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-[8%] bg-white border-b border-gold/10">
+      <section className="pt-16 sm:pt-24 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-[8%] bg-white">
         <div className="max-w-[1400px] mx-auto text-center mb-16">
           <div className="inline-flex items-center justify-center space-x-3 text-[11px] tracking-[3px] uppercase text-gold font-bold mb-4">
             <div className="h-px bg-gold/40 w-12" />
             <span>GLOBAL FOOTPRINT</span>
             <div className="h-px bg-gold/40 w-12" />
           </div>
-          <h2 className="font-serif text-4xl sm:text-5xl text-navy font-bold tracking-tight inline-block relative">
-            <span className="relative z-10">Shreetej Properties in Dubai</span>
-            <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-gold to-transparent rounded-full" />
+          <h2 className="font-serif text-4xl text-navy font-bold">
+            Shreetej Properties in <span className="text-gold italic not-italic">Dubai</span>
           </h2>
-          <p className="text-text-mid text-base sm:text-lg max-w-2xl mx-auto mt-6 font-light">
-            Expanding our vision across borders with key international engagements, partnerships, and strategic milestones in Dubai.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-[1400px] mx-auto">
@@ -218,6 +214,10 @@ export default function AboutPage() {
             "/assets/shreetej/about/satish-raut.JPG",
             "/assets/shreetej/about/IMG_1525.JPG",
             "/assets/shreetej/about/IMG_1537.JPG",
+            "/assets/shreetej/about/moment-journey-1.jpg",
+            "/assets/shreetej/about/moment-journey-2.jpg",
+            "/assets/shreetej/about/moment-journey-3.jpg",
+            "/assets/shreetej/about/moment-journey-4.jpg",
           ].map((src, i) => (
             <div
               key={i}
