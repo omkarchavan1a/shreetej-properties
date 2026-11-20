@@ -176,7 +176,7 @@ export default async function ResidentialDetailsPage({ params }: { params: Promi
               
               <div className="mt-10 space-y-4">
                 {(project.brochureUrl || isSpecialProject) && (
-                  <a href={project.brochureUrl || "/brochures/shreetej-platinum-5.pdf"} target="_blank" rel="noopener noreferrer" className="block w-full bg-navy text-gold text-center font-bold tracking-[1.5px] uppercase py-4 rounded-xl hover:-translate-y-1 hover:shadow-lg transition-all">
+                  <a href={project.brochureUrl || "/brochures/shreetej-platinum-5.pdf"} download="Shreetej Platinum 5 Brochure.pdf" className="block w-full bg-navy text-gold text-center font-bold tracking-[1.5px] uppercase py-4 rounded-xl hover:-translate-y-1 hover:shadow-lg transition-all">
                     Download Brochure
                   </a>
                 )}

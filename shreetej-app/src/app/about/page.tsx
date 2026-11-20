@@ -157,72 +157,41 @@ export default function AboutPage() {
 
       {/* Pune Expansion Section */}
       <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-[8%] bg-white">
-        <div className="max-w-[1200px] mx-auto text-center">
-          <h2 className="font-serif text-3xl sm:text-5xl text-navy font-bold tracking-[2px] sm:tracking-[4px] uppercase mb-10">
-            BEYOND BOUNDARIES TOWARDS BIGGER DREAMS
+        <div className="max-w-[1100px] mx-auto bg-navy rounded-[2rem] p-6 sm:p-10 lg:p-14 shadow-2xl border border-gold/10">
+          <span className="inline-block bg-gold/15 text-gold border border-gold/30 text-[10px] font-bold uppercase tracking-[2px] px-4 py-1.5 rounded-full mb-6">
+            A New Milestone
+          </span>
+          <h2 className="font-serif text-3xl sm:text-5xl text-white font-bold leading-tight mb-2">
+            BEYOND BOUNDARIES.
           </h2>
-          <div className="relative w-full max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-gold/10 mb-10">
+          <p className="font-serif text-2xl sm:text-4xl text-gold font-semibold mb-2">
+            TOWARDS BIGGER DREAMS.
+          </p>
+          <p className="text-white/60 text-[11px] sm:text-xs uppercase tracking-[2px] font-semibold mb-8">
+            Shreetej Properties — Now in Pune!
+          </p>
+
+          <div className="rounded-2xl overflow-hidden shadow-xl mb-10 border border-white/10">
             <img
               src="/assets/shreetej/about/pune-expansion.jpeg"
-              alt="Shreetej Properties Pune Expansion"
+              alt="The Commerce Street, Pristine Commerce Street — Moshi, Pune"
               className="w-full h-auto object-cover"
             />
           </div>
-          <p className="text-text-mid text-lg leading-relaxed max-w-3xl mx-auto">
-            our next chapter begin here Shreetej Properties proudly marks a new milestone in its growth journey with its expansion into Pune. With our new office at Pristine Commerce Street, Moshi, Pune, we take our first step towards exploring greater opportunities and expanding our presence in the real estate sector. From our strong roots in Sangamner to new beginnings in Pune, our journey continues with the same vision, commitment and trust. This is not just an expansion; it&apos;s the beginning of a bigger vision and a brighter future. From Sangamner to Pune – Growing Beyond Boundaries!
-          </p>
-        </div>
-        <div>
-          <p>
-            SANGAMNER - PUNE
-          </p>
-        </div>
-      </section>
 
-      {/* Dubai Gallery Section */}
-      <section className="pt-16 sm:pt-24 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-[8%] bg-white">
-        <div className="max-w-[1400px] mx-auto text-center mb-16">
-          <div className="inline-flex items-center justify-center space-x-3 text-[11px] tracking-[3px] uppercase text-gold font-bold mb-4">
-            <div className="h-px bg-gold/40 w-12" />
-            <span>GLOBAL FOOTPRINT</span>
-            <div className="h-px bg-gold/40 w-12" />
-          </div>
-          <h2 className="font-serif text-4xl text-navy font-bold">
-            Shreetej Properties in <span className="text-gold italic not-italic">Dubai</span>
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-[1400px] mx-auto">
-          {[
-            { src: "/assets/shreetej/dubai/dubai-1.jpg", title: "Corporate Engagements", location: "HMB Homes, Dubai" },
-            { src: "/assets/shreetej/dubai/dubai-2.jpg", title: "Strategic Delegation", location: "Global Real Estate Meet" },
-            { src: "/assets/shreetej/dubai/dubai-3.jpg", title: "Global Partnerships", location: "Classic Group, Dubai" },
-            { src: "/assets/shreetej/dubai/dubai-4.jpg", title: "International Vision", location: "Downtown Dubai" },
-            { src: "/assets/shreetej/dubai/dubai-5.jpg", title: "Business Alliances", location: "Strategic Collaboration" },
-          ].map((item, idx) => (
-            <div
-              key={idx}
-              className="group relative rounded-2xl overflow-hidden bg-cream shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 aspect-[3/4]"
-            >
-              <img
-                src={item.src}
-                alt={item.title}
-                className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-5">
-                <span className="text-gold font-bold tracking-[2px] uppercase text-[10px] mb-1 translate-y-3 group-hover:translate-y-0 transition-transform duration-500">
-                  Dubai Visit
-                </span>
-                <span className="text-white font-serif font-bold text-base translate-y-3 group-hover:translate-y-0 transition-transform duration-500 delay-75">
-                  {item.title}
-                </span>
-                <span className="text-white/80 text-xs mt-1 translate-y-3 group-hover:translate-y-0 transition-transform duration-500 delay-100">
-                  {item.location}
-                </span>
-                <div className="mt-3 h-0.5 bg-gold/60 w-8 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left delay-150" />
-              </div>
-            </div>
-          ))}
+          <h3 className="font-serif text-2xl sm:text-3xl text-white font-bold mb-2">
+            Our Next Chapter Begins Here.
+          </h3>
+          <p className="text-gold text-xs sm:text-sm uppercase tracking-[2px] font-semibold mb-8">
+            Pristine Commerce Street | Moshi, Pune
+          </p>
+          <div className="h-px bg-gold/20 w-full mb-8" />
+          <h4 className="font-serif text-xl sm:text-2xl text-white font-bold tracking-wide mb-2">
+            SANGAMNER <span className="text-gold">→</span> PUNE
+          </h4>
+          <p className="text-white/60 text-[11px] sm:text-xs uppercase tracking-[2px] font-semibold">
+            Our Journey of Growth Continues.
+          </p>
         </div>
       </section>
 
