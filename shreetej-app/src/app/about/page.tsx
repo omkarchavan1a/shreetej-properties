@@ -83,7 +83,10 @@ export default function AboutPage() {
               { name: 'Reliance', url: '/assets/shreetej/logos/reliance_logo.jpeg' },
               { name: 'Confidence Petroleum', url: '/assets/shreetej/logos/confidence_petroleum_logo.jpeg' },
               { name: 'Nobel Group', url: '/assets/shreetej/logos/nobel_group_logo.jpeg' },
-              { name: 'Arbitro Realtors & Sons', url: '/assets/shreetej/logos/arbitro_realtors_logo.jpeg' }
+              { name: 'Arbitro Realtors & Sons', url: '/assets/shreetej/logos/arbitro_realtors_logo.jpeg' },
+              { name: 'AHA Aakar Educational Trust', url: '/assets/shreetej/logos/aakar_educational_trust_logo.jpg' },
+              { name: 'Revolt EV Motors', url: '/assets/shreetej/logos/revolt_ev_motors_logo.avif' },
+              { name: 'Royal Associates', url: '/assets/shreetej/logos/royal_associates_logo.jpg' }
             ].map((partner, i) => (
               <div key={i} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center hover:bg-white/10 transition-colors">
                 <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-white flex items-center justify-center mb-4 overflow-hidden relative shadow-inner">
