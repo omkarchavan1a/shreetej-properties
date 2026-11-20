@@ -43,9 +43,20 @@ export default function AboutPage() {
               <h2 className="text-[11px] tracking-[3px] uppercase text-gold font-bold mb-4">Leadership</h2>
               <h3 className="font-serif text-4xl text-navy font-bold mb-2">Shri Satish B. Raut</h3>
               <p className="text-gold font-bold uppercase tracking-[1px] text-sm mb-6">Chairman &amp; Managing Director</p>
-              <p className="text-text-mid leading-relaxed mb-8">
-                The journey to success in the real estate sector was not an easy one. Through numerous challenges, experiences, and learning phases, Shri Satish B. Raut began his journey as a land developer in 2011. In the initial years, limited resources, the challenges of a constantly changing market, and the struggle to build trust helped shape a stronger and clearer vision. With 16+ years of experience, backed by integrity and transparent dealings, the company under his leadership has today earned the trust of 1,000+ satisfied customers. Quality planning, long-term value, and securing a safe future for customers&apos; dreams remain the true driving forces behind his work.
-              </p>
+              <div className="space-y-4 text-text-mid leading-relaxed mb-8">
+                <p>
+                  A visionary leader with a strong foundation in real estate, Shri. Satish B. Raut embarked on his journey in 2011 with a clear purpose - to redefine property development through trust, transparency, and excellence.
+                </p>
+                <p>
+                  Driven by strategic vision, entrepreneurial spirit, and an unwavering commitment to quality, he has guided Shreetej Properties through years of growth and transformation. Under his leadership, the company has earned the confidence of 1,500+ satisfied customers and established a trusted presence in the real estate sector.
+                </p>
+                <p>
+                  His philosophy goes beyond developing properties; it is about creating enduring value, building meaningful relationships, and turning aspirations into lasting realities.
+                </p>
+                <p className="font-medium text-navy/90">
+                  His vision. Our foundation. Your trust.
+                </p>
+              </div>
               <div className="font-serif italic text-3xl text-navy/80 tracking-wider">Satish B. Raut</div>
             </div>
 
