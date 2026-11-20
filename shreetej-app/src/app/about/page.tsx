@@ -155,6 +155,46 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Pune Expansion Section */}
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-[8%] bg-white">
+        <div className="max-w-[1100px] mx-auto bg-navy rounded-[2rem] p-6 sm:p-10 lg:p-14 shadow-2xl border border-gold/10">
+          <span className="inline-block bg-gold/15 text-gold border border-gold/30 text-[10px] font-bold uppercase tracking-[2px] px-4 py-1.5 rounded-full mb-6">
+            A New Milestone
+          </span>
+          <h2 className="font-serif text-3xl sm:text-5xl text-white font-bold leading-tight mb-2">
+            BEYOND BOUNDARIES.
+          </h2>
+          <p className="font-serif text-2xl sm:text-4xl text-gold font-semibold mb-2">
+            TOWARDS BIGGER DREAMS.
+          </p>
+          <p className="text-white/60 text-[11px] sm:text-xs uppercase tracking-[2px] font-semibold mb-8">
+            Shreetej Properties — Now in Pune!
+          </p>
+
+          <div className="rounded-2xl overflow-hidden shadow-xl mb-10 border border-white/10">
+            <img
+              src="/assets/shreetej/about/pune-expansion.jpeg"
+              alt="The Commerce Street, Pristine Commerce Street — Moshi, Pune"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+
+          <h3 className="font-serif text-2xl sm:text-3xl text-white font-bold mb-2">
+            Our Next Chapter Begins Here.
+          </h3>
+          <p className="text-gold text-xs sm:text-sm uppercase tracking-[2px] font-semibold mb-8">
+            Pristine Commerce Street | Moshi, Pune
+          </p>
+          <div className="h-px bg-gold/20 w-full mb-8" />
+          <h4 className="font-serif text-xl sm:text-2xl text-white font-bold tracking-wide mb-2">
+            SANGAMNER <span className="text-gold">→</span> PUNE
+          </h4>
+          <p className="text-white/60 text-[11px] sm:text-xs uppercase tracking-[2px] font-semibold">
+            Our Journey of Growth Continues.
+          </p>
+        </div>
+      </section>
+
       {/* Dubai Gallery Section */}
       <section className="pt-16 sm:pt-24 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-[8%] bg-white">
         <div className="max-w-[1400px] mx-auto text-center mb-16">
@@ -199,46 +239,6 @@ export default function AboutPage() {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Pune Expansion Section */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-[8%] bg-white">
-        <div className="max-w-[1100px] mx-auto bg-navy rounded-[2rem] p-6 sm:p-10 lg:p-14 shadow-2xl border border-gold/10">
-          <span className="inline-block bg-gold/15 text-gold border border-gold/30 text-[10px] font-bold uppercase tracking-[2px] px-4 py-1.5 rounded-full mb-6">
-            A New Milestone
-          </span>
-          <h2 className="font-serif text-3xl sm:text-5xl text-white font-bold leading-tight mb-2">
-            BEYOND BOUNDARIES.
-          </h2>
-          <p className="font-serif text-2xl sm:text-4xl text-gold font-semibold mb-2">
-            TOWARDS BIGGER DREAMS.
-          </p>
-          <p className="text-white/60 text-[11px] sm:text-xs uppercase tracking-[2px] font-semibold mb-8">
-            Shreetej Properties — Now in Pune!
-          </p>
-
-          <div className="rounded-2xl overflow-hidden shadow-xl mb-10 border border-white/10">
-            <img
-              src="/assets/shreetej/about/pune-expansion.jpeg"
-              alt="The Commerce Street, Pristine Commerce Street — Moshi, Pune"
-              className="w-full h-auto object-cover"
-            />
-          </div>
-
-          <h3 className="font-serif text-2xl sm:text-3xl text-white font-bold mb-2">
-            Our Next Chapter Begins Here.
-          </h3>
-          <p className="text-gold text-xs sm:text-sm uppercase tracking-[2px] font-semibold mb-8">
-            Pristine Commerce Street | Moshi, Pune
-          </p>
-          <div className="h-px bg-gold/20 w-full mb-8" />
-          <h4 className="font-serif text-xl sm:text-2xl text-white font-bold tracking-wide mb-2">
-            SANGAMNER <span className="text-gold">→</span> PUNE
-          </h4>
-          <p className="text-white/60 text-[11px] sm:text-xs uppercase tracking-[2px] font-semibold">
-            Our Journey of Growth Continues.
-          </p>
         </div>
       </section>
 
