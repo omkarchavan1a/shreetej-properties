@@ -1,0 +1,65 @@
+
+> shreetej-app@0.1.0 build
+> next build --webpack
+
+ΓÜá Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\oomka\package-lock.json as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles: 
+   * C:\Users\oomka\OneDrive\Desktop\New folder (6)\shreetej-properties\shreetej-app\package-lock.json
+
+Γû▓ Next.js 16.2.0 (webpack)
+- Experiments (use with caution):
+  ┬╖ serverActions
+
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 15.3s
+  Running TypeScript ...
+  Finished TypeScript in 17.9s ...
+  Collecting page data using 1 worker ...
+  Generating static pages using 1 worker (0/31) ...
+  Generating static pages using 1 worker (7/31) 
+Error occurred prerendering page "/blogs". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: Failed query: select "id", "title", "slug", "content", "excerpt", "category", "status", "image_url", "author", "created_at" from "blogs" where "blogs"."status" = $1 order by "blogs"."created_at" desc
+params: published
+    at aE.queryWithCache (C:\Users\oomka\OneDrive\Desktop\New folder (6)\shreetej-properties\shreetej-app\.next\server\chunks\224.js:8:36736)
+    at async aE.execute (C:\Users\oomka\OneDrive\Desktop\New folder (6)\shreetej-properties\shreetej-app\.next\server\chunks\224.js:8:39105)
+    at async n (C:\Users\oomka\OneDrive\Desktop\New folder (6)\shreetej-properties\shreetej-app\.next\server\app\blogs\page.js:2:11345) {
+  query: 'select "id", "title", "slug", "content", "excerpt", "category", "status", "image_url", "author", "created_at" from "blogs" where "blogs"."status" = $1 order by "blogs"."created_at" desc',
+  params: [ 'published' ],
+  digest: '2301145452',
+  [cause]: Error [NeonDbError]: Error connecting to database: TypeError: fetch failed
+      at bv.execute (C:\Users\oomka\OneDrive\Desktop\New folder (6)\shreetej-properties\shreetej-app\.next\server\chunks\224.js:36:3180)
+      at async (C:\Users\oomka\OneDrive\Desktop\New folder (6)\shreetej-properties\shreetej-app\.next\server\chunks\224.js:8:39148)
+      at async aE.queryWithCache (C:\Users\oomka\OneDrive\Desktop\New folder (6)\shreetej-properties\shreetej-app\.next\server\chunks\224.js:8:36711)
+      at async aE.execute (C:\Users\oomka\OneDrive\Desktop\New folder (6)\shreetej-properties\shreetej-app\.next\server\chunks\224.js:8:39105)
+      at async n (C:\Users\oomka\OneDrive\Desktop\New folder (6)\shreetej-properties\shreetej-app\.next\server\app\blogs\page.js:2:11345) {
+    severity: undefined,
+    code: undefined,
+    detail: undefined,
+    hint: undefined,
+    position: undefined,
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: undefined,
+    schema: undefined,
+    table: undefined,
+    column: undefined,
+    dataType: undefined,
+    constraint: undefined,
+    file: undefined,
+    line: undefined,
+    routine: undefined,
+    sourceError: TypeError: fetch failed
+        at async bv.execute (C:\Users\oomka\OneDrive\Desktop\New folder (6)\shreetej-properties\shreetej-app\.next\server\chunks\224.js:36:3091)
+        at async (C:\Users\oomka\OneDrive\Desktop\New folder (6)\shreetej-properties\shreetej-app\.next\server\chunks\224.js:8:39148)
+        at async aE.queryWithCache (C:\Users\oomka\OneDrive\Desktop\New folder (6)\shreetej-properties\shreetej-app\.next\server\chunks\224.js:8:36711)
+        at async aE.execute (C:\Users\oomka\OneDrive\Desktop\New folder (6)\shreetej-properties\shreetej-app\.next\server\chunks\224.js:8:39105)
+        at async n (C:\Users\oomka\OneDrive\Desktop\New folder (6)\shreetej-properties\shreetej-app\.next\server\app\blogs\page.js:2:11345) {
+      [cause]: [AggregateError]
+    }
+  }
+}
+Export encountered an error on /blogs/page: /blogs, exiting the build.
+Γ¿» Next.js build worker exited with code: 1 and signal: null
