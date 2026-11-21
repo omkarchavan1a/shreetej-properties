@@ -210,9 +210,16 @@ export default function FeaturedProjects({
 
           {/* Coming Soon Heading */}
           <ScrollReveal direction="up" duration={800}>
-            <h2 className="text-center font-serif font-bold uppercase text-navy leading-tight tracking-[1.5px] sm:tracking-[3px] text-[clamp(1rem,2vw,1.6rem)] mb-8 sm:mb-10">
-              #Something Extraordinary Is <span className="text-gold">Coming Soon</span>
-            </h2>
+            <div className="text-center mb-8 sm:mb-10">
+              <h2 className="font-serif font-bold uppercase text-navy leading-tight tracking-[1.5px] sm:tracking-[3px] text-[clamp(1rem,2vw,1.6rem)]">
+                #Something Extraordinary Is <span className="text-gold">Coming Soon</span>
+              </h2>
+              <p className="mt-4 inline-flex items-center justify-center gap-3 text-[11px] sm:text-xs font-bold uppercase tracking-[2px] sm:tracking-[3px] text-gold">
+                <span className="h-px w-10 bg-gold/40" />
+                Currently Under Construction
+                <span className="h-px w-10 bg-gold/40" />
+              </p>
+            </div>
           </ScrollReveal>
 
           {/* Coming Soon Banner */}
@@ -229,17 +236,32 @@ export default function FeaturedProjects({
             </div>
           </ScrollReveal>
 
-          {/* Something Extraordinary Is Coming to Sangammer */}
+          {/* Something Extraordinary Is Coming to Sangamner */}
           <ScrollReveal direction="up" duration={800} delay={150}>
-            <div className="w-full rounded-3xl overflow-hidden shadow-2xl border border-gold/10 mb-12 sm:mb-16 bg-navy">
-              <Image
-                src="/assets/shreetej/sangammer-coming-soon.png"
-                alt="Something Extraordinary Is Coming to Sangammer - A New Address, A New Lifestyle, A New Landmark"
-                width={691}
-                height={298}
-                className="w-full h-auto"
-                sizes="(max-width: 1400px) 100vw, 1400px"
-              />
+            <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border border-gold/20 mb-12 sm:mb-16 bg-navy">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(201,148,58,0.18),transparent_45%),linear-gradient(135deg,rgba(255,255,255,0.03),transparent_55%)]" />
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+              <div className="relative px-6 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-20 text-center">
+                <p className="text-gold text-[10px] sm:text-xs font-bold uppercase tracking-[3px] sm:tracking-[4px] mb-5">
+                  Coming Soon to Sangamner
+                </p>
+                <h3 className="font-serif text-[clamp(2rem,5vw,4.5rem)] font-bold uppercase leading-[1.05] tracking-[1px] text-white">
+                  Something Extraordinary
+                  <span className="block text-gold mt-2">Is Coming to Sangamner</span>
+                </h3>
+                <div className="mt-8 flex items-center justify-center gap-3 sm:gap-4 text-gold/80">
+                  <span className="h-px w-10 sm:w-16 bg-gold/40" />
+                  <span className="w-2 h-2 rotate-45 border border-gold/60" />
+                  <span className="h-px w-10 sm:w-16 bg-gold/40" />
+                </div>
+                <p className="mt-8 font-cormorant text-[clamp(1.35rem,2.6vw,2.5rem)] text-gold-light tracking-[0.5px]">
+                  A New Address, A New Lifestyle, A New Landmark
+                </p>
+                <p className="mt-6 text-white/65 text-xs sm:text-sm uppercase tracking-[2px] sm:tracking-[3px] font-semibold">
+                  Shreetej Properties
+                </p>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
             </div>
           </ScrollReveal>
 
