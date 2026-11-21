@@ -210,54 +210,71 @@ export default function FeaturedProjects({
 
           {/* Coming Soon Heading */}
           <ScrollReveal direction="up" duration={800}>
-            <div className="text-center mb-8 sm:mb-10">
-              <h2 className="font-serif font-bold uppercase text-navy leading-tight tracking-[1.5px] sm:tracking-[3px] text-[clamp(1rem,2vw,1.6rem)]">
+            <div className="text-center mb-10 sm:mb-14">
+              <p className="mt-5 inline-flex items-center justify-center gap-3 text-xs sm:text-sm font-bold uppercase tracking-[2px] sm:tracking-[4px] text-gold">
+                <span className="h-px w-12 sm:w-16 bg-gold/40" />
                 #Something Extraordinary Is <span className="text-gold">Coming Soon</span>
-              </h2>
-              <p className="mt-4 inline-flex items-center justify-center gap-3 text-[11px] sm:text-xs font-bold uppercase tracking-[2px] sm:tracking-[3px] text-gold">
-                <span className="h-px w-10 bg-gold/40" />
-                Currently Under Construction
-                <span className="h-px w-10 bg-gold/40" />
+                <span className="h-px w-12 sm:w-16 bg-gold/40" />
               </p>
             </div>
           </ScrollReveal>
 
           {/* Coming Soon Banner */}
           <ScrollReveal direction="up" duration={800}>
-            <div className="w-full rounded-3xl overflow-hidden shadow-2xl border border-gold/10 mb-6 sm:mb-8 bg-navy">
+            <div className="w-full rounded-[2rem] overflow-hidden shadow-2xl border border-gold/10 mb-8 sm:mb-12 bg-navy">
               <Image
                 src="/assets/shreetej/coming-soon-banner.jpg"
                 alt="Something Extraordinary Is Coming Soon - An Extraordinary Landmark"
                 width={1366}
                 height={768}
-                className="w-full h-auto"
+                className="w-full h-auto min-h-[280px] sm:min-h-[420px] lg:min-h-[560px] object-cover"
                 sizes="(max-width: 1400px) 100vw, 1400px"
+                priority={false}
               />
             </div>
           </ScrollReveal>
 
           {/* Something Extraordinary Is Coming to Sangamner */}
           <ScrollReveal direction="up" duration={800} delay={150}>
-            <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border border-gold/20 mb-12 sm:mb-16 bg-navy">
+            <div className="relative w-full rounded-[2rem] overflow-hidden shadow-2xl border border-gold/20 mb-14 sm:mb-20 bg-navy min-h-[420px] sm:min-h-[520px] lg:min-h-[620px] flex items-center">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(201,148,58,0.18),transparent_45%),linear-gradient(135deg,rgba(255,255,255,0.03),transparent_55%)]" />
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
-              <div className="relative px-6 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-20 text-center">
-                <p className="text-gold text-[10px] sm:text-xs font-bold uppercase tracking-[3px] sm:tracking-[4px] mb-5">
+              <div className="relative w-full px-6 py-14 sm:px-12 sm:py-20 lg:px-20 lg:py-24 text-center">
+                <p className="text-gold text-[11px] sm:text-sm font-bold uppercase tracking-[3px] sm:tracking-[5px] mb-6">
                   Coming Soon to Sangamner
                 </p>
-                <h3 className="font-serif text-[clamp(2rem,5vw,4.5rem)] font-bold uppercase leading-[1.05] tracking-[1px] text-white">
+                <h3 className="font-serif text-[clamp(2.4rem,5.6vw,5.4rem)] font-bold uppercase leading-[1.02] tracking-[1px] text-white">
                   Something Extraordinary
-                  <span className="block text-gold mt-2">Is Coming to Sangamner</span>
+                  <span className="block text-gold mt-3">Is Coming to Sangamner</span>
                 </h3>
-                <div className="mt-8 flex items-center justify-center gap-3 sm:gap-4 text-gold/80">
-                  <span className="h-px w-10 sm:w-16 bg-gold/40" />
-                  <span className="w-2 h-2 rotate-45 border border-gold/60" />
-                  <span className="h-px w-10 sm:w-16 bg-gold/40" />
+                <div className="mt-10 flex items-center justify-center gap-3 sm:gap-5 text-gold/80">
+                  <span className="h-px w-12 sm:w-20 bg-gold/40" />
+                  <span className="w-2.5 h-2.5 rotate-45 border border-gold/60" />
+                  <span className="h-px w-12 sm:w-20 bg-gold/40" />
                 </div>
-                <p className="mt-8 font-cormorant text-[clamp(1.35rem,2.6vw,2.5rem)] text-gold-light tracking-[0.5px]">
-                  A New Address, A New Lifestyle, A New Landmark
-                </p>
-                <p className="mt-6 text-white/65 text-xs sm:text-sm uppercase tracking-[2px] sm:tracking-[3px] font-semibold">
+                <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 max-w-6xl mx-auto">
+                  {[
+                    "Prime Location in Sangamner",
+                    "Municipal Area Location*",
+                    "Excellent Connectivity",
+                    "Close to Daily Essentials",
+                    "Modern Lifestyle Amenities",
+                    "Thoughtfully Planned Spaces",
+                    "Convenient Road Connectivity",
+                    "A New Landmark in Sangamner",
+                  ].map((point) => (
+                    <div
+                      key={point}
+                      className="rounded-2xl border border-gold/20 bg-white/5 backdrop-blur-sm px-5 py-5 sm:px-6 sm:py-6 flex items-center justify-center text-center"
+                    >
+                      <p className="text-white/90 text-sm sm:text-base font-semibold leading-relaxed">
+                        <span className="text-gold mr-2">•</span>
+                        {point}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-10 text-white/65 text-xs sm:text-sm uppercase tracking-[2px] sm:tracking-[3px] font-semibold">
                   Shreetej Properties
                 </p>
               </div>
