@@ -228,7 +228,7 @@ export default function FeaturedProjects({
               <Image
                 src="/assets/shreetej/coming-soon-banner.jpg"
                 alt="Something Extraordinary Is Coming Soon - An Extraordinary Landmark"
-                width={1366}
+                width={1380}
                 height={768}
                 className="w-full h-auto min-h-[340px] sm:min-h-[520px] lg:min-h-[700px] xl:min-h-[760px] object-cover"
                 sizes="(max-width: 1400px) 100vw, 1400px"
