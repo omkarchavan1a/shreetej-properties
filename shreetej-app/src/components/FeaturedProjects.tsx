@@ -224,16 +224,36 @@ export default function FeaturedProjects({
 
           {/* Coming Soon Banner */}
           <ScrollReveal direction="up" duration={800}>
-            <div className="w-full rounded-[2.25rem] overflow-hidden shadow-2xl border border-gold/10 mb-10 sm:mb-14 bg-navy">
-              <Image
-                src="/assets/shreetej/coming-soon-banner.jpg"
-                alt="Something Extraordinary Is Coming Soon - An Extraordinary Landmark"
-                width={1380}
-                height={768}
-                className="w-full h-auto min-h-[340px] sm:min-h-[520px] lg:min-h-[700px] xl:min-h-[760px] object-cover"
-                sizes="(max-width: 1400px) 100vw, 1400px"
-                priority={false}
-              />
+            <div className="group relative w-full rounded-[2.25rem] overflow-hidden mb-10 sm:mb-14 bg-navy border border-gold/10 shadow-2xl ring-1 ring-transparent hover:ring-gold/40 hover:shadow-[0_30px_90px_rgba(201,148,58,0.28)] transition-all duration-700">
+              <div className="relative w-full aspect-[16/9] max-h-[62vh] sm:max-h-[560px] lg:max-h-[620px] overflow-hidden">
+                <Image
+                  src="/assets/shreetej/coming-soon-banner.jpg"
+                  alt="Something Extraordinary Is Coming Soon - An Extraordinary Landmark"
+                  fill
+                  className="object-cover object-center transition-transform duration-[1400ms] ease-out group-hover:scale-[1.06]"
+                  sizes="(max-width: 1400px) 100vw, 1400px"
+                  priority={false}
+                />
+
+                {/* Cinematic gradient wash */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-navy/10 opacity-50 group-hover:opacity-80 transition-opacity duration-700" />
+
+                {/* Gold shine sweep on hover */}
+                <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                  <div className="absolute top-0 -left-1/2 h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-[400%] transition-all duration-[1400ms] ease-out" />
+                </div>
+
+                {/* Corner accent lines */}
+                <div className="pointer-events-none absolute inset-4 sm:inset-6 rounded-[1.5rem] border border-gold/0 group-hover:border-gold/30 transition-colors duration-700" />
+
+                {/* Floating launch badge */}
+                <div className="pointer-events-none absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-navy/70 backdrop-blur-md px-4 py-2 text-[10px] sm:text-xs font-bold uppercase tracking-[2px] text-gold-light shadow-lg transition-transform duration-500 group-hover:-translate-y-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse-slow" />
+                    Launching Soon
+                  </span>
+                </div>
+              </div>
             </div>
           </ScrollReveal>
 
