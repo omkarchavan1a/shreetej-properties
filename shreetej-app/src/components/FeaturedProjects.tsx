@@ -231,14 +231,14 @@ export default function FeaturedProjects({
 
           {/* Something Extraordinary Is Coming to Sangammer */}
           <ScrollReveal direction="up" duration={800} delay={150}>
-            <div className="max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-gold/10 mb-12 sm:mb-16 bg-navy">
+            <div className="w-full rounded-3xl overflow-hidden shadow-2xl border border-gold/10 mb-12 sm:mb-16 bg-navy">
               <Image
                 src="/assets/shreetej/sangammer-coming-soon.png"
                 alt="Something Extraordinary Is Coming to Sangammer - A New Address, A New Lifestyle, A New Landmark"
-                width={779}
-                height={307}
+                width={691}
+                height={298}
                 className="w-full h-auto"
-                sizes="(max-width: 896px) 100vw, 896px"
+                sizes="(max-width: 1400px) 100vw, 1400px"
               />
             </div>
           </ScrollReveal>
