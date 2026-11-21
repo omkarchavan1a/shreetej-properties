@@ -205,7 +205,7 @@ export default function FeaturedProjects({
     <div className="w-full bg-cream py-16 sm:py-24">
       {/* Ongoing Projects Section */}
       {ongoingProjects.length > 0 && (
-        <section className="px-4 sm:px-6 lg:px-[8%] max-w-[1400px] mx-auto mb-20 sm:mb-32 relative">
+        <section className="px-4 sm:px-6 lg:px-[4%] max-w-[1600px] mx-auto mb-20 sm:mb-32 relative">
           <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-gold/5 rounded-full blur-3xl -translate-y-1/2 -z-10" />
 
           {/* Coming Soon Heading */}
@@ -225,13 +225,13 @@ export default function FeaturedProjects({
           {/* Coming Soon Banner */}
           <ScrollReveal direction="up" duration={800}>
             <div className="group relative w-full rounded-[2.25rem] overflow-hidden mb-10 sm:mb-14 bg-navy border border-gold/10 shadow-2xl ring-1 ring-transparent hover:ring-gold/40 hover:shadow-[0_30px_90px_rgba(201,148,58,0.28)] transition-all duration-700">
-              <div className="relative w-full aspect-[16/9] max-h-[62vh] sm:max-h-[560px] lg:max-h-[620px] overflow-hidden">
+              <div className="relative w-full aspect-[16/9] max-h-[72vh] sm:max-h-[680px] lg:max-h-[820px] overflow-hidden">
                 <Image
                   src="/assets/shreetej/coming-soon-banner.jpg"
                   alt="Something Extraordinary Is Coming Soon - An Extraordinary Landmark"
                   fill
                   className="object-cover object-center transition-transform duration-[1400ms] ease-out group-hover:scale-[1.06]"
-                  sizes="(max-width: 1400px) 100vw, 1400px"
+                  sizes="(max-width: 1600px) 100vw, 1600px"
                   priority={false}
                 />
 
@@ -259,10 +259,10 @@ export default function FeaturedProjects({
 
           {/* Something Extraordinary Is Coming to Sangamner */}
           <ScrollReveal direction="up" duration={800} delay={150}>
-            <div className="relative w-full rounded-[2.25rem] overflow-hidden shadow-2xl border border-gold/20 mb-16 sm:mb-24 bg-navy min-h-[560px] sm:min-h-[680px] lg:min-h-[760px] flex items-center">
+            <div className="group relative w-full rounded-[2.25rem] overflow-hidden shadow-2xl border border-gold/20 mb-16 sm:mb-24 bg-navy min-h-[560px] sm:min-h-[680px] lg:min-h-[760px] flex items-center ring-1 ring-transparent hover:ring-gold/40 hover:shadow-[0_30px_90px_rgba(201,148,58,0.28)] transition-all duration-700">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(201,148,58,0.18),transparent_45%),linear-gradient(135deg,rgba(255,255,255,0.03),transparent_55%)]" />
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
-              <div className="relative w-full px-6 py-16 sm:px-12 sm:py-24 lg:px-24 lg:py-28 text-center">
+              <div className="relative z-10 w-full px-6 py-16 sm:px-12 sm:py-24 lg:px-24 lg:py-28 text-center">
                 <p className="text-gold text-xs sm:text-base font-bold uppercase tracking-[3px] sm:tracking-[6px] mb-7">
                   Coming Soon to Sangamner
                 </p>
@@ -301,6 +301,18 @@ export default function FeaturedProjects({
                   Shreetej Properties
                 </p>
               </div>
+
+              {/* Cinematic gradient wash */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-navy/10 opacity-50 group-hover:opacity-80 transition-opacity duration-700" />
+
+              {/* Gold shine sweep on hover */}
+              <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                <div className="absolute top-0 -left-1/2 h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-[400%] transition-all duration-[1400ms] ease-out" />
+              </div>
+
+              {/* Corner accent lines */}
+              <div className="pointer-events-none absolute inset-4 sm:inset-6 rounded-[1.5rem] border border-gold/0 group-hover:border-gold/30 transition-colors duration-700" />
+
               <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
             </div>
           </ScrollReveal>
