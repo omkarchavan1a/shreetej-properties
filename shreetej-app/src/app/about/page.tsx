@@ -64,7 +64,7 @@ export default function AboutPage() {
             <div className="flex justify-center lg:justify-end">
               <div className="relative w-full max-w-sm lg:max-w-full aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl border border-gold/10">
                 <img
-                  src="/assets/shreetej/about/satish raut.JPG"
+                  src="shreetej-properties\shreetej-app\shreetej_images\about\satish raut.jpg"
                   alt="Shri Satish B. Raut — Chairman & Managing Director"
                   className="w-full h-full object-cover object-top"
                 />
